@@ -1,0 +1,75 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const functions_1 = __importDefault(require("../functions"));
+const db_1 = __importDefault(require("../db"));
+class ProductosController {
+    createUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            const usuario = yield db_1.default.query('INSERT INTO usuarios SET ?', [req.body]);
+            if (usuario.affectedRows == 1) {
+                res.json({ message: "ok" });
+            }
+            else {
+                res.json({ message: "error" });
+            }
+        });
+    }
+    createEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const salt = yield bcrypt.genSalt(10);
+            const passHash = yield bcrypt.hash(password, salt);
+            req.body.password = passHash;
+            const productos = yield db_1.default.query('INSERT INTO empresas SET ?', [req.body]);
+            res.json(productos);
+        });
+    }
+    createAdmin(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const salt = yield bcrypt.genSalt(10);
+            const passHash = yield bcrypt.hash(password, salt);
+            req.body.password = passHash;
+            const productos = yield db_1.default.query('INSERT INTO admins SET ?', [req.body]);
+            res.json(productos);
+        });
+    }
+    loginUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const usuario = yield db_1.default.query('SELECT nombre, username, email, password FROM usuarios Where email = ? or username = ?', [req.body.user, req.body.user]);
+            let savedPassword = usuario[0].password;
+            let match = yield functions_1.default.matchPassword(password, savedPassword);
+            if (match) {
+                let token = yield functions_1.default.getToken(req.body);
+                res.json(token);
+            }
+            else {
+                res.json({ message: "error" });
+            }
+        });
+    }
+    loginEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+        });
+    }
+    loginAdmin(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+        });
+    }
+}
+const productosController = new ProductosController;
+exports.default = productosController;
