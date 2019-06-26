@@ -8,9 +8,9 @@ exports.default = {
         database: 'pidexpress'
     } */
     database: {
-        host: "db5000112428.hosting-data.io",
-        user: 'dbu8367',
-        password: 'pedidoSpeed2019$',
-        database: 'dbs106937'
+        host: "mysql://ugdbjvjp3vj97ypn:2WjiHWp7bH5jLeI11ItY@b4bdttx6r1sgazwbqffd-mysql.services.clever-cloud.com:3306/b4bdttx6r1sgazwbqffd",
+        user: 'ugdbjvjp3vj97ypn',
+        password: '2WjiHWp7bH5jLeI11ItY',
+        database: 'b4bdttx6r1sgazwbqffd'
     }
 };
