@@ -10,7 +10,7 @@ exports.default = {
     database: {
         host: "db5000112428.hosting-data.io",
         user: 'dbu8367',
-        password: 'pedidoSpeed.2019$',
+        password: 'pedidoSpeed2019$',
         database: 'dbs106937'
     }
 };
