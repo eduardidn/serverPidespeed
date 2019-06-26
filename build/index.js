@@ -31,7 +31,7 @@ class Server {
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/api/empresas', empresasRoutes_1.default);
         this.app.use('/api/productos', productosRoutes_1.default);
-        this.app.use('/api/sesiones', sesionesRoutes_1.default);
+        this.app.use('/sesiones', sesionesRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
