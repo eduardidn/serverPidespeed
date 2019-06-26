@@ -8,9 +8,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "dev": "nodemon ./build",
     "start": "node ./build"
   },
   "keywords": [],
