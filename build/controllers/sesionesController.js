@@ -18,12 +18,17 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
             req.body.password = yield functions_1.default.encryptPassword(password);
-            const usuario = yield db_1.default.query('INSERT INTO usuarios SET ?', [req.body]);
-            if (usuario.affectedRows == 1) {
-                res.json({ message: "ok" });
+            try {
+                const usuario = yield db_1.default.query('INSERT INTO usuarios SET ?', [req.body]);
+                if (usuario.affectedRows == 1) {
+                    res.json({ message: "ok" });
+                }
+                else {
+                    res.status(404).json({ message: "error" });
+                }
             }
-            else {
-                res.json({ message: "error" });
+            catch (err) {
+                res.status(404).json({ message: "errorBD" });
             }
         });
     }
@@ -51,14 +56,19 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
             const usuario = yield db_1.default.query('SELECT nombre, username, email, password FROM usuarios Where email = ? or username = ?', [req.body.user, req.body.user]);
-            let savedPassword = usuario[0].password;
-            let match = yield functions_1.default.matchPassword(password, savedPassword);
-            if (match) {
-                let token = yield functions_1.default.getToken(req.body);
-                res.json(token);
+            if (usuario != "") {
+                let savedPassword = usuario[0].password;
+                let match = yield functions_1.default.matchPassword(password, savedPassword);
+                if (match) {
+                    let token = yield functions_1.default.getToken(req.body);
+                    res.json({ message: "ok", token: token });
+                }
+                else {
+                    res.status(404).json({ message: "error" });
+                }
             }
             else {
-                res.json({ message: "error" });
+                res.status(404).json({ message: "error" });
             }
         });
     }

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-//const morgan_1 = __importDefault(require("morgan"));
+const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const functions_1 = __importDefault(require("./functions"));
 //ROUTES
@@ -13,6 +13,7 @@ const testRoutes_1 = __importDefault(require("./routes/testRoutes"));
 const empresasRoutes_1 = __importDefault(require("./routes/empresasRoutes"));
 const productosRoutes_1 = __importDefault(require("./routes/productosRoutes"));
 const sesionesRoutes_1 = __importDefault(require("./routes/sesionesRoutes"));
+const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -21,17 +22,18 @@ class Server {
     }
     config() {
         this.app.set('port', process.env.PORT || 3000);
-        //this.app.use(morgan_1.default('dev'));
+        this.app.use(morgan_1.default('dev'));
         this.app.use(cors_1.default());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
         this.app.use('/', indexRoutes_1.default);
+        this.app.use('/sesiones', sesionesRoutes_1.default);
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/api/empresas', empresasRoutes_1.default);
         this.app.use('/api/productos', productosRoutes_1.default);
-        this.app.use('/sesiones', sesionesRoutes_1.default);
+        this.app.use('/api/usuarios', usuariosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

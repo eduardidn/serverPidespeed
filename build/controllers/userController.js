@@ -12,49 +12,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = __importDefault(require("../db"));
-class ProductosController {
+class UsuariosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const productos = yield db_1.default.query('SELECT * FROM productos');
-                res.json(productos);
-            }
-            catch (err) {
-                console.log(err);
-            }
+            const usuarios = yield db_1.default.query('SELECT * FROM usuarios');
+            res.json(usuarios);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const productos = yield db_1.default.query('SELECT * FROM productos WHERE id = ?', [id]);
-            console.log(productos.length);
-            if (productos.length > 0) {
-                return res.json(productos[0]);
+            const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE id = ?', [id]);
+            console.log(usuarios.length);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
             }
             res.status(404).json({ message: "error" });
-        });
-    }
-    create(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.default.query('INSERT INTO productos set ?', [req.body]);
-            res.json({ message: 'ok' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield db_1.default.query('UPDATE productos set ? WHERE id = ?', [req.body, id]);
+            yield db_1.default.query('UPDATE usuarios set ? WHERE id = ?', [req.body, id]);
             res.json({ message: "ok" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield db_1.default.query('DELETE FROM productos WHERE id = ?', [id]);
+            yield db_1.default.query('DELETE FROM usuarios WHERE id = ?', [id]);
             res.json({ message: "ok" });
         });
     }
 }
-const productosController = new ProductosController;
-exports.default = productosController;
+const usuariosController = new UsuariosController;
+exports.default = usuariosController;
