@@ -1,15 +1,15 @@
 const bcrypt = require('bcryptjs');
 const jwt =  require('jsonwebtoken');
 
-const func = {};
+const func: any = {};
 
-func.encryptPassword = async (password) => {
+func.encryptPassword = async (password:string) => {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
   return hash;
 };
 
-func.matchPassword = async (password, savedPassword) => {
+func.matchPassword = async (password:string, savedPassword:string) => {
   try {
     return await bcrypt.compare(password, savedPassword);
   } catch (e) {
@@ -17,11 +17,11 @@ func.matchPassword = async (password, savedPassword) => {
   }
 };
 
-func.getToken = async (data) => {
+func.getToken = async (data:object) => {
     return await jwt.sign(data, 'estoessecreto', { expiresIn: '48h' });
   };
 
-func.verifyToken = async (req, res, next) => {
+func.verifyToken = async (req:any, res:any, next:any) => {
 
   const bearerHeader = req.headers['authorization'];
 
@@ -31,7 +31,7 @@ func.verifyToken = async (req, res, next) => {
 
     const bearerToken = bearer[1];
 
-    jwt.verify(bearerToken, 'estoessecreto', (err, authData) => {
+    jwt.verify(bearerToken, 'estoessecreto', (err:any, authData:any) => {
       if(err) {
         res.json({message: "error"});
       } else {

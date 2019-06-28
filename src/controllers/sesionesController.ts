@@ -19,24 +19,6 @@ class ProductosController {
         }
     }
 
-    public async createEmpresa(req: Request, res: Response): Promise<void> {
-        let password = req.body.password;
-        const salt = await bcrypt.genSalt(10);
-        const passHash = await bcrypt.hash(password, salt);
-        req.body.password = passHash;
-        const productos = await db.query('INSERT INTO empresas SET ?', [req.body]);
-        res.json(productos);
-    }
-
-    public async createAdmin(req: Request, res: Response): Promise<void> {
-        let password = req.body.password;
-        const salt = await bcrypt.genSalt(10);
-        const passHash = await bcrypt.hash(password, salt);
-        req.body.password = passHash;
-        const productos = await db.query('INSERT INTO admins SET ?', [req.body]);
-        res.json(productos);
-    }
-
     public async loginUser(req: Request, res: Response): Promise<void> {
         let password = req.body.password;
         const usuario = await db.query('SELECT nombre, username, email, password FROM usuarios Where email = ? or username = ?', [req.body.user,req.body.user]);
@@ -45,7 +27,7 @@ class ProductosController {
             let match = await func.matchPassword(password, savedPassword);
             if(match){
                 let token = await func.getToken(req.body);
-                res.json({message: "ok", token : token});
+                res.json({message: "ok", token : token, user : usuario[0]});
             }else{
                 res.status(404).json({message : "error"});
             }
@@ -54,6 +36,24 @@ class ProductosController {
         }
         
     }
+
+     public async createEmpresa(req: Request, res: Response): Promise<void> {
+        /*let password = req.body.password;
+        const salt = await bcrypt.genSalt(10);
+        const passHash = await bcrypt.hash(password, salt);
+        req.body.password = passHash;
+        const productos = await db.query('INSERT INTO empresas SET ?', [req.body]);
+        res.json(productos);*/
+    }
+
+    public async createAdmin(req: Request, res: Response): Promise<void> {
+        /*let password = req.body.password;
+        const salt = await bcrypt.genSalt(10);
+        const passHash = await bcrypt.hash(password, salt);
+        req.body.password = passHash;
+        const productos = await db.query('INSERT INTO admins SET ?', [req.body]);
+        res.json(productos);*/
+    } 
 
     public async loginEmpresa(req: Request, res: Response): Promise<void> {
         

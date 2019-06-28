@@ -32,26 +32,6 @@ class ProductosController {
             }
         });
     }
-    createEmpresa(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let password = req.body.password;
-            const salt = yield bcrypt.genSalt(10);
-            const passHash = yield bcrypt.hash(password, salt);
-            req.body.password = passHash;
-            const productos = yield db_1.default.query('INSERT INTO empresas SET ?', [req.body]);
-            res.json(productos);
-        });
-    }
-    createAdmin(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let password = req.body.password;
-            const salt = yield bcrypt.genSalt(10);
-            const passHash = yield bcrypt.hash(password, salt);
-            req.body.password = passHash;
-            const productos = yield db_1.default.query('INSERT INTO admins SET ?', [req.body]);
-            res.json(productos);
-        });
-    }
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
@@ -61,7 +41,7 @@ class ProductosController {
                 let match = yield functions_1.default.matchPassword(password, savedPassword);
                 if (match) {
                     let token = yield functions_1.default.getToken(req.body);
-                    res.json({ message: "ok", token: token });
+                    res.json({ message: "ok", token: token, user: usuario[0] });
                 }
                 else {
                     res.status(404).json({ message: "error" });
@@ -70,6 +50,26 @@ class ProductosController {
             else {
                 res.status(404).json({ message: "error" });
             }
+        });
+    }
+    createEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*let password = req.body.password;
+            const salt = await bcrypt.genSalt(10);
+            const passHash = await bcrypt.hash(password, salt);
+            req.body.password = passHash;
+            const productos = await db.query('INSERT INTO empresas SET ?', [req.body]);
+            res.json(productos);*/
+        });
+    }
+    createAdmin(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*let password = req.body.password;
+            const salt = await bcrypt.genSalt(10);
+            const passHash = await bcrypt.hash(password, salt);
+            req.body.password = passHash;
+            const productos = await db.query('INSERT INTO admins SET ?', [req.body]);
+            res.json(productos);*/
         });
     }
     loginEmpresa(req, res) {

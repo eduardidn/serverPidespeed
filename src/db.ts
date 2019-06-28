@@ -1,11 +1,11 @@
-import mysql from 'mysql';
+import mysql, {Pool} from 'mysql';
 
 import keys from './keys';
 import { promisify } from 'bluebird';
 
-const db = mysql.createPool(keys.database);
+const db: any = mysql.createPool(keys.database);
 
-db.getConnection((err, connection) => {
+db.getConnection((err: any, connection: any) => {
   if (err) {
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
       console.error('Database connection was closed.');

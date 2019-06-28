@@ -9,6 +9,8 @@ import empresasRoutes from './routes/empresasRoutes';
 import productosRoutes from './routes/productosRoutes';
 import sesionesRoutes from './routes/sesionesRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
+import favoritosRoutes from './routes/favoritosRoutes';
+import categoriasRoutes from './routes/categoriasRoutes';
 
 class Server {
 
@@ -31,10 +33,12 @@ class Server {
     routes(): void {
         this.app.use('/', indexRoutes);
         this.app.use('/sesiones', sesionesRoutes);
-        this.app.use('/api',func.verifyToken, testRoutes);
+        //this.app.use('/api',func.verifyToken, testRoutes);
         this.app.use('/api/empresas', empresasRoutes);
         this.app.use('/api/productos', productosRoutes);
         this.app.use('/api/usuarios', usuariosRoutes);
+        this.app.use('/api/favoritos', favoritosRoutes);
+        this.app.use('/api/categorias', categoriasRoutes);
     }
 
     start() {
