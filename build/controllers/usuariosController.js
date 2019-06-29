@@ -27,7 +27,7 @@ class UsuariosController {
             if (usuarios.length > 0) {
                 return res.json(usuarios[0]);
             }
-            res.status(404).json({ message: "error" });
+            res.json({ message: "error" });
         });
     }
     update(req, res) {

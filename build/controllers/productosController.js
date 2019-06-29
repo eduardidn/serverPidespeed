@@ -32,7 +32,7 @@ class ProductosController {
             if (productos.length > 0) {
                 return res.json(productos[0]);
             }
-            res.status(404).json({ message: "error" });
+            res.json({ message: "error" });
         });
     }
     create(req, res) {
