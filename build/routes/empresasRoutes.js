@@ -11,8 +11,8 @@ class EmpresasRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', empresasController_1.default.list);
-        this.router.get('/:id', empresasController_1.default.getOne);
+        this.router.get('/:ruta', empresasController_1.default.list);
+        this.router.get('/:ruta', empresasController_1.default.getOne);
         this.router.post('/', empresasController_1.default.create);
         this.router.put('/:id', empresasController_1.default.update);
         this.router.delete('/:id', empresasController_1.default.delete);

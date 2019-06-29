@@ -15,7 +15,7 @@ const db_1 = __importDefault(require("../db"));
 class CategoriasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const categorias = yield db_1.default.query('SELECT * FROM categorias');
+            const categorias = yield db_1.default.query('SELECT * FROM categorias WHERE publish = 1');
             res.json(categorias);
         });
     }

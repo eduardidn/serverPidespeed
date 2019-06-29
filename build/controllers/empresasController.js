@@ -15,14 +15,15 @@ const db_1 = __importDefault(require("../db"));
 class EmpresasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresas = yield db_1.default.query('SELECT * FROM empresas');
+            const { ruta } = req.params;
+            const empresas = yield db_1.default.query('SELECT empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1', [ruta]);
             res.json(empresas);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE id = ?', [id]);
+            const { ruta } = req.params;
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ?', [ruta]);
             console.log(empresas.length);
             if (empresas.length > 0) {
                 return res.json(empresas[0]);
