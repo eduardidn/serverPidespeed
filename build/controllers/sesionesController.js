@@ -24,11 +24,11 @@ class ProductosController {
                     res.json({ message: "ok" });
                 }
                 else {
-                    res.json({ message: "error" });
+                    res.status(404).json({ message: "error" });
                 }
             }
             catch (err) {
-                res.json({ message: "errorBD" });
+                res.status(404).json({ message: "errorBD" });
             }
         });
     }
@@ -44,11 +44,11 @@ class ProductosController {
                     res.json({ message: "ok", token: token, user: usuario[0] });
                 }
                 else {
-                    res.json({ message: "error" });
+                    res.status(404).json({ message: "error" });
                 }
             }
             else {
-                res.json({ message: "error" });
+                res.status(404).json({ message: "error" });
             }
         });
     }

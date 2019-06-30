@@ -12,6 +12,7 @@ class FavoritosRoutes {
     }
     config() {
         this.router.get('/:id', favoritosController_1.default.list);
+        this.router.get('/:id/:id2', favoritosController_1.default.listEsp);
         this.router.post('/', favoritosController_1.default.create);
         this.router.delete('/:id', favoritosController_1.default.delete);
     }

@@ -27,7 +27,7 @@ class CategoriasController {
             if (categorias.length > 0) {
                 return res.json(categorias[0]);
             }
-            res.json({ message: "error" });
+            res.status(404).json({ message: "error" });
         });
     }
     create(req, res) {
