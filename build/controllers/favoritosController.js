@@ -23,8 +23,8 @@ class FavoritosController {
     listEsp(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const { id2 } = req.params;
-            const favoritos = yield db_1.default.query('SELECT empresas.nombre, empresas.id, empresas.descripcion,empresas.img, categorias.ruta from favoritos INNER JOIN empresas on empresas.id = favoritos.empresa_id INNER JOIN categorias ON empresas.categoria_id = categorias.id  WHERE favoritos.usuario_id = ? AND empresas.categoria_id = ?', [id, id2]);
+            const { ruta } = req.params;
+            const favoritos = yield db_1.default.query('SELECT empresas.nombre, empresas.id, empresas.descripcion,empresas.img, categorias.ruta from favoritos INNER JOIN empresas on empresas.id = favoritos.empresa_id INNER JOIN categorias ON empresas.categoria_id = categorias.id  WHERE favoritos.usuario_id = ? AND categorias.ruta = ?', [id, ruta]);
             res.json(favoritos);
         });
     }
