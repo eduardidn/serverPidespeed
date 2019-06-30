@@ -27,7 +27,7 @@ class EmpresasController {
     listHome(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 ORDER BY empresas.visitas LIMIT 0,12');
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 ORDER BY empresas.visitas LIMIT 0,12');
             res.json(empresas);
         });
     }
@@ -38,7 +38,7 @@ class EmpresasController {
             let { tope } = req.params;
             base = Number(base);
             tope = Number(tope);
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.visitas LIMIT ?,?', [ruta, base, tope]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.visitas LIMIT ?,?', [ruta, base, tope]);
             res.json(empresas);
         });
     }
