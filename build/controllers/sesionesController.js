@@ -24,18 +24,18 @@ class ProductosController {
                     res.json({ message: "ok" });
                 }
                 else {
-                    res.status(404).json({ message: "error" });
+                    res.json({ message: "error" });
                 }
             }
             catch (err) {
-                res.status(404).json({ message: "errorBD" });
+                res.json({ message: "errorBD" });
             }
         });
     }
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
-            const usuario = yield db_1.default.query('SELECT nombre, username, email, password FROM usuarios Where email = ? or username = ?', [req.body.user, req.body.user]);
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where email = ? or username = ?', [req.body.user, req.body.user]);
             if (usuario != "") {
                 let savedPassword = usuario[0].password;
                 let match = yield functions_1.default.matchPassword(password, savedPassword);
@@ -44,11 +44,11 @@ class ProductosController {
                     res.json({ message: "ok", token: token, user: usuario[0] });
                 }
                 else {
-                    res.status(404).json({ message: "error" });
+                    res.json({ message: "error" });
                 }
             }
             else {
-                res.status(404).json({ message: "error" });
+                res.json({ message: "error" });
             }
         });
     }
