@@ -17,7 +17,7 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
             try {
-                const productos = yield db_1.default.query('SELECT productos.*, categorias_product.id, categorias_product.nombre FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1', [ruta]);
+                const productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1', [ruta]);
                 res.json(productos);
             }
             catch (err) {
@@ -30,6 +30,18 @@ class ProductosController {
             const { ruta } = req.params;
             try {
                 const productos = yield db_1.default.query('SELECT categorias_product.* FROM categorias_product INNER JOIN empresas ON empresas.categoria_id = categorias_product.categoria_id WHERE empresas.ruta = ? AND categorias_product.publish = 1', [ruta]);
+                res.json(productos);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    }
+    listCatEsp(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { ruta } = req.params;
+            try {
+                const productos = yield db_1.default.query('SELECT productos.categoria_product_id FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 GROUP BY productos.categoria_product_id', [ruta]);
                 res.json(productos);
             }
             catch (err) {
