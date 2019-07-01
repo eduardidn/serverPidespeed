@@ -29,7 +29,7 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
             try {
-                const productos = yield db_1.default.query('SELECT categorias_product.* FROM categorias_product INNER JOIN empresas ON empresas.categoria_id = categorias_product.categoria_id WHERE empresas.ruta = ? AND productos.publish = 1', [ruta]);
+                const productos = yield db_1.default.query('SELECT categorias_product.* FROM categorias_product INNER JOIN empresas ON empresas.categoria_id = categorias_product.categoria_id WHERE empresas.ruta = ? AND categorias_product.publish = 1', [ruta]);
                 res.json(productos);
             }
             catch (err) {
