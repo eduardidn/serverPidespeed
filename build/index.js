@@ -14,6 +14,11 @@ const sesionesRoutes_1 = __importDefault(require("./routes/sesionesRoutes"));
 const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const favoritosRoutes_1 = __importDefault(require("./routes/favoritosRoutes"));
 const categoriasRoutes_1 = __importDefault(require("./routes/categoriasRoutes"));
+const siropesRoutes_1 = __importDefault(require("./routes/siropesRoutes"));
+const toppingsRoutes_1 = __importDefault(require("./routes/toppingsRoutes"));
+const refrescosRoutes_1 = __importDefault(require("./routes/refrescosRoutes"));
+const adicionalesRoutes_1 = __importDefault(require("./routes/adicionalesRoutes"));
+const tamanosRoutes_1 = __importDefault(require("./routes/tamanosRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -36,6 +41,11 @@ class Server {
         this.app.use('/api/usuarios', usuariosRoutes_1.default);
         this.app.use('/api/favoritos', favoritosRoutes_1.default);
         this.app.use('/api/categorias', categoriasRoutes_1.default);
+        this.app.use('/api/siropes', siropesRoutes_1.default);
+        this.app.use('/api/toppings', toppingsRoutes_1.default);
+        this.app.use('/api/refrescos', refrescosRoutes_1.default);
+        this.app.use('/api/adicionales', adicionalesRoutes_1.default);
+        this.app.use('/api/tamanos', tamanosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
