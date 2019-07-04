@@ -23,7 +23,8 @@ class AdicionalesController {
     listAny(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const { tabla } = req.params;
+            let { tabla } = req.params;
+            tabla = tabla.replace(/['"]/g, "");
             const adicionales = yield db_1.default.query('SELECT * FROM ? WHERE empresa_id = ? AND publish = 1', [tabla, id]);
             res.json(adicionales);
         });
