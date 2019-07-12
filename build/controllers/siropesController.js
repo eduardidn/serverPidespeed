@@ -16,7 +16,7 @@ class SiropesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const siropes = yield db_1.default.query('SELECT * FROM siropes WHERE empresa_id = ? AND publish = 1', [id]);
+            const siropes = yield db_1.default.query('SELECT * FROM siropes WHERE empresa_id = ? AND publish = 1 AND cantidad != 0', [id]);
             res.json(siropes);
         });
     }

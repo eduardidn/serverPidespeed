@@ -16,7 +16,7 @@ class AdicionalesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const adicionales = yield db_1.default.query('SELECT * FROM adicionales WHERE empresa_id = ? AND publish = 1', [id]);
+            const adicionales = yield db_1.default.query('SELECT * FROM adicionales WHERE empresa_id = ? AND publish = 1 AND cantidad != 0', [id]);
             res.json(adicionales);
         });
     }

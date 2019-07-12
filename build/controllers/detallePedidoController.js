@@ -12,45 +12,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = __importDefault(require("../db"));
-class ToppingsController {
+class Detalle_pedidoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const toppings = yield db_1.default.query('SELECT * FROM toppings WHERE empresa_id = ? AND publish = 1 AND cantidad != 0', [id]);
-            res.json(toppings);
+            const detalle_pedido = yield db_1.default.query('SELECT * FROM detalle_pedido WHERE publish = 1');
+            res.json(detalle_pedido);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const toppings = yield db_1.default.query('SELECT * FROM toppings WHERE id = ?', [id]);
-            console.log(toppings.length);
-            if (toppings.length > 0) {
-                return res.json(toppings[0]);
+            const detalle_pedido = yield db_1.default.query('SELECT * FROM detalle_pedido WHERE id = ?', [id]);
+            console.log(detalle_pedido.length);
+            if (detalle_pedido.length > 0) {
+                return res.json(detalle_pedido[0]);
             }
             res.json({ message: "error" });
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.default.query('INSERT INTO toppings set ?', [req.body]);
+            const result = yield db_1.default.query('INSERT INTO detalle_pedido set ?', [req.body]);
             res.json({ message: 'ok' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield db_1.default.query('UPDATE toppings set ? WHERE id = ?', [req.body, id]);
+            yield db_1.default.query('UPDATE detalle_pedido set ? WHERE id = ?', [req.body, id]);
             res.json({ message: "ok" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield db_1.default.query('DELETE FROM toppings WHERE id = ?', [id]);
+            yield db_1.default.query('DELETE FROM detalle_pedido WHERE id = ?', [id]);
             res.json({ message: "ok" });
         });
     }
 }
-const toppingsController = new ToppingsController;
-exports.default = toppingsController;
+const detalle_pedidoController = new Detalle_pedidoController;
+exports.default = detalle_pedidoController;

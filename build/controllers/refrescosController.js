@@ -16,7 +16,7 @@ class RefrescosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const refrescos = yield db_1.default.query('SELECT * FROM refrescos WHERE empresa_id = ? AND publish = 1', [id]);
+            const refrescos = yield db_1.default.query('SELECT * FROM refrescos WHERE empresa_id = ? AND publish = 1 AND cantidad != 0', [id]);
             res.json(refrescos);
         });
     }

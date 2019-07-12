@@ -13,6 +13,7 @@ class EmpresasRoutes {
     config() {
         this.router.get('/', empresasController_1.default.listHome);
         this.router.get('/:ruta/:base/:tope', empresasController_1.default.list);
+        this.router.get('/addvisita/:ruta', empresasController_1.default.addVisita);
         this.router.get('/ventas/:ruta/:base/:tope', empresasController_1.default.listVen);
         this.router.get('/populares/:ruta/:base/:tope', empresasController_1.default.listPop);
         this.router.get('/one/:ruta', empresasController_1.default.getOne);

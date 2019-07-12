@@ -64,6 +64,19 @@ class EmpresasController {
             res.json({ message: "error" });
         });
     }
+    addVisita(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { ruta } = req.params;
+            const empresas = yield db_1.default.query('SELECT empresas.visitas FROM empresas WHERE ruta = ?', [ruta]);
+            if (empresas.length > 0) {
+                let valor = empresas[0].visitas;
+                valor = valor + 1;
+                yield db_1.default.query('UPDATE empresas SEt visitas = ? WHERE ruta = ?', [valor, ruta]);
+                return res.json({ message: "ok" });
+            }
+            res.json({ message: "error" });
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield db_1.default.query('INSERT INTO empresas set ?', [req.body]);

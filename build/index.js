@@ -19,6 +19,9 @@ const toppingsRoutes_1 = __importDefault(require("./routes/toppingsRoutes"));
 const refrescosRoutes_1 = __importDefault(require("./routes/refrescosRoutes"));
 const adicionalesRoutes_1 = __importDefault(require("./routes/adicionalesRoutes"));
 const tamanosRoutes_1 = __importDefault(require("./routes/tamanosRoutes"));
+const pedidosRoutes_1 = __importDefault(require("./routes/pedidosRoutes"));
+const detallePedidoRoutes_1 = __importDefault(require("./routes/detallePedidoRoutes"));
+const empresaPedidoRoutes_1 = __importDefault(require("./routes/empresaPedidoRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -46,6 +49,9 @@ class Server {
         this.app.use('/api/refrescos', refrescosRoutes_1.default);
         this.app.use('/api/adicionales', adicionalesRoutes_1.default);
         this.app.use('/api/tamanos', tamanosRoutes_1.default);
+        this.app.use('/api/pedidos', pedidosRoutes_1.default);
+        this.app.use('/api/detallepedido', detallePedidoRoutes_1.default);
+        this.app.use('/api/empresapedido', empresaPedidoRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
