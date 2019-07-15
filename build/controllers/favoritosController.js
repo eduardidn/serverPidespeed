@@ -20,6 +20,14 @@ class FavoritosController {
             res.json(favoritos);
         });
     }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { Uid } = req.params;
+            const { Eid } = req.params;
+            const favoritos = yield db_1.default.query('SELECT * FROM favoritos WHERE usuario_id = ? AND empresa_id = ?', [Uid, Eid]);
+            res.json(favoritos);
+        });
+    }
     listEsp(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
