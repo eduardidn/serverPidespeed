@@ -27,12 +27,34 @@ func.matchPassword = (password, savedPassword) => __awaiter(this, void 0, void 0
 func.getToken = (data) => __awaiter(this, void 0, void 0, function* () {
     return yield jwt.sign(data, 'estoessecreto', { expiresIn: '48h' });
 });
+func.getTokenAdmin = (data) => __awaiter(this, void 0, void 0, function* () {
+    return yield jwt.sign(data, 'tokenParaElAdmiiin', { expiresIn: '48h' });
+});
 func.verifyToken = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     const bearerHeader = req.headers['authorization'];
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
         jwt.verify(bearerToken, 'estoessecreto', (err, authData) => {
+            if (err) {
+                res.json({ message: "error" });
+            }
+            else {
+                req.data = authData;
+                next();
+            }
+        });
+    }
+    else {
+        res.json({ message: "undefined" });
+    }
+});
+func.verifyTokenAdmin = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    const bearerHeader = req.headers['authorization'];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(' ');
+        const bearerToken = bearer[1];
+        jwt.verify(bearerToken, 'tokenParaElAdmiiin', (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }

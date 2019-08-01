@@ -10,6 +10,7 @@ const functions_1 = __importDefault(require("./functions"));
 //ROUTES
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const testRoutes_1 = __importDefault(require("./routes/testRoutes"));
+const testAdminRoutes_1 = __importDefault(require("./routes/testAdminRoutes"));
 const empresasRoutes_1 = __importDefault(require("./routes/empresasRoutes"));
 const productosRoutes_1 = __importDefault(require("./routes/productosRoutes"));
 const sesionesRoutes_1 = __importDefault(require("./routes/sesionesRoutes"));
@@ -41,6 +42,7 @@ class Server {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/sesiones', sesionesRoutes_1.default);
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
+        this.app.use('/admin', functions_1.default.verifyTokenAdmin, testAdminRoutes_1.default);
         this.app.use('/api/empresas', empresasRoutes_1.default);
         this.app.use('/api/productos', productosRoutes_1.default);
         this.app.use('/api/usuarios', usuariosRoutes_1.default);

@@ -52,6 +52,27 @@ class ProductosController {
             }
         });
     }
+    loginAdmin(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const admin = yield db_1.default.query('SELECT * FROM empresas Where email = ? or username = ?', [req.body.user, req.body.user]);
+            if (admin != "") {
+                let savedPassword = admin[0].password;
+                let match = yield functions_1.default.matchPassword(password, savedPassword);
+                if (match) {
+                    let token = yield functions_1.default.getToken(req.body);
+                    let tokenAdmin = yield functions_1.default.getTokenAdmin(req.body);
+                    res.json({ message: "ok", token: token, tokenAdmin: tokenAdmin, user: admin[0] });
+                }
+                else {
+                    res.json({ message: "error" });
+                }
+            }
+            else {
+                res.json({ message: "error" });
+            }
+        });
+    }
     createEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             /*let password = req.body.password;
@@ -73,10 +94,6 @@ class ProductosController {
         });
     }
     loginEmpresa(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-        });
-    }
-    loginAdmin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
         });
     }
