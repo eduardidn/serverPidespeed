@@ -11,10 +11,11 @@ class ProductosRoutes {
         this.config();
     }
     config() {
-        this.router.get('/:ruta', productosController_1.default.list);
+        this.router.get('/:ruta/:tipo', productosController_1.default.list);
         this.router.get('/one/:id', productosController_1.default.getOne);
         this.router.get('/categorias/:ruta', productosController_1.default.listCat);
         this.router.get('/categoriasEsp/:ruta', productosController_1.default.listCatEsp);
+        this.router.get('/onecategoriaEsp/:id', productosController_1.default.listOneCatEsp);
         this.router.post('/', productosController_1.default.create);
         this.router.put('/:id', productosController_1.default.update);
         this.router.delete('/:id', productosController_1.default.delete);

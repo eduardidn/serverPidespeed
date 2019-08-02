@@ -16,8 +16,15 @@ class ProductosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
+            const { tipo } = req.params;
             try {
-                const productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 and productos.cantidad != 0', [ruta]);
+                var productos;
+                if (tipo == 1) {
+                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 and productos.cantidad != 0', [ruta]);
+                }
+                else {
+                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? and productos.cantidad != 0', [ruta]);
+                }
                 res.json(productos);
             }
             catch (err) {
@@ -42,6 +49,18 @@ class ProductosController {
             const { ruta } = req.params;
             try {
                 const productos = yield db_1.default.query('SELECT productos.categoria_product_id, categorias_product.nombre FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 GROUP BY productos.categoria_product_id', [ruta]);
+                res.json(productos);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    }
+    listOneCatEsp(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            try {
+                const productos = yield db_1.default.query('SELECT * FROM categorias_product WHERE id = ?', [id]);
                 res.json(productos);
             }
             catch (err) {

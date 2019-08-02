@@ -42,7 +42,7 @@ class PedidosController {
             if (req.files) {
                 var filePath = req.files.image.path;
                 var fileSplit = filePath.split('\\');
-                var fileName = fileSplit[2];
+                var fileName = fileSplit[3];
                 var extSplit = fileName.split('\.');
                 var fileExt = extSplit[1];
                 if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {

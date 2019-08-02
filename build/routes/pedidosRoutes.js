@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const pedidosController_1 = __importDefault(require("../controllers/pedidosController"));
 var multipart = require('connect-multiparty');
-var multipartMiddleware = multipart({ uploadDir: './build/img' });
+var multipartMiddleware = multipart({ uploadDir: './build/img/pedidos' });
 class PedidosRoutes {
     constructor() {
         this.router = express_1.Router();

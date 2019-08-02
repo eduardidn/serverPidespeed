@@ -16,7 +16,14 @@ class ToppingsController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const toppings = yield db_1.default.query('SELECT * FROM toppings WHERE empresa_id = ? AND publish = 1 AND cantidad != 0', [id]);
+            const { tipo } = req.params;
+            var toppings;
+            if (tipo == 1) {
+                toppings = yield db_1.default.query('SELECT * FROM toppings WHERE empresa_id = ? AND publish = 1 AND cantidad != 0', [id]);
+            }
+            else {
+                toppings = yield db_1.default.query('SELECT * FROM toppings WHERE empresa_id = ?', [id]);
+            }
             res.json(toppings);
         });
     }
