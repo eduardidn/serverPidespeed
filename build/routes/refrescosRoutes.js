@@ -12,7 +12,7 @@ class RefrescosRoutes {
     }
     config() {
         this.router.get('/:id/:tipo', refrescosController_1.default.list);
-        this.router.get('/one/:id', refrescosController_1.default.getOne);
+        this.router.get('/get/one/:id', refrescosController_1.default.getOne);
         this.router.put('/', refrescosController_1.default.update);
         this.router.post('/', refrescosController_1.default.create);
         this.router.delete('/:id', refrescosController_1.default.delete);

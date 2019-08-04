@@ -12,7 +12,7 @@ class ToppingsRoutes {
     }
     config() {
         this.router.get('/:id/:tipo', toppingsController_1.default.list);
-        this.router.get('/one/:id', toppingsController_1.default.getOne);
+        this.router.get('/get/one/:id', toppingsController_1.default.getOne);
         this.router.put('/', toppingsController_1.default.update);
         this.router.post('/', toppingsController_1.default.create);
         this.router.delete('/:id', toppingsController_1.default.delete);
