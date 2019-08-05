@@ -15,7 +15,7 @@ const db_1 = __importDefault(require("../db"));
 class TipoBebidasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipo_bebidas = yield db_1.default.query('SELECT * FROM tipo_bebidas WHERE publish = 1');
+            const tipo_bebidas = yield db_1.default.query('SELECT * FROM tipo_bebidas');
             res.json(tipo_bebidas);
         });
     }

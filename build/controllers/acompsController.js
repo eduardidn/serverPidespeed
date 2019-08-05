@@ -15,7 +15,7 @@ const db_1 = __importDefault(require("../db"));
 class AcompsController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const acomps = yield db_1.default.query('SELECT * FROM acomps WHERE publish = 1');
+            const acomps = yield db_1.default.query('SELECT * FROM acomps');
             res.json(acomps);
         });
     }
