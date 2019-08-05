@@ -19,12 +19,14 @@ const favoritosRoutes_1 = __importDefault(require("./routes/favoritosRoutes"));
 const categoriasRoutes_1 = __importDefault(require("./routes/categoriasRoutes"));
 const siropesRoutes_1 = __importDefault(require("./routes/siropesRoutes"));
 const toppingsRoutes_1 = __importDefault(require("./routes/toppingsRoutes"));
-const refrescosRoutes_1 = __importDefault(require("./routes/refrescosRoutes"));
+const bebidasRoutes_1 = __importDefault(require("./routes/bebidasRoutes"));
 const adicionalesRoutes_1 = __importDefault(require("./routes/adicionalesRoutes"));
 const tamanosRoutes_1 = __importDefault(require("./routes/tamanosRoutes"));
 const pedidosRoutes_1 = __importDefault(require("./routes/pedidosRoutes"));
 const detallePedidoRoutes_1 = __importDefault(require("./routes/detallePedidoRoutes"));
 const empresaPedidoRoutes_1 = __importDefault(require("./routes/empresaPedidoRoutes"));
+const acompsRoutes_1 = __importDefault(require("./routes/acompsRoutes"));
+const tipoBebidasRoutes_1 = __importDefault(require("./routes/tipoBebidasRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -50,12 +52,14 @@ class Server {
         this.app.use('/api/categorias', categoriasRoutes_1.default);
         this.app.use('/api/siropes', siropesRoutes_1.default);
         this.app.use('/api/toppings', toppingsRoutes_1.default);
-        this.app.use('/api/refrescos', refrescosRoutes_1.default);
+        this.app.use('/api/bebidas', bebidasRoutes_1.default);
         this.app.use('/api/adicionales', adicionalesRoutes_1.default);
         this.app.use('/api/tamanos', tamanosRoutes_1.default);
         this.app.use('/api/pedidos', pedidosRoutes_1.default);
         this.app.use('/api/detallepedido', detallePedidoRoutes_1.default);
         this.app.use('/api/empresapedido', empresaPedidoRoutes_1.default);
+        this.app.use('/api/acomps', acompsRoutes_1.default);
+        this.app.use('/api/tipoBebidas', tipoBebidasRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
