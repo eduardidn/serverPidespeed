@@ -15,14 +15,49 @@ const db_1 = __importDefault(require("../db"));
 class Empresa_pedidoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE publish = 1');
-            res.json(empresa_pedido);
+            try {
+                const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido');
+                res.json(empresa_pedido);
+            }
+            catch (e) {
+                res.json(e);
+            }
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE id = ?', [id]);
+            if (empresa_pedido.length > 0) {
+                return res.json(empresa_pedido[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
+    getPendientes(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0', [id]);
+            if (empresa_pedido.length > 0) {
+                return res.json(empresa_pedido[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
+    getTerminados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0', [id]);
+            if (empresa_pedido.length > 0) {
+                return res.json(empresa_pedido[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
+    getEntregados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 1', [id]);
             if (empresa_pedido.length > 0) {
                 return res.json(empresa_pedido[0]);
             }

@@ -13,6 +13,9 @@ class Empresa_pedidoRoutes {
     config() {
         this.router.get('/', empresaPedidoController_1.default.list);
         this.router.get('/:id', empresaPedidoController_1.default.getOne);
+        this.router.get('/pendientes/:id', empresaPedidoController_1.default.getPendientes);
+        this.router.get('/terminados/:id', empresaPedidoController_1.default.getTerminados);
+        this.router.get('/entregados.:id', empresaPedidoController_1.default.getEntregados);
         this.router.post('/', empresaPedidoController_1.default.create);
         this.router.put('/:id', empresaPedidoController_1.default.update);
         this.router.delete('/:id', empresaPedidoController_1.default.delete);
