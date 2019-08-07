@@ -37,31 +37,22 @@ class Empresa_pedidoController {
     getPendientes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0', [id]);
-            if (empresa_pedido.length > 0) {
-                return res.json(empresa_pedido[0]);
-            }
-            res.json({ message: "error" });
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 0 AND entregado = 0', [id]);
+            return res.json(empresa_pedido);
         });
     }
     getTerminados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0', [id]);
-            if (empresa_pedido.length > 0) {
-                return res.json(empresa_pedido[0]);
-            }
-            res.json({ message: "error" });
+            return res.json(empresa_pedido);
         });
     }
     getEntregados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 1', [id]);
-            if (empresa_pedido.length > 0) {
-                return res.json(empresa_pedido[0]);
-            }
-            res.json({ message: "error" });
+            return res.json(empresa_pedido);
         });
     }
     create(req, res) {
