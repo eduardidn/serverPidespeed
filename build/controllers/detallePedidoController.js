@@ -30,6 +30,18 @@ class Detalle_pedidoController {
             res.json({ message: "error" });
         });
     }
+    getPedidos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { pid } = req.params;
+            const { eid } = req.params;
+            const detalle_pedido = yield db_1.default.query('SELECT * FROM detalle_pedido WHERE pedido_id = ? AND empresa_id = ?', [pid, eid]);
+            console.log(detalle_pedido.length);
+            if (detalle_pedido.length > 0) {
+                return res.json(detalle_pedido[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
