@@ -15,7 +15,7 @@ const db_1 = __importDefault(require("../db"));
 class Detalle_pedidoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const detalle_pedido = yield db_1.default.query('SELECT * FROM detalle_pedido WHERE publish = 1');
+            const detalle_pedido = yield db_1.default.query('SELECT * FROM detalle_pedido');
             res.json(detalle_pedido);
         });
     }
