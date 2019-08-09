@@ -13,7 +13,7 @@ class AdicionalesRoutes {
     config() {
         this.router.get('/:id/:tipo', adicionalesController_1.default.list);
         this.router.get('/get/one/:id', adicionalesController_1.default.getOne);
-        this.router.put('/', adicionalesController_1.default.update);
+        this.router.put('/:id', adicionalesController_1.default.update);
         this.router.post('/', adicionalesController_1.default.create);
         this.router.delete('/:id', adicionalesController_1.default.delete);
     }
