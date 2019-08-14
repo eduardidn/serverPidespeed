@@ -11,9 +11,9 @@ class TamanosRoutes {
         this.config();
     }
     config() {
-        this.router.get('/:ids', tamanosController_1.default.list);
-        this.router.get('/all', tamanosController_1.default.listAll);
-        this.router.get('/one/:id', tamanosController_1.default.getOne);
+        this.router.get('/:ids/:tipo', tamanosController_1.default.list);
+        this.router.get('/get/all', tamanosController_1.default.listAll);
+        this.router.get('/get/one/:id', tamanosController_1.default.getOne);
         this.router.put('/', tamanosController_1.default.update);
         this.router.post('/', tamanosController_1.default.create);
         this.router.delete('/:id', tamanosController_1.default.delete);

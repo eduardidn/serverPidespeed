@@ -16,8 +16,20 @@ class TamanosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let { ids } = req.params;
+            const { tipo } = req.params;
             let id = ids.split(",");
-            const tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos INNER JOIN productos ON productos.empresa_id = tamanos.empresa_id WHERE tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+            var tamanos;
+            if (tipo == 1) {
+                try {
+                    tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos INNER JOIN productos ON productos.empresa_id = tamanos.empresa_id WHERE tamanos.publish = 1 AND tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
+                tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos INNER JOIN productos ON productos.empresa_id = tamanos.empresa_id WHERE tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+            }
             res.json(tamanos);
         });
     }
