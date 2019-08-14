@@ -39,6 +39,13 @@ class TamanosController {
             res.json(tamanos);
         });
     }
+    listByEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const tamanos = yield db_1.default.query('SELECT * FROM tamanos WHERE empresa_id = ?', [id]);
+            res.json(tamanos);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
