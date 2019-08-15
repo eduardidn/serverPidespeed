@@ -11,45 +11,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var fs = require('fs');
 const db_1 = __importDefault(require("../db"));
 class EmpresasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            let { base } = req.params;
-            let { tope } = req.params;
-            base = Number(base);
-            tope = Number(tope);
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 LIMIT ?,?', [ruta, base, tope]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1', [ruta]);
             res.json(empresas);
         });
     }
     listHome(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 ORDER BY empresas.visitas DESC LIMIT 0,12');
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 ORDER BY empresas.visitas DESC');
             res.json(empresas);
         });
     }
     listPop(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            let { base } = req.params;
-            let { tope } = req.params;
-            base = Number(base);
-            tope = Number(tope);
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.visitas LIMIT ?,?', [ruta, base, tope]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.visitas', [ruta]);
             res.json(empresas);
         });
     }
     listVen(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            let { base } = req.params;
-            let { tope } = req.params;
-            base = Number(base);
-            tope = Number(tope);
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.ventas LIMIT ?,?', [ruta, base, tope]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.ventas', [ruta]);
             res.json(empresas);
         });
     }
@@ -109,11 +98,12 @@ class EmpresasController {
                 if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
                     yield db_1.default.query('UPDATE empresas set logo = ? WHERE id = ?', [fileName, id]);
                     res.json({ message: 'ok' });
-                } /* else{
+                }
+                else {
                     fs.unlink(filePath, () => {
-                        res.json({message: 'error'});
+                        res.json({ message: 'error' });
                     });
-                } */
+                }
             }
             else {
                 res.json({ message: "error" });
@@ -124,15 +114,19 @@ class EmpresasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             if (req.files) {
-                var filePath = req.files.image.path;
+                console.log(req.files);
+                /* var filePath = req.files.image.path;
                 var fileSplit = filePath.split('\\');
                 var fileName = fileSplit[3];
                 var extSplit = fileName.split('\.');
                 var fileExt = extSplit[1];
-                if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
-                    yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [fileName, id]);
-                    res.json({ message: 'ok' });
-                } /* else{
+    
+                if(fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif'){
+    
+                    await db.query('UPDATE empresas set img = ? WHERE id = ?', [fileName, id]);
+                    res.json({ message: 'ok'});
+    
+                }else{
                     fs.unlink(filePath, () => {
                         res.json({message: 'error'});
                     });
