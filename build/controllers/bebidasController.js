@@ -45,7 +45,7 @@ class BebidasController {
                 res.json({ message: 'ok' });
             }
             catch (e) {
-                res.json({ e });
+                console.log(e);
             }
         });
     }
