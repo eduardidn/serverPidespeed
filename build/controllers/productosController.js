@@ -81,8 +81,13 @@ class ProductosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.default.query('INSERT INTO productos set ?', [req.body]);
-            res.json({ message: 'ok' });
+            try {
+                const result = yield db_1.default.query('INSERT INTO productos set ?', [req.body]);
+                res.json({ message: 'ok' });
+            }
+            catch (e) {
+                console.log(e);
+            }
         });
     }
     update(req, res) {
