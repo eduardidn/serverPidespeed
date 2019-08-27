@@ -114,23 +114,20 @@ class EmpresasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             if (req.files) {
-                console.log(req.files);
-                /* var filePath = req.files.image.path;
+                var filePath = req.files.image.path;
                 var fileSplit = filePath.split('\\');
                 var fileName = fileSplit[3];
                 var extSplit = fileName.split('\.');
                 var fileExt = extSplit[1];
-    
-                if(fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif'){
-    
-                    await db.query('UPDATE empresas set img = ? WHERE id = ?', [fileName, id]);
-                    res.json({ message: 'ok'});
-    
-                }else{
+                if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
+                    yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [fileName, id]);
+                    res.json({ message: 'ok' });
+                }
+                else {
                     fs.unlink(filePath, () => {
-                        res.json({message: 'error'});
+                        res.json({ message: 'error' });
                     });
-                } */
+                }
             }
             else {
                 res.json({ message: "error" });
