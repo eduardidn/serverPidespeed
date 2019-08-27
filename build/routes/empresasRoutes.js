@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const empresasController_1 = __importDefault(require("../controllers/empresasController"));
 var multipart = require('connect-multiparty');
-var multipartMiddlewareLogo = multipart({ uploadDir: './build/img/logos' });
-var multipartMiddleware = multipart({ uploadDir: './build/img/empresas' });
+var multipartMiddlewareLogo = multipart({ uploadDir: './img/logos' });
+var multipartMiddleware = multipart({ uploadDir: './img/empresas' });
 class EmpresasRoutes {
     constructor() {
         this.router = express_1.Router();
