@@ -115,10 +115,9 @@ class EmpresasController {
             const { id } = req.params;
             if (req.files) {
                 var filePath = req.files.image.path;
-                var fileSplit = filePath.split('\\');
+                var fileSplit = filePath.split('/');
                 var fileName = fileSplit[3];
-                res.json({fileSplit});
-                var extSplit = fileName.split('\.');
+                var extSplit = fileName.split('.');
                 var fileExt = extSplit[1];
                 if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg') {
                     yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [fileName, id]);
