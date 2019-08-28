@@ -28,6 +28,7 @@ const empresaPedidoRoutes_1 = __importDefault(require("./routes/empresaPedidoRou
 const acompsRoutes_1 = __importDefault(require("./routes/acompsRoutes"));
 const ventasRoutes_1 = __importDefault(require("./routes/ventasRoutes"));
 const tipoBebidasRoutes_1 = __importDefault(require("./routes/tipoBebidasRoutes"));
+const pagosRoutes_1 = __importDefault(require("./routes/pagosRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -62,6 +63,7 @@ class Server {
         this.app.use('/api/acomps', acompsRoutes_1.default);
         this.app.use('/api/ventas', ventasRoutes_1.default);
         this.app.use('/api/tipoBebidas', tipoBebidasRoutes_1.default);
+        this.app.use('/api/pagos', pagosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

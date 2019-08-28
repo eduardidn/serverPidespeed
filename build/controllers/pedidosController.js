@@ -19,6 +19,15 @@ class PedidosController {
             res.json(pedidos);
         });
     }
+    getByPago(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            let id = ids.split(",");
+            var tamanos;
+            tamanos = yield db_1.default.query('SELECT * FROM pedidos WHERE id IN (?) GROUP BY tamanos.nombre', [id]);
+            res.json(tamanos);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
