@@ -24,7 +24,13 @@ class PedidosController {
             let { ids } = req.params;
             let id = ids.split(",");
             var tamanos;
-            tamanos = yield db_1.default.query('SELECT * FROM pedidos WHERE id IN (?) GROUP BY tamanos.nombre', [id]);
+            try {
+                tamanos = yield db_1.default.query('SELECT * FROM pedidos WHERE id IN (?)', [id]);
+            }
+            catch (e) {
+                console.log(e);
+                res.json({ e });
+            }
             res.json(tamanos);
         });
     }
