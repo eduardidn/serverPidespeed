@@ -62,6 +62,21 @@ class Empresa_pedidoController {
             return res.json(empresa_pedido);
         });
     }
+    getByPago(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            let id = ids.split(",");
+            var tamanos;
+            try {
+                tamanos = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE id IN (?)', [id]);
+            }
+            catch (e) {
+                console.log(e);
+                res.json({ e });
+            }
+            res.json(tamanos);
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield db_1.default.query('INSERT INTO empresa_pedido set ?', [req.body]);
