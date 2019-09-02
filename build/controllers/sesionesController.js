@@ -14,6 +14,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const functions_1 = __importDefault(require("../functions"));
 const db_1 = __importDefault(require("../db"));
 class ProductosController {
+    buscarUserEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    buscarUserUsername(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where username = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
     createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
