@@ -17,6 +17,7 @@ class EmpresasRoutes {
         this.router.get('/', empresasController_1.default.listHome);
         this.router.get('/:ruta', empresasController_1.default.list);
         this.router.get('/addvisita/:ruta', empresasController_1.default.addVisita);
+        this.router.get('/addventa/:ruta', empresasController_1.default.addVenta);
         this.router.get('/ventas/:ruta', empresasController_1.default.listVen);
         this.router.get('/populares/:ruta', empresasController_1.default.listPop);
         this.router.post('/image/:id', multipartMiddleware, empresasController_1.default.image);

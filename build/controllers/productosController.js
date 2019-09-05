@@ -90,6 +90,20 @@ class ProductosController {
             }
         });
     }
+    restarCantidad(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const { cantidad } = req.params;
+            const productos = yield db_1.default.query('SELECT cantidad FROM productos WHERE id = ?', [id]);
+            if (productos.length > 0) {
+                let valor = productos[0].cantidad;
+                valor = valor - Number(cantidad);
+                yield db_1.default.query('UPDATE productos SET cantidad = ? WHERE id = ?', [valor, id]);
+                return res.json({ message: "ok" });
+            }
+            res.json({ message: "error" });
+        });
+    }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
