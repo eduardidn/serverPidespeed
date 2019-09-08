@@ -14,7 +14,9 @@ class MailController {
         return __awaiter(this, void 0, void 0, function* () {
             // Create a SMTP transporter object
             let transporter = nodemailer.createTransport({
-                service: 'Gmail',
+                host: 'imap.gmail.com',
+                port: '993',
+                secure: false,
                 auth: {
                     user: 'eduardidn@gmail.com',
                     pass: '26790072'
