@@ -8,15 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const nodemailer_1 = require("./node_modules/nodemailer");
+var nodemailer = require('nodemailer');
 class MailController {
     mail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             // Create a SMTP transporter object
-            let transporter = nodemailer_1.nodemailer.createTransport({
-                sendmail: true,
-                newline: 'windows',
-                logger: false
+            let transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: 'eduardidn@gmail.com',
+                    pass: '26790072'
+                }
             });
             // Message object
             let message = {
@@ -29,8 +31,7 @@ class MailController {
                 // plaintext body
                 text: 'Hello to myself!',
                 // HTML body
-                html: '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
-                    '<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
+                html: '<p><b>Hello</b> to myself </p>',
                 // An array of attachments
                 attachments: [
                     // String attachment
@@ -46,7 +47,7 @@ class MailController {
                 res.json('Message sent successfully as %s', info.messageId);
             }
             catch (err) {
-                res.json(err);
+                res.status(400).json(err);
             }
         });
     }
