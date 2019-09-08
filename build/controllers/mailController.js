@@ -18,7 +18,7 @@ class MailController {
                 port: '465',
                 auth: {
                     user: 'eduardidn@gmail.com',
-                    pass: '26790072'
+                    pass: 'vuqzqfrmtasyytla'
                 },
                 logger: true,
                 debug: false
