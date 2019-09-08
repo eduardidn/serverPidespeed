@@ -12,8 +12,9 @@ var nodemailer = require('nodemailer');
 class MailController {
     mail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            res.json(req.body);
             // Create a SMTP transporter object
-            let transporter = nodemailer.createTransport({
+            /* let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
@@ -23,22 +24,22 @@ class MailController {
                 logger: true,
                 debug: false
             });
+    
             // Message object
             let message = {
                 from: 'Eduardo <eduardidn@gmail.com>',
                 to: 'Eduardo <eduardidn@gmail.com>',
                 subject: 'Nodemailer is unicode friendly ✔',
-                /* text: 'Hello to myself!', */
-                html: '<p><b>Hello</b> to myself </p>',
+                /* text: 'Hello to myself!',
+                html:
+                    '<p><b>Hello</b> to myself </p>',
             };
-            try {
-                let info = yield transporter.sendMail(message);
-                console.log(info);
-                res.json(info);
-            }
-            catch (err) {
+            try{
+                let info = await transporter.sendMail(message);
+                res.json({message:"ok"});
+            }catch(err){
                 res.status(400).json(err);
-            }
+            } */
         });
     }
 }

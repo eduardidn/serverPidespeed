@@ -11,7 +11,7 @@ class AcompsRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', mailController_1.default.mail);
+        this.router.post('/', mailController_1.default.mail);
     }
 }
 exports.default = new AcompsRoutes().router;
