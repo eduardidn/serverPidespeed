@@ -26,28 +26,15 @@ class MailController {
             // Message object
             let message = {
                 from: 'Eduardo <eduardidn@gmail.com>',
-                // Comma separated list of recipients
                 to: 'Eduardo <eduardidn@gmail.com>',
-                bcc: 'eduardidn@gmail.com',
-                // Subject of the message
                 subject: 'Nodemailer is unicode friendly ✔',
-                // plaintext body
-                text: 'Hello to myself!',
-                // HTML body
+                /* text: 'Hello to myself!', */
                 html: '<p><b>Hello</b> to myself </p>',
-                // An array of attachments
-                attachments: [
-                    // String attachment
-                    {
-                        filename: 'notes.txt',
-                        content: 'Some notes about this e-mail',
-                        contentType: 'text/plain' // optional, would be detected from the filename
-                    }
-                ]
             };
             try {
                 let info = yield transporter.sendMail(message);
-                res.json('Message sent successfully as %s', info.messageId);
+                console.log(info);
+                res.json(info);
             }
             catch (err) {
                 res.status(400).json(err);
