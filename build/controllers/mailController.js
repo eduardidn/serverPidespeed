@@ -14,13 +14,14 @@ class MailController {
         return __awaiter(this, void 0, void 0, function* () {
             // Create a SMTP transporter object
             let transporter = nodemailer.createTransport({
-                host: 'imap.gmail.com',
-                port: '993',
-                secure: false,
+                host: 'smtp.gmail.com',
+                port: '465',
                 auth: {
                     user: 'eduardidn@gmail.com',
                     pass: '26790072'
-                }
+                },
+                logger: true,
+                debug: false
             });
             // Message object
             let message = {
