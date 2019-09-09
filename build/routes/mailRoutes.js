@@ -11,7 +11,8 @@ class AcompsRoutes {
         this.config();
     }
     config() {
-        this.router.post('/', mailController_1.default.mail);
+        this.router.post('/codigo', mailController_1.default.mailCodigo);
+        this.router.post('/verificar', mailController_1.default.mailVerificacion);
     }
 }
 exports.default = new AcompsRoutes().router;

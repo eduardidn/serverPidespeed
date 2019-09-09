@@ -10,11 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 var nodemailer = require('nodemailer');
 class MailController {
-    mail(req, res) {
+    mailCodigo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(req.body);
-            // Create a SMTP transporter object
-            /* let transporter = nodemailer.createTransport({
+            let nombre = req.body.nombre;
+            let email = req.body.email;
+            let codigo = req.body.codigo;
+            let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
@@ -24,22 +25,53 @@ class MailController {
                 logger: true,
                 debug: false
             });
-    
-            // Message object
             let message = {
-                from: 'Eduardo <eduardidn@gmail.com>',
+                from: nombre + '<' + email + '>',
                 to: 'Eduardo <eduardidn@gmail.com>',
-                subject: 'Nodemailer is unicode friendly ✔',
-                /* text: 'Hello to myself!',
-                html:
-                    '<p><b>Hello</b> to myself </p>',
+                subject: 'Este es su codigo de PideSpeed',
+                //text: 'Hello to myself!',
+                html: '<p>Se ha generado un codigo para realizar cambios en su cuenta</p>' +
+                    'el codigo es el siguiente: <b>' + codigo + '</b>',
             };
-            try{
-                let info = await transporter.sendMail(message);
-                res.json({message:"ok"});
-            }catch(err){
+            try {
+                let info = yield transporter.sendMail(message);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
                 res.status(400).json(err);
-            } */
+            }
+        });
+    }
+    mailVerificacion(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let nombre = req.body.nombre;
+            let email = req.body.email;
+            let link = req.body.link;
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: '465',
+                auth: {
+                    user: 'eduardidn@gmail.com',
+                    pass: 'vuqzqfrmtasyytla'
+                },
+                logger: true,
+                debug: false
+            });
+            let message = {
+                from: nombre + '<' + email + '>',
+                to: 'Eduardo <eduardidn@gmail.com>',
+                subject: 'verifique su cuenta de PideSpeed',
+                //text: 'Hello to myself!',
+                html: '<p>es necesario que verifique su cuenta para poder acceder al </p>' +
+                    'el link para verificar es el siguiente: <b>' + link + '</b>',
+            };
+            try {
+                let info = yield transporter.sendMail(message);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.status(400).json(err);
+            }
         });
     }
 }
