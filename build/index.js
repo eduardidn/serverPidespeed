@@ -45,10 +45,10 @@ class Server {
     }
     routes() {
         this.app.use('/', indexRoutes_1.default);
-        this.app.use('/mail', mailRoutes_1.default);
         this.app.use('/sesiones', sesionesRoutes_1.default);
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/admin', functions_1.default.verifyTokenAdmin, testAdminRoutes_1.default);
+        this.app.use('/api/mail', mailRoutes_1.default);
         this.app.use('/api/empresas', empresasRoutes_1.default);
         this.app.use('/api/productos', productosRoutes_1.default);
         this.app.use('/api/usuarios', usuariosRoutes_1.default);
