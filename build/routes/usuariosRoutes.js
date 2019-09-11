@@ -14,6 +14,7 @@ class UsuariosRoutes {
         this.router.get('/', usuariosController_1.default.list);
         this.router.get('/:id', usuariosController_1.default.getOne);
         this.router.put('/:id', usuariosController_1.default.update);
+        this.router.put('/password/:id', usuariosController_1.default.updatePassword);
         this.router.delete('/:id', usuariosController_1.default.delete);
     }
 }

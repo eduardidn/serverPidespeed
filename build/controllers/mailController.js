@@ -58,8 +58,8 @@ class MailController {
                 debug: false
             });
             let message = {
-                from: nombre + '<' + email + '>',
-                to: 'Eduardo <eduardidn@gmail.com>',
+                from: 'Eduardo <eduardidn@gmail.com>',
+                to: nombre + '<' + email + '>',
                 subject: 'verifique su cuenta de PideSpeed',
                 //text: 'Hello to myself!',
                 html: '<p>es necesario que verifique su cuenta para poder acceder al </p>' +

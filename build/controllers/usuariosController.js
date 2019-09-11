@@ -37,6 +37,20 @@ class UsuariosController {
             res.json({ message: "ok" });
         });
     }
+    updatePassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { id } = req.params;
+            req.body.password = yield func.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE usuarios set ? WHERE id = ?', [req.body, id]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
