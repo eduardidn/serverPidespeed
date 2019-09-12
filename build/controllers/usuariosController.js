@@ -11,6 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const functions_1 = __importDefault(require("../functions"));
 const db_1 = __importDefault(require("../db"));
 class UsuariosController {
     list(req, res) {
@@ -41,7 +42,7 @@ class UsuariosController {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
             const { id } = req.params;
-            req.body.password = yield func.encryptPassword(password);
+            req.body.password = yield functions_1.default.encryptPassword(password);
             try {
                 yield db_1.default.query('UPDATE usuarios set ? WHERE id = ?', [req.body, id]);
                 res.json({ message: "ok" });
