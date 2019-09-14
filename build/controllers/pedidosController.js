@@ -15,7 +15,14 @@ const db_1 = __importDefault(require("../db"));
 class PedidosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE publish = 1');
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos ORDER BY id DESC');
+            res.json(pedidos);
+        });
+    }
+    listUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE usuario_id = ? ORDER BY id DESC', [id]);
             res.json(pedidos);
         });
     }
