@@ -38,6 +38,13 @@ class Detalle_pedidoController {
             return res.json(detalle_pedido);
         });
     }
+    getPedidosByPedido(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { pid } = req.params;
+            const detalle_pedido = yield db_1.default.query('SELECT * FROM detalle_pedido WHERE pedido_id = ? ', [pid]);
+            return res.json(detalle_pedido);
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

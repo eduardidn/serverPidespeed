@@ -13,6 +13,7 @@ class Detalle_pedidoRoutes {
     config() {
         this.router.get('/', detallePedidoController_1.default.list);
         this.router.get('/:pid/:eid', detallePedidoController_1.default.getPedidos);
+        this.router.get('/byPedido/:pid', detallePedidoController_1.default.getPedidosByPedido);
         this.router.get('/:id', detallePedidoController_1.default.getOne);
         this.router.post('/', detallePedidoController_1.default.create);
         this.router.put('/:id', detallePedidoController_1.default.update);
