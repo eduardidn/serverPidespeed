@@ -23,6 +23,7 @@ class EmpresasRoutes {
         this.router.post('/image/:id', multipartMiddleware, empresasController_1.default.image);
         this.router.post('/imageLogo/:id', multipartMiddlewareLogo, empresasController_1.default.imageLogo);
         this.router.get('/one/:ruta', empresasController_1.default.getOne);
+        this.router.get('/one/byId/:id', empresasController_1.default.getOneById);
         this.router.post('/', empresasController_1.default.create);
         this.router.put('/:id', empresasController_1.default.update);
         this.router.delete('/:id', empresasController_1.default.delete);
