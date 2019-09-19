@@ -158,6 +158,34 @@ class EmpresasController {
             }
         });
     }
+    image64(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            try {
+                var response = {};
+                response.type = req.body.filetype;
+                response.data = new Buffer(req.body.value, 'base64');
+                var imageBuffer = response;
+                var userUploadedFeedMessagesLocation = 'build/img/empresas/';
+                var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
+                // Save decoded binary image to disk
+                try {
+                    fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
+                        return __awaiter(this, void 0, void 0, function* () {
+                            yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [userUploadedImagePath, id]);
+                            res.json({ message: 'ok' });
+                        });
+                    });
+                }
+                catch (error) {
+                    res.json({ message: 'error' });
+                }
+            }
+            catch (error) {
+                res.json({ message: 'error' });
+            }
+        });
+    }
 }
 const empresasController = new EmpresasController;
 exports.default = empresasController;
