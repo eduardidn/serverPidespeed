@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const body_parser_1 = __importDefault(require("body-parser"));
 //import morgan from 'morgan';
 const cors_1 = __importDefault(require("cors"));
 const functions_1 = __importDefault(require("./functions"));
@@ -38,6 +39,8 @@ class Server {
     }
     config() {
         this.app.set('port', process.env.PORT || 3000);
+        this.app.use(body_parser_1.default.json({ limit: '50mb' }));
+        this.app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
         //this.app.use(morgan('dev'));
         this.app.use(cors_1.default({ origin: 'http://localhost:4200' }));
         this.app.use(express_1.default.json());
