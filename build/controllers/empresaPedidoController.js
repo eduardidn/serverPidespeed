@@ -34,6 +34,13 @@ class Empresa_pedidoController {
             res.json({ message: "error" });
         });
     }
+    getByPedido(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE pedido_id = ?', [id]);
+            return res.json(empresa_pedido);
+        });
+    }
     getByEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
