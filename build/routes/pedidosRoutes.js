@@ -18,7 +18,7 @@ class PedidosRoutes {
         this.router.get('/:id', pedidosController_1.default.getOne);
         this.router.get('/get/byPago/:ids', pedidosController_1.default.getByPago);
         this.router.post('/', pedidosController_1.default.create);
-        this.router.post('/image/:id', multipartMiddleware, pedidosController_1.default.image);
+        this.router.post('/image64/:id', pedidosController_1.default.image64);
         this.router.put('/:id', pedidosController_1.default.update);
         this.router.delete('/:id', pedidosController_1.default.delete);
     }

@@ -5,9 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const empresasController_1 = __importDefault(require("../controllers/empresasController"));
-var multipart = require('connect-multiparty');
-var multipartMiddlewareLogo = multipart({ uploadDir: 'build/img/logos' });
-var multipartMiddleware = multipart({ uploadDir: 'build/img/empresas' });
 class EmpresasRoutes {
     constructor() {
         this.router = express_1.Router();
@@ -20,9 +17,8 @@ class EmpresasRoutes {
         this.router.get('/addventa/:ruta', empresasController_1.default.addVenta);
         this.router.get('/ventas/:ruta', empresasController_1.default.listVen);
         this.router.get('/populares/:ruta', empresasController_1.default.listPop);
-        this.router.post('/image/:id', multipartMiddleware, empresasController_1.default.image);
         this.router.post('/image64/:id', empresasController_1.default.image64);
-        this.router.post('/imageLogo/:id', multipartMiddlewareLogo, empresasController_1.default.imageLogo);
+        this.router.post('/logo64/:id', empresasController_1.default.logo64);
         this.router.get('/one/:ruta', empresasController_1.default.getOne);
         this.router.get('/one/byId/:id', empresasController_1.default.getOneById);
         this.router.post('/', empresasController_1.default.create);

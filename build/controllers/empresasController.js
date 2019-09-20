@@ -110,54 +110,6 @@ class EmpresasController {
             res.json({ message: "ok" });
         });
     }
-    imageLogo(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            if (req.files) {
-                var filePath = req.files.image.path;
-                var fileSplit = filePath.split('\\');
-                var fileName = fileSplit[3];
-                var extSplit = fileName.split('\.');
-                var fileExt = extSplit[1];
-                if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
-                    yield db_1.default.query('UPDATE empresas set logo = ? WHERE id = ?', [fileName, id]);
-                    res.json({ message: 'ok' });
-                }
-                else {
-                    fs.unlink(filePath, () => {
-                        res.json({ message: 'error' });
-                    });
-                }
-            }
-            else {
-                res.json({ message: "error" });
-            }
-        });
-    }
-    image(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            if (req.files) {
-                var filePath = req.files.image.path;
-                var fileSplit = filePath.split('/');
-                var fileName = fileSplit[3];
-                var extSplit = fileName.split('.');
-                var fileExt = extSplit[1];
-                if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg') {
-                    yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [fileName, id]);
-                    res.json({ message: 'ok' });
-                }
-                else {
-                    fs.unlink(filePath, () => {
-                        res.json({ message: 'error' });
-                    });
-                }
-            }
-            else {
-                res.json({ message: "error" });
-            }
-        });
-    }
     image64(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
@@ -167,12 +119,42 @@ class EmpresasController {
                 response.data = new Buffer(req.body.value, 'base64');
                 var imageBuffer = response;
                 var userUploadedFeedMessagesLocation = 'build/img/empresas/';
+                var ruta = 'empresas/' + req.body.filename;
                 var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
                 // Save decoded binary image to disk
                 try {
                     fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
                         return __awaiter(this, void 0, void 0, function* () {
-                            yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [userUploadedImagePath, id]);
+                            yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [ruta, id]);
+                            res.json({ message: 'ok' });
+                        });
+                    });
+                }
+                catch (error) {
+                    res.json({ message: 'error' });
+                }
+            }
+            catch (error) {
+                res.json({ message: 'error' });
+            }
+        });
+    }
+    logo64(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            try {
+                var response = {};
+                response.type = req.body.filetype;
+                response.data = new Buffer(req.body.value, 'base64');
+                var imageBuffer = response;
+                var userUploadedFeedMessagesLocation = 'build/img/logos/';
+                var ruta = 'logos/' + req.body.filename;
+                var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
+                // Save decoded binary image to disk
+                try {
+                    fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
+                        return __awaiter(this, void 0, void 0, function* () {
+                            yield db_1.default.query('UPDATE empresas set logo = ? WHERE id = ?', [ruta, id]);
                             res.json({ message: 'ok' });
                         });
                     });

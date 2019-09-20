@@ -58,26 +58,32 @@ class PedidosController {
             res.json({ message: 'ok', id: result.insertId });
         });
     }
-    image(req, res) {
+    image64(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            if (req.files) {
-                var filePath = req.files.image.path;
-                var fileSplit = filePath.split('\\');
-                var fileName = fileSplit[3];
-                var extSplit = fileName.split('\.');
-                var fileExt = extSplit[1];
-                if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
-                    yield db_1.default.query('UPDATE pedidos set img = ? WHERE id = ?', [fileName, id]);
-                    res.json({ message: 'ok' });
-                } /* else{
-                    fs.unlink(filePath, () => {
-                        res.json({message: 'error'});
+            try {
+                var response = {};
+                response.type = req.body.filetype;
+                response.data = new Buffer(req.body.value, 'base64');
+                var imageBuffer = response;
+                var userUploadedFeedMessagesLocation = 'build/img/pedidos/';
+                var ruta = 'pedidos/' + req.body.filename;
+                var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
+                // Save decoded binary image to disk
+                try {
+                    fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
+                        return __awaiter(this, void 0, void 0, function* () {
+                            yield db_1.default.query('UPDATE pedidos set img = ? WHERE id = ?', [ruta, id]);
+                            res.json({ message: 'ok' });
+                        });
                     });
-                } */
+                }
+                catch (error) {
+                    res.json({ message: 'error' });
+                }
             }
-            else {
-                res.json({ message: "error" });
+            catch (error) {
+                res.json({ message: 'error' });
             }
         });
     }

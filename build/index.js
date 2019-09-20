@@ -38,6 +38,7 @@ class Server {
         this.routes();
     }
     config() {
+        this.app.use(express_1.default.static('build/img'));
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(body_parser_1.default.json({ limit: '50mb' }));
         this.app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
@@ -52,7 +53,7 @@ class Server {
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/admin', functions_1.default.verifyTokenAdmin, testAdminRoutes_1.default);
         this.app.use('/api/mail', mailRoutes_1.default);
-        this.app.use('/api/empresas', empresasRoutes_1.default);
+        this.app.use('/empresas', empresasRoutes_1.default);
         this.app.use('/api/productos', productosRoutes_1.default);
         this.app.use('/api/usuarios', usuariosRoutes_1.default);
         this.app.use('/api/favoritos', favoritosRoutes_1.default);
