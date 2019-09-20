@@ -11,6 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var fs = require('fs');
 const db_1 = __importDefault(require("../db"));
 class ProductosController {
     list(req, res) {
@@ -118,6 +119,47 @@ class ProductosController {
             const { id } = req.params;
             yield db_1.default.query('DELETE FROM productos WHERE id = ?', [id]);
             res.json({ message: "ok" });
+        });
+    }
+    image64(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            try {
+                var response = {};
+                response.type = req.body.filetype;
+                response.data = new Buffer(req.body.value, 'base64');
+                var imageBuffer = response;
+                var userUploadedFeedMessagesLocation = 'build/img/productos/';
+                var ruta = 'productos/' + req.body.filename;
+                var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
+                // Save decoded binary image to disk
+                try {
+                    fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
+                        return __awaiter(this, void 0, void 0, function* () {
+                            let rutaimg = yield db_1.default.query('SELECT img FROM productos WHERE id = ?', [id]);
+                            if (rutaimg.length > 0) {
+                                rutaimg = rutaimg[0];
+                            }
+                            fs.unlink("./build/img/" + rutaimg.img, (err) => {
+                                if (err) {
+                                    console.log("failed to delete local image:" + err);
+                                }
+                                else {
+                                    console.log('successfully deleted local image');
+                                }
+                            });
+                            yield db_1.default.query('UPDATE productos set img = ? WHERE id = ?', [ruta, id]);
+                            res.json({ message: 'ok' });
+                        });
+                    });
+                }
+                catch (error) {
+                    res.json({ message: 'error' });
+                }
+            }
+            catch (error) {
+                res.json({ message: 'error' });
+            }
         });
     }
 }
