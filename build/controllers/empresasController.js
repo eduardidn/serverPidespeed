@@ -46,7 +46,6 @@ class EmpresasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
             const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ?', [ruta]);
-            console.log(empresas.length);
             if (empresas.length > 0) {
                 return res.json(empresas[0]);
             }
@@ -125,6 +124,18 @@ class EmpresasController {
                 try {
                     fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
                         return __awaiter(this, void 0, void 0, function* () {
+                            let ruta = yield db_1.default.query('SELECT img FROM empresas WHERE id = ?', [id]);
+                            if (ruta.length > 0) {
+                                ruta = ruta[0];
+                            }
+                            fs.unlink("./build/img/empresas/" + ruta, (err) => {
+                                if (err) {
+                                    console.log("failed to delete local image:" + err);
+                                }
+                                else {
+                                    console.log('successfully deleted local image');
+                                }
+                            });
                             yield db_1.default.query('UPDATE empresas set img = ? WHERE id = ?', [ruta, id]);
                             res.json({ message: 'ok' });
                         });
@@ -154,6 +165,18 @@ class EmpresasController {
                 try {
                     fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
                         return __awaiter(this, void 0, void 0, function* () {
+                            let ruta = yield db_1.default.query('SELECT logo FROM empresas WHERE id = ?', [id]);
+                            if (ruta.length > 0) {
+                                ruta = ruta[0];
+                            }
+                            fs.unlink("./build/img/logos/" + ruta, (err) => {
+                                if (err) {
+                                    console.log("failed to delete local image:" + err);
+                                }
+                                else {
+                                    console.log('successfully deleted local image');
+                                }
+                            });
                             yield db_1.default.query('UPDATE empresas set logo = ? WHERE id = ?', [ruta, id]);
                             res.json({ message: 'ok' });
                         });
