@@ -62,6 +62,18 @@ class PedidosController {
     image64(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            let rutaimg = yield db_1.default.query('SELECT img FROM pedidos WHERE id = ?', [id]);
+            if (rutaimg.length > 0) {
+                rutaimg = rutaimg[0];
+            }
+            fs.unlink("./build/img/" + rutaimg.img, (err) => {
+                if (err) {
+                    console.log("failed to delete local image:" + err);
+                }
+                else {
+                    console.log('successfully deleted local image');
+                }
+            });
             try {
                 var response = {};
                 response.type = req.body.filetype;
@@ -74,18 +86,6 @@ class PedidosController {
                 try {
                     fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
                         return __awaiter(this, void 0, void 0, function* () {
-                            let rutaimg = yield db_1.default.query('SELECT img FROM pedidos WHERE id = ?', [id]);
-                            if (rutaimg.length > 0) {
-                                rutaimg = rutaimg[0];
-                            }
-                            fs.unlink("./build/img/" + rutaimg.img, (err) => {
-                                if (err) {
-                                    console.log("failed to delete local image:" + err);
-                                }
-                                else {
-                                    console.log('successfully deleted local image');
-                                }
-                            });
                             yield db_1.default.query('UPDATE pedidos set img = ? WHERE id = ?', [ruta, id]);
                             res.json({ message: 'ok' });
                         });
