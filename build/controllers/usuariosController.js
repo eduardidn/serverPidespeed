@@ -25,7 +25,16 @@ class UsuariosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE id = ?', [id]);
-            console.log(usuarios.length);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
+    getOneByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE email = ?', [email]);
             if (usuarios.length > 0) {
                 return res.json(usuarios[0]);
             }
