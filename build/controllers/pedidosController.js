@@ -81,6 +81,15 @@ class PedidosController {
                 var imageBuffer = response;
                 var userUploadedFeedMessagesLocation = 'build/img/pedidos/';
                 var ruta = 'pedidos/' + req.body.filename;
+                if (!fs.existsSync('build/img/pedidos/')) {
+                    fs.mkdirSync("build/img/pedidos", 0o766, function (err) {
+                        if (err) {
+                            console.log(err);
+                            // echo the result back
+                            response.send("ERROR! Can't make the directory! \n");
+                        }
+                    });
+                }
                 var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
                 // Save decoded binary image to disk
                 try {

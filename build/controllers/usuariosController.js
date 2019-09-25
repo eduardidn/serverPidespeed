@@ -96,6 +96,15 @@ class UsuariosController {
                 var imageBuffer = response;
                 var userUploadedFeedMessagesLocation = 'build/img/usuarios/';
                 var ruta = 'usuarios/' + req.body.filename;
+                if (!fs.existsSync('build/img/usuarios/')) {
+                    fs.mkdirSync("build/img/usuarios", 0o766, function (err) {
+                        if (err) {
+                            console.log(err);
+                            // echo the result back
+                            response.send("ERROR! Can't make the directory! \n");
+                        }
+                    });
+                }
                 var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
                 // Save decoded binary image to disk
                 try {

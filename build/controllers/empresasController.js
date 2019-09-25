@@ -131,6 +131,15 @@ class EmpresasController {
                 var imageBuffer = response;
                 var userUploadedFeedMessagesLocation = 'build/img/empresas/';
                 var ruta = 'empresas/' + req.body.filename;
+                if (!fs.existsSync('build/img/empresas/')) {
+                    fs.mkdirSync("build/img/empresas", 0o766, function (err) {
+                        if (err) {
+                            console.log(err);
+                            // echo the result back
+                            response.send("ERROR! Can't make the directory! \n");
+                        }
+                    });
+                }
                 var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
                 // Save decoded binary image to disk
                 try {
@@ -172,6 +181,15 @@ class EmpresasController {
                 var imageBuffer = response;
                 var userUploadedFeedMessagesLocation = 'build/img/logos/';
                 var ruta = 'logos/' + req.body.filename;
+                if (!fs.existsSync('build/img/logos/')) {
+                    fs.mkdirSync("build/img/logos", 0o766, function (err) {
+                        if (err) {
+                            console.log(err);
+                            // echo the result back
+                            response.send("ERROR! Can't make the directory! \n");
+                        }
+                    });
+                }
                 var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
                 // Save decoded binary image to disk
                 try {
