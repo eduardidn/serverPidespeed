@@ -80,6 +80,18 @@ class ProductosController {
             res.json({ message: "error" });
         });
     }
+    getOneByDatos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nombre } = req.params;
+            const { descripcion } = req.params;
+            const pedidos = yield db_1.default.query('SELECT * FROM productos WHERE nombre = ? AND descripcion = ?,', [nombre, descripcion]);
+            console.log(pedidos.length);
+            if (pedidos.length > 0) {
+                return res.json(pedidos[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

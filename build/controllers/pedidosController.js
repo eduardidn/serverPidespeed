@@ -53,6 +53,18 @@ class PedidosController {
             res.json({ message: "error" });
         });
     }
+    getOneByDatos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { codigo } = req.params;
+            const { precio } = req.params;
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE codigo = ? AND precio = ?,', [codigo, precio]);
+            console.log(pedidos.length);
+            if (pedidos.length > 0) {
+                return res.json(pedidos[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield db_1.default.query('INSERT INTO pedidos set ?', [req.body]);

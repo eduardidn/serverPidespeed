@@ -13,6 +13,7 @@ class ProductosRoutes {
     config() {
         this.router.get('/:ruta/:tipo', productosController_1.default.list);
         this.router.get('/get/one/:id', productosController_1.default.getOne);
+        this.router.get('/get/byDatos/:nombre/:descripcion', productosController_1.default.getOneByDatos);
         this.router.get('/restarCantidad/:id/:cantidad', productosController_1.default.restarCantidad);
         this.router.get('/get/categorias/:ruta', productosController_1.default.listCat);
         this.router.get('/get/categoriasEsp/:ruta', productosController_1.default.listCatEsp);

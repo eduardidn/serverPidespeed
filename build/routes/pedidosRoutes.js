@@ -16,6 +16,7 @@ class PedidosRoutes {
         this.router.get('/', pedidosController_1.default.list);
         this.router.get('/byUsuarios/:id', pedidosController_1.default.listUsuario);
         this.router.get('/:id', pedidosController_1.default.getOne);
+        this.router.get('/byDatos/:codigo/:precio', pedidosController_1.default.getOneByDatos);
         this.router.get('/get/byPago/:ids', pedidosController_1.default.getByPago);
         this.router.post('/', pedidosController_1.default.create);
         this.router.post('/image64/:id', pedidosController_1.default.image64);
