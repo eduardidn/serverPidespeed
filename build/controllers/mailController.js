@@ -52,7 +52,7 @@ class MailController {
                 style="line-height: 0px;">
                 <img class="logo"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/3.png"
+                src="pedidospeed.herokuapp.com/correos/3.png"
                 width="150"
                 height="auto"
                 alt="logo">
@@ -238,7 +238,7 @@ class MailController {
                 <td>
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/compra.svg"
+                src="pedidospeed.herokuapp.com/correos/compra.svg"
                 width="150"
                 height="100"
                 alt="icon">
@@ -353,7 +353,7 @@ class MailController {
                 line-height:0px;
                 font-size:0px;
                 border:0px;"
-                src="pedidospeed.herokuapp.com/img/delivery.svg"
+                src="pedidospeed.herokuapp.com/correos/delivery.svg"
                 width="100"
                 height="100"
                 alt="icon">
@@ -466,7 +466,7 @@ class MailController {
                 <td>
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/promotion.svg"
+                src="pedidospeed.herokuapp.com/correos/promotion.svg"
                 width="150"
                 height="100"
                 alt="icon">
@@ -590,7 +590,7 @@ class MailController {
                 <img class="gridMovilImgSmall"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/MovilRojo.png"
+                src="pedidospeed.herokuapp.com/correos/MovilRojo.png"
                 alt="img"
                 width="156"
                 height="136">
@@ -1042,7 +1042,7 @@ class MailController {
 
 
                 <tr>
-                <td style="background: url(pedidospeed.herokuapp.com/img/articulos2.jpg); background-position: center;
+                <td style="background: url(pedidospeed.herokuapp.com/correos/articulos2.jpg); background-position: center;
                 background-size: cover; height: 145px;"
                 align="center">
                 <table class="insider"
@@ -1226,7 +1226,7 @@ class MailController {
 
 
                 <tr>
-                <td style="background: url(pedidospeed.herokuapp.com/img/web2.jpg); background-position: center;
+                <td style="background: url(pedidospeed.herokuapp.com/correos/web2.jpg); background-position: center;
                 background-size: cover; height: 145px;"
                 align="center">
                 <table class="insider"
@@ -1377,7 +1377,7 @@ class MailController {
                 cover;
                 background-position:
                 center;" bgcolor="#34495e"
-                background="pedidospeed.herokuapp.com/img/meeting5.jpg"
+                background="pedidospeed.herokuapp.com/correos/meeting5.jpg"
                 height="185">
                 <table class="col-600"
                 width="600"
@@ -1540,7 +1540,7 @@ class MailController {
                 style="line-height: 0px;">
                 <img class="logo"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/3.png"
+                src="pedidospeed.herokuapp.com/correos/3.png"
                 width="150"
                 height="auto"
                 alt="logo">
@@ -1748,7 +1748,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/confirmed.svg"
+                src="pedidospeed.herokuapp.com/correos/confirmed.svg"
                 alt="img"
                 width="156"
                 height="136">
@@ -1916,7 +1916,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/chat.svg"
+                src="pedidospeed.herokuapp.com/correos/chat.svg"
                 width="169"
                 height="138">
                 </td>
@@ -2047,7 +2047,7 @@ class MailController {
                 cover;
                 background-position:
                 center;" bgcolor="#34495e"
-                background="pedidospeed.herokuapp.com/img/meeting5.jpg"
+                background="pedidospeed.herokuapp.com/correos/meeting5.jpg"
                 height="185">
                 <table class="col-600"
                 width="600"
@@ -2208,7 +2208,7 @@ class MailController {
                 style="line-height: 0px;">
                 <img class="logo"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/3.png"
+                src="pedidospeed.herokuapp.com/correos/3.png"
                 width="150"
                 height="auto"
                 alt="logo">
@@ -2418,7 +2418,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/confirmed.svg"
+                src="pedidospeed.herokuapp.com/correos/confirmed.svg"
                 alt="img"
                 width="156"
                 height="136">
@@ -2589,7 +2589,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/chat.svg"
+                src="pedidospeed.herokuapp.com/correos/chat.svg"
                 width="169"
                 height="138">
                 </td>
@@ -2720,7 +2720,7 @@ class MailController {
                 cover;
                 background-position:
                 center;" bgcolor="#34495e"
-                background="pedidospeed.herokuapp.com/img/meeting5.jpg"
+                background="pedidospeed.herokuapp.com/correos/meeting5.jpg"
                 height="185">
                 <table class="col-600"
                 width="600"
@@ -2881,7 +2881,7 @@ class MailController {
                 style="line-height: 0px;">
                 <img class="logo"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/3.png"
+                src="pedidospeed.herokuapp.com/correos/3.png"
                 width="150"
                 height="auto"
                 alt="logo">
@@ -3086,7 +3086,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/confirmed.svg"
+                src="pedidospeed.herokuapp.com/correos/confirmed.svg"
                 alt="img"
                 width="156"
                 height="136">
@@ -3257,7 +3257,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/chat.svg"
+                src="pedidospeed.herokuapp.com/correos/chat.svg"
                 width="169"
                 height="138">
                 </td>
@@ -3388,7 +3388,7 @@ class MailController {
                 cover;
                 background-position:
                 center;" bgcolor="#34495e"
-                background="pedidospeed.herokuapp.com/img/meeting5.jpg"
+                background="pedidospeed.herokuapp.com/correos/meeting5.jpg"
                 height="185">
                 <table class="col-600"
                 width="600"
@@ -3550,7 +3550,7 @@ class MailController {
                 style="line-height: 0px;">
                 <img class="logo"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="pedidospeed.herokuapp.com/img/3.png"
+                src="pedidospeed.herokuapp.com/correos/3.png"
                 width="150"
                 height="auto"
                 alt="logo">
@@ -3763,7 +3763,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/confirmed.svg"
+                src="pedidospeed.herokuapp.com/correos/confirmed.svg"
                 alt="img"
                 width="156"
                 height="136">
@@ -3942,7 +3942,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="pedidospeed.herokuapp.com/img/chat.svg"
+                src="pedidospeed.herokuapp.com/correos/chat.svg"
                 width="169"
                 height="138">
                 </td>
