@@ -11,7 +11,11 @@ class AcompsRoutes {
         this.config();
     }
     config() {
-        this.router.post('/codigo', mailController_1.default.mailCodigo);
+        this.router.post('/bienvenido', mailController_1.default.mailBienvenido);
+        this.router.post('/cambiarPass', mailController_1.default.mailCambiarPass);
+        this.router.post('/recuperarPass', mailController_1.default.mailRecuperarPass);
+        this.router.post('/estadoPedido', mailController_1.default.mailEstadoPedido);
+        this.router.post('/nuevoPedido', mailController_1.default.mailNuevoPedido);
         this.router.post('/verificar', mailController_1.default.mailVerificacion);
     }
 }
