@@ -85,6 +85,16 @@ class ProductosController {
             }
         });
     }
+    getOneByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
     createEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             /*let password = req.body.password;

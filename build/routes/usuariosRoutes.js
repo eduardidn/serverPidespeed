@@ -13,7 +13,6 @@ class UsuariosRoutes {
     config() {
         this.router.get('/', usuariosController_1.default.list);
         this.router.get('/:id', usuariosController_1.default.getOne);
-        this.router.get('/email/:email', usuariosController_1.default.getOneByEmail);
         this.router.post('/image64/:id', usuariosController_1.default.image64);
         this.router.put('/:id', usuariosController_1.default.update);
         this.router.put('/password/:id', usuariosController_1.default.updatePassword);
