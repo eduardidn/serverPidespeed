@@ -120,6 +120,20 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
         });
     }
+    updatePassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { email } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE usuarios set ? WHERE email = ?', [req.body, email]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
     mailRecuperarPass(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let nombre = req.body.nombre;
