@@ -14,6 +14,7 @@ class SesionesRoutes {
         this.router.post('/createUser', sesionesController_1.default.createUser);
         this.router.post('/buscarUserEmail', sesionesController_1.default.buscarUserEmail);
         this.router.get('/email/:email', sesionesController_1.default.getOneByEmail);
+        this.router.post('/recuperarPass', sesionesController_1.default.mailRecuperarPass);
         this.router.post('/buscarUserUsername', sesionesController_1.default.buscarUserUsername);
         this.router.post('/security/createEmpresa', sesionesController_1.default.createEmpresa);
         this.router.post('/security/ubique/createAdmin', sesionesController_1.default.createAdmin);
