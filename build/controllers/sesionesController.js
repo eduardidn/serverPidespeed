@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions_1 = __importDefault(require("../functions"));
 const db_1 = __importDefault(require("../db"));
+var nodemailer = require('nodemailer');
 class ProductosController {
     buscarUserEmail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
