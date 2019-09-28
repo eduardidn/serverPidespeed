@@ -2281,6 +2281,7 @@ class ProductosController {
             let nombre = req.body.nombre;
             let email = req.body.email;
             let link = req.body.link;
+            console.log(link);
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: '465',
@@ -2590,7 +2591,7 @@ class ProductosController {
                 <tr align="left"
                 valign="top">
                 <td style="text-align: center;">
-                <a href=${link} style="font-family:
+                <a href='${link}' style="font-family:
                 'Lato',
                 sans-serif;
                 font-size:25px;
