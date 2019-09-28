@@ -2590,7 +2590,7 @@ class ProductosController {
                 <tr align="left"
                 valign="top">
                 <td style="text-align: center;">
-                <a href="${link}" style="font-family:
+                <a href=${link} style="font-family:
                 'Lato',
                 sans-serif;
                 font-size:25px;
