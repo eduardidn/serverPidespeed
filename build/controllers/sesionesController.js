@@ -2281,7 +2281,7 @@ class ProductosController {
             let nombre = req.body.nombre;
             let email = req.body.email;
             let link = req.body.link;
-            console.log(link);
+            link = "" + link + "";
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: '465',
