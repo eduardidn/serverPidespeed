@@ -2590,7 +2590,7 @@ class ProductosController {
                 <tr align="left"
                 valign="top">
                 <td style="text-align: center;">
-                <a href='#' onclick="location.href=${link};return false;" style="font-family:
+                <a href='localhost:4200/${link}' style="font-family:
                 'Lato',
                 sans-serif;
                 font-size:25px;
