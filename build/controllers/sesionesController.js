@@ -2590,7 +2590,7 @@ class ProductosController {
                 <tr align="left"
                 valign="top">
                 <td style="text-align: center;">
-                <a href="localhost:4200/${link}" style="font-family:
+                <a href="http://localhost:4200/" style="font-family:
                 'Lato',
                 sans-serif;
                 font-size:25px;
