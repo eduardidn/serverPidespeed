@@ -21,6 +21,12 @@ class ProductosController {
             res.json(usuario);
         });
     }
+    buscarEmpresaEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM empresas Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
     buscarUserUsername(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where username = ?', [req.body.user]);
@@ -127,6 +133,20 @@ class ProductosController {
             req.body.password = yield functions_1.default.encryptPassword(password);
             try {
                 yield db_1.default.query('UPDATE usuarios set ? WHERE email = ?', [req.body, email]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    updatePasswordAdmin(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { email } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE empresas set ? WHERE email = ?', [req.body, email]);
                 res.json({ message: "ok" });
             }
             catch (err) {
