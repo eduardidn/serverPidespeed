@@ -23,8 +23,12 @@ class ProductosController {
     }
     buscarEmpresaEmail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM empresas Where email = ?', [req.body.user]);
-            res.json(usuario);
+            const { email } = req.params;
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE email = ?', [email]);
+            if (empresas.length > 0) {
+                return res.json(empresas[0]);
+            }
+            res.json({ message: "error" });
         });
     }
     buscarUserUsername(req, res) {
