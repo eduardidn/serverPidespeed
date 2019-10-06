@@ -58,7 +58,7 @@ class ProductosController {
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
-            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password, verificado FROM usuarios Where email = ? or username = ?', [req.body.user, req.body.user]);
+            const usuario = yield db_1.default.query('SELECT * FROM usuarios Where email = ? or username = ?', [req.body.user, req.body.user]);
             if (usuario != "") {
                 let savedPassword = usuario[0].password;
                 let match = yield functions_1.default.matchPassword(password, savedPassword);
