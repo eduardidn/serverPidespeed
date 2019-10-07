@@ -43,8 +43,7 @@ class Server {
         this.app.use(body_parser_1.default.json({ limit: '50mb' }));
         this.app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
         //this.app.use(morgan('dev'));
-        this.app.use(cors_1.default({ origin: 'http://localhost:4200' }));
-        this.app.use(cors_1.default({ origin: 'http://pidespeed.com' }));
+        this.app.use(cors_1.default({ origin: ['http://localhost:4200', 'http://pidespeed.com'] }));
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
