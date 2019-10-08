@@ -19,6 +19,12 @@ class CategoriasController {
             res.json(categorias);
         });
     }
+    listProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const categorias = yield db_1.default.query('SELECT * FROM categorias_product WHERE publish = 1');
+            res.json(categorias);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
