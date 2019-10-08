@@ -21,6 +21,13 @@ class EmpresasController {
             res.json(empresas);
         });
     }
+    listAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE id = ?', [id]);
+            res.json(empresas);
+        });
+    }
     listHome(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
