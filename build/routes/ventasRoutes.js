@@ -12,6 +12,7 @@ class VentasRoutes {
     }
     config() {
         this.router.get('/:id', ventasController_1.default.list);
+        this.router.get('/', ventasController_1.default.listAll);
         this.router.get('/get/one/:id', ventasController_1.default.getOne);
         this.router.put('/:id', ventasController_1.default.update);
         this.router.delete('/:id', ventasController_1.default.delete);

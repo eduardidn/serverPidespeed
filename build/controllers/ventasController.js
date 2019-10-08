@@ -20,6 +20,13 @@ class VentasController {
             res.json(ventas);
         });
     }
+    listAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const ventas = yield db_1.default.query('SELECT * FROM ventas');
+            res.json(ventas);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
