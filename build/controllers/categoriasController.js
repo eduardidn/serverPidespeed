@@ -36,6 +36,17 @@ class CategoriasController {
             res.json({ message: "error" });
         });
     }
+    getOneProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const categorias = yield db_1.default.query('SELECT * FROM categorias_product WHERE id = ?', [id]);
+            console.log(categorias.length);
+            if (categorias.length > 0) {
+                return res.json(categorias[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield db_1.default.query('INSERT INTO categorias set ?', [req.body]);
@@ -53,6 +64,26 @@ class CategoriasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             yield db_1.default.query('DELETE FROM categorias WHERE id = ?', [id]);
+            res.json({ message: "ok" });
+        });
+    }
+    createProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield db_1.default.query('INSERT INTO categorias_product set ?', [req.body]);
+            res.json({ message: 'ok' });
+        });
+    }
+    updateProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield db_1.default.query('UPDATE categorias_product set ? WHERE id = ?', [req.body, id]);
+            res.json({ message: "ok" });
+        });
+    }
+    deleteProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield db_1.default.query('DELETE FROM categorias_product WHERE id = ?', [id]);
             res.json({ message: "ok" });
         });
     }

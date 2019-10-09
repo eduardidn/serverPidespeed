@@ -17,6 +17,10 @@ class CategoriasRoutes {
         this.router.post('/', categoriasController_1.default.create);
         this.router.put('/:id', categoriasController_1.default.update);
         this.router.delete('/:id', categoriasController_1.default.delete);
+        this.router.get('/product/:id', categoriasController_1.default.getOneProduct);
+        this.router.post('/product/', categoriasController_1.default.createProduct);
+        this.router.put('/product/:id', categoriasController_1.default.updateProduct);
+        this.router.delete('/product/:id', categoriasController_1.default.deleteProduct);
     }
 }
 exports.default = new CategoriasRoutes().router;
