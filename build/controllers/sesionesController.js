@@ -180,6 +180,13 @@ class ProductosController {
             }
         });
     }
+    updateUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield db_1.default.query('UPDATE usuarios set ? WHERE id = ?', [req.body, id]);
+            res.json({ message: "ok" });
+        });
+    }
     mailRecuperarPass(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let nombre = req.body.nombre;

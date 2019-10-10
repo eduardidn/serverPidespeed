@@ -26,6 +26,7 @@ class SesionesRoutes {
         this.router.post('/loginUser/', sesionesController_1.default.loginUser);
         this.router.post('/loginEmpresa', sesionesController_1.default.loginEmpresa);
         this.router.post('/loginAdmin', sesionesController_1.default.loginAdmin);
+        this.router.put('/usuario/:id', sesionesController_1.default.updateUsuario);
     }
 }
 exports.default = new SesionesRoutes().router;
