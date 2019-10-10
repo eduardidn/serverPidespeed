@@ -441,7 +441,7 @@ class ProductosController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/confirmed.svg"
+                src="https://pedidospeed.herokuapp.com/correos/confirmed.png"
                 alt="img"
                 width="156"
                 height="136">
@@ -612,7 +612,7 @@ class ProductosController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/chat.svg"
+                src="https://pedidospeed.herokuapp.com/correos/chat.png"
                 width="169"
                 height="138">
                 </td>
@@ -1076,7 +1076,7 @@ class ProductosController {
                 <td>
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="https://pedidospeed.herokuapp.com/correos/compra.svg"
+                src="https://pedidospeed.herokuapp.com/correos/compra.png"
                 width="150"
                 height="100"
                 alt="icon">
@@ -1191,7 +1191,7 @@ class ProductosController {
                 line-height:0px;
                 font-size:0px;
                 border:0px;"
-                src="https://pedidospeed.herokuapp.com/correos/delivery.svg"
+                src="https://pedidospeed.herokuapp.com/correos/delivery.png"
                 width="100"
                 height="100"
                 alt="icon">
@@ -1304,7 +1304,7 @@ class ProductosController {
                 <td>
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
-                src="https://pedidospeed.herokuapp.com/correos/promotion.svg"
+                src="https://pedidospeed.herokuapp.com/correos/promotion.png"
                 width="150"
                 height="100"
                 alt="icon">
@@ -2586,7 +2586,7 @@ class ProductosController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/confirmed.svg"
+                src="https://pedidospeed.herokuapp.com/correos/confirmed.png"
                 alt="img"
                 width="156"
                 height="136">
@@ -2754,7 +2754,7 @@ class ProductosController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/chat.svg"
+                src="https://pedidospeed.herokuapp.com/correos/chat.png"
                 width="169"
                 height="138">
                 </td>
