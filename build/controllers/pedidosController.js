@@ -20,6 +20,12 @@ class PedidosController {
             res.json(pedidos);
         });
     }
+    listAprobar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 0 ORDER BY id DESC');
+            res.json(pedidos);
+        });
+    }
     listUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
