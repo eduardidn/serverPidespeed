@@ -687,8 +687,8 @@ class MailController {
         return __awaiter(this, void 0, void 0, function* () {
             let nombre = req.body.nombre;
             let email = req.body.email;
-            let codigo = req.body.link;
-            let contenido = req.body.link;
+            let codigo = req.body.codigo;
+            let contenido = req.body.contenido;
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: '465',
@@ -843,15 +843,13 @@ class MailController {
                 </tr> -->
 
                 <tr>
-                <!-- <td class="gridMovilTitle"
+                /* <!-- <td class="gridMovilTitle"
                 align="center" style="font-family: 'Raleway',
                 sans-serif; font-size:28px;
                 font-weight: bold;
                 color:#2f2f2f;">
-                Hola!, Juan Ramon, Haz
-                realizado un
-                nuevo pedido!
-                </td> -->
+                Hola!, ${nombre}.
+                </td> --> */
                 </tr>
 
                 <!-- <tr>
