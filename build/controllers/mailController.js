@@ -276,7 +276,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/confirmed.svg"
+                src="https://pedidospeed.herokuapp.com/correos/confirmed.png"
                 alt="img"
                 width="156"
                 height="136">
@@ -447,7 +447,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/chat.svg"
+                src="https://pedidospeed.herokuapp.com/correos/chat.png"
                 width="169"
                 height="138">
                 </td>
@@ -702,7 +702,7 @@ class MailController {
             let message = {
                 from: 'Eduardo <eduardidn@gmail.com>',
                 to: nombre + '<' + email + '>',
-                subject: 'verifique su cuenta de PideSpeed',
+                subject: 'Actualización de su pedido',
                 //text: 'Hello to myself!',
                 html: `<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 
@@ -843,13 +843,13 @@ class MailController {
                 </tr> -->
 
                 <tr>
-                /* <!-- <td class="gridMovilTitle"
+                <td class="gridMovilTitle"
                 align="center" style="font-family: 'Raleway',
                 sans-serif; font-size:28px;
                 font-weight: bold;
                 color:#2f2f2f;">
                 Hola!, ${nombre}.
-                </td> --> */
+                </td>
                 </tr>
 
                 <!-- <tr>
@@ -951,7 +951,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/confirmed.svg"
+                src="https://pedidospeed.herokuapp.com/correos/confirmed.png"
                 alt="img"
                 width="156"
                 height="136">
@@ -1130,7 +1130,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="https://pedidospeed.herokuapp.com/correos/chat.svg"
+                src="https://pedidospeed.herokuapp.com/correos/chat.png"
                 width="169"
                 height="138">
                 </td>
@@ -1520,7 +1520,7 @@ class MailController {
                 <img class="gridMovilImg"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="./img/confirmed.svg"
+                src="./img/confirmed.png"
                 alt="img"
                 width="156"
                 height="136">
@@ -1718,7 +1718,7 @@ class MailController {
                 <img class="gridMovilImgBig"
                 style="display:block; line-height:0px; font-size:0px; border:0px;"
                 class="images_style"
-                src="./img/chat.svg"
+                src="./img/chat.png"
                 width="169"
                 height="138">
                 </td>
