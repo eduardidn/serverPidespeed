@@ -19,14 +19,14 @@ class MailController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'pidespeed@gmail.cpm',
+                    user: 'Pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
                 logger: true,
                 debug: false
             });
             let message = {
-                from: 'PideSpeed <pidespeed@gmail.cpm>',
+                from: 'PideSpeed <Pidespeed@gmail.com>',
                 to: nombre + '<' + email + '>',
                 subject: 'verifique su cuenta de PideSpeed',
                 //text: 'Hello to myself!',
@@ -693,14 +693,14 @@ class MailController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'pidespeed@gmail.cpm',
+                    user: 'Pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
                 logger: true,
                 debug: false
             });
             let message = {
-                from: 'PideSpeed <pidespeed@gmail.cpm>',
+                from: 'PideSpeed <Pidespeed@gmail.com>',
                 to: nombre + '<' + email + '>',
                 subject: 'Actualización de su pedido',
                 //text: 'Hello to myself!',
@@ -1261,14 +1261,14 @@ class MailController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'pidespeed@gmail.cpm',
+                    user: 'Pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
                 logger: true,
                 debug: false
             });
             let message = {
-                from: 'PideSpeed <pidespeed@gmail.cpm>',
+                from: 'PideSpeed <Pidespeed@gmail.com>',
                 to: nombre + '<' + email + '>',
                 subject: 'verifique su cuenta de PideSpeed',
                 //text: 'Hello to myself!',

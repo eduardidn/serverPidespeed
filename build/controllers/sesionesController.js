@@ -196,14 +196,14 @@ class ProductosController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'pidespeed@gmail.cpm',
+                    user: 'Pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
                 logger: true,
                 debug: false
             });
             let message = {
-                from: 'PideSpeed <pidespeed@gmail.cpm>',
+                from: 'PideSpeed <Pidespeed@gmail.com>',
                 to: nombre + '<' + email + '>',
                 subject: 'verifique su cuenta de PideSpeed',
                 //text: 'Hello to myself!',
@@ -863,14 +863,14 @@ class ProductosController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'pidespeed@gmail.cpm',
+                    user: 'Pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
                 logger: true,
                 debug: false
             });
             let message = {
-                from: 'PideSpeed <pidespeed@gmail.cpm>',
+                from: 'PideSpeed <Pidespeed@gmail.com>',
                 to: nombre + '<' + email + '>',
                 subject: 'Bienvenido a Pidespeed',
                 //text: 'Hello to myself!',
@@ -2338,14 +2338,14 @@ class ProductosController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'pidespeed@gmail.cpm',
+                    user: 'Pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
                 logger: true,
                 debug: false
             });
             let message = {
-                from: 'PideSpeed <pidespeed@gmail.cpm>',
+                from: 'PideSpeed <Pidespeed@gmail.com>',
                 to: nombre + '<' + email + '>',
                 subject: 'verifique su cuenta de PideSpeed',
                 //text: 'Hello to myself!',
