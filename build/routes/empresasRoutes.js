@@ -11,7 +11,7 @@ class EmpresasRoutes {
         this.config();
     }
     config() {
-        this.router.get('/:type', empresasController_1.default.listHome);
+        this.router.get('/:type?', empresasController_1.default.listHome);
         this.router.get('/:ruta', empresasController_1.default.list);
         this.router.get('/get/all/:id', empresasController_1.default.listAll);
         this.router.get('/addvisita/:ruta', empresasController_1.default.addVisita);
