@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require('fs');
+const functions_1 = __importDefault(require("../functions"));
 const db_1 = __importDefault(require("../db"));
 class EmpresasController {
     list(req, res) {
@@ -104,6 +105,8 @@ class EmpresasController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            req.body.password = yield functions_1.default.encryptPassword(password);
             const result = yield db_1.default.query('INSERT INTO empresas set ?', [req.body]);
             res.json({ message: 'ok' });
         });
