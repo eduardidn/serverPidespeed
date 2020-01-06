@@ -19,9 +19,10 @@ class MailController {
                 host: 'smtp.gmail.com',
                 port: '465',
                 auth: {
-                    user: 'Pidespeed@gmail.com',
+                    user: 'pidespeed@gmail.com',
                     pass: 'qphtkmofxbcvxkbl'
                 },
+                //pass: 'qphtkmofxbcvxkbl'
                 logger: true,
                 debug: false
             });
