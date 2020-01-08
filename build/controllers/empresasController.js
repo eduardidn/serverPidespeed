@@ -132,14 +132,16 @@ class EmpresasController {
             if (rutaimg.length > 0) {
                 rutaimg = rutaimg[0];
             }
-            fs.unlink("./build/img/" + rutaimg.img, (err) => {
-                if (err) {
-                    console.log("failed to delete local image:" + err);
-                }
-                else {
-                    console.log('successfully deleted local image');
-                }
-            });
+            if (rutaimg.img != "web/default-empresas.jpg") {
+                fs.unlink("./build/img/" + rutaimg.img, (err) => {
+                    if (err) {
+                        console.log("failed to delete local image:" + err);
+                    }
+                    else {
+                        console.log('successfully deleted local image');
+                    }
+                });
+            }
             try {
                 var response = {};
                 response.type = req.body.filetype;
@@ -182,14 +184,16 @@ class EmpresasController {
             if (rutaimg.length > 0) {
                 rutaimg = rutaimg[0];
             }
-            fs.unlink("./build/img/" + rutaimg.logo, (err) => {
-                if (err) {
-                    console.log("failed to delete local image:" + err);
-                }
-                else {
-                    console.log('successfully deleted local image');
-                }
-            });
+            if (rutaimg.logo != "web/6.png") {
+                fs.unlink("./build/img/" + rutaimg.logo, (err) => {
+                    if (err) {
+                        console.log("failed to delete local image:" + err);
+                    }
+                    else {
+                        console.log('successfully deleted local image');
+                    }
+                });
+            }
             try {
                 var response = {};
                 response.type = req.body.filetype;
