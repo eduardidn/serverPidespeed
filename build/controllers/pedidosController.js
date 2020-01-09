@@ -40,7 +40,7 @@ class PedidosController {
     }
     listCancelados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE canelado = 1 ORDER BY id DESC');
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE cancelado = 1 ORDER BY id DESC');
             res.json(pedidos);
         });
     }
