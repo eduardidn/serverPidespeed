@@ -15,6 +15,9 @@ class PedidosRoutes {
     config() {
         this.router.get('/', pedidosController_1.default.list);
         this.router.get('/porAprobar', pedidosController_1.default.listAprobar);
+        this.router.get('/porVerificar', pedidosController_1.default.listVerificar);
+        this.router.get('/verificados', pedidosController_1.default.listVerificados);
+        this.router.get('/cancelados', pedidosController_1.default.listCancelados);
         this.router.get('/byUsuarios/:id', pedidosController_1.default.listUsuario);
         this.router.get('/:id', pedidosController_1.default.getOne);
         this.router.get('/byDatos/:codigo/:precio', pedidosController_1.default.getOneByDatos);

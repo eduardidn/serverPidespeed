@@ -26,6 +26,24 @@ class PedidosController {
             res.json(pedidos);
         });
     }
+    listVerificar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 1 and verificado = 1 ORDER BY id DESC');
+            res.json(pedidos);
+        });
+    }
+    listVerificados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 1 and verificado = 1 ORDER BY id DESC');
+            res.json(pedidos);
+        });
+    }
+    listCancelados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE canelado = 1 ORDER BY id DESC');
+            res.json(pedidos);
+        });
+    }
     listUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
