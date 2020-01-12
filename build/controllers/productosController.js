@@ -96,7 +96,7 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield db_1.default.query('INSERT INTO productos set ?', [req.body]);
-                res.json({ message: 'ok' });
+                res.json({ message: 'ok', id: result.insertId });
             }
             catch (e) {
                 console.log(e);
