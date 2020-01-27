@@ -8,9 +8,10 @@ exports.default = {
         database: 'pidexpress'
     } */
     database: {
-        host: "b4bdttx6r1sgazwbqffd-mysql.services.clever-cloud.com",
-        user: 'ugdbjvjp3vj97ypn',
-        password: '2WjiHWp7bH5jLeI11ItY',
+        host: "http://vps47870459.local",
+        user: 'root',
+        password: 'Pidespeed2020$',
         database: 'b4bdttx6r1sgazwbqffd'
     }
 };
+
