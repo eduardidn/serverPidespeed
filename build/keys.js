@@ -8,7 +8,7 @@ exports.default = {
         database: 'pidexpress'
     } */
     database: {
-        host: "31.220.56.153",
+        host: "localhost",
         user: 'root',
         password: 'Pidespeed2020$',
         database: 'b4bdttx6r1sgazwbqffd'
