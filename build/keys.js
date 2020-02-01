@@ -14,4 +14,3 @@ exports.default = {
         database: 'b4bdttx6r1sgazwbqffd'
     }
 };
-
