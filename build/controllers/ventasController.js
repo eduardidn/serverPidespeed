@@ -27,6 +27,13 @@ class VentasController {
             res.json(ventas);
         });
     }
+    getNoPagados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const ventas = yield db_1.default.query('SELECT * FROM ventas WHERE pagado = 0 AND empresa_id = ?', [id]);
+            res.json(ventas);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
