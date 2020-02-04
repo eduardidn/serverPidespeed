@@ -69,7 +69,7 @@ class EmpresasController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ? empresas.es_sucursal = 0', [ruta]);
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ? AND empresas.es_sucursal = 0', [ruta]);
             if (empresas.length > 0) {
                 return res.json(empresas[0]);
             }
