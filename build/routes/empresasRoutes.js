@@ -20,6 +20,7 @@ class EmpresasRoutes {
         this.router.get('/populares/:ruta', empresasController_1.default.listPop);
         this.router.post('/image64/:id', empresasController_1.default.image64);
         this.router.post('/logo64/:id', empresasController_1.default.logo64);
+        this.router.get('/sucursales/:id', empresasController_1.default.getSucursales);
         this.router.get('/one/:ruta', empresasController_1.default.getOne);
         this.router.get('/one/byId/:id', empresasController_1.default.getOneById);
         this.router.post('/', empresasController_1.default.create);

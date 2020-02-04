@@ -18,7 +18,7 @@ class EmpresasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1  ADN empresas.es_sucursal = 0', [ruta]);
             res.json(empresas);
         });
     }
@@ -37,7 +37,7 @@ class EmpresasController {
                 res.json(empresas);
             }
             else {
-                const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 ORDER BY empresas.visitas DESC');
+                const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
                 res.json(empresas);
             }
         });
@@ -45,21 +45,31 @@ class EmpresasController {
     listPop(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.visitas', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 empresas.es_sucursal = 0 ORDER BY empresas.visitas', [ruta]);
             res.json(empresas);
         });
     }
     listVen(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 ORDER BY empresas.ventas', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.horarios, empresas.nombre,empresas.ruta,empresas.descripcion, empresas.img, empresas.logo, empresas.keywords, empresas.categoria_id, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 empresas.es_sucursal = 0 ORDER BY empresas.ventas', [ruta]);
             res.json(empresas);
+        });
+    }
+    getSucursales(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre FROM empresas WHERE empresa_id = ? empresas.es_sucursal = 1', [id]);
+            if (empresas.length > 0) {
+                return res.json(empresas[0]);
+            }
+            res.json({ message: "error" });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ?', [ruta]);
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ? empresas.es_sucursal = 0', [ruta]);
             if (empresas.length > 0) {
                 return res.json(empresas[0]);
             }
