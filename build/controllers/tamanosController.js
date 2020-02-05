@@ -21,14 +21,14 @@ class TamanosController {
             var tamanos;
             if (tipo == 1) {
                 try {
-                    tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos WHERE tamanos.publish = 1 AND tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+                    tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos WHERE tamanos.publish = 1 AND tamanos.id IN (?)', [id]);
                 }
                 catch (e) {
                     console.log(e);
                 }
             }
             else {
-                tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos WHERE tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+                tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos WHERE tamanos.id IN (?)', [id]);
             }
             res.json(tamanos);
         });
