@@ -59,7 +59,7 @@ class EmpresasController {
     getSucursales(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre FROM empresas WHERE empresa_id = ?', [id]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre FROM empresas WHERE empresa_id = ? AND empresas.es_sucursal = 1', [id]);
             return res.json(empresas);
         });
     }
