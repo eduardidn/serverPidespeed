@@ -14,7 +14,7 @@ class MailController {
         return __awaiter(this, void 0, void 0, function* () {
             let nombre = req.body.nombre;
             let email = req.body.email;
-            let codigo = req.body.link;
+            let codigo = req.body.codigo;
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: '465',
