@@ -21,14 +21,14 @@ class TamanosController {
             var tamanos;
             if (tipo == 1) {
                 try {
-                    tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos INNER JOIN productos ON productos.empresa_id = tamanos.empresa_id WHERE tamanos.publish = 1 AND tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+                    tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos WHERE tamanos.publish = 1 AND tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
                 }
                 catch (e) {
                     console.log(e);
                 }
             }
             else {
-                tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos INNER JOIN productos ON productos.empresa_id = tamanos.empresa_id WHERE tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
+                tamanos = yield db_1.default.query('SELECT tamanos.* FROM tamanos WHERE tamanos.id IN (?) GROUP BY tamanos.nombre', [id]);
             }
             res.json(tamanos);
         });
