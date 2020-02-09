@@ -15,7 +15,7 @@ class VentasRoutes {
         this.router.get('/get/all', ventasController_1.default.listAll);
         this.router.get('/get/NoPagados/:id', ventasController_1.default.getNoPagados);
         this.router.get('/get/one/:id', ventasController_1.default.getOne);
-        this.router.get('/getByPagp/:ids', ventasController_1.default.getByPago);
+        this.router.get('/getByPago/:ids', ventasController_1.default.getByPago);
         this.router.put('/:id', ventasController_1.default.update);
         this.router.post('/', ventasController_1.default.create);
         this.router.delete('/:id', ventasController_1.default.delete);
