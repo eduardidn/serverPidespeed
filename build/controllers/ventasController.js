@@ -45,6 +45,27 @@ class VentasController {
             res.json({ message: "error" });
         });
     }
+    getByPago(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            let id = ids.split(",");
+            var ventas;
+            try {
+                ventas = yield db_1.default.query('SELECT * FROM ventas WHERE id IN (?)', [id]);
+            }
+            catch (e) {
+                console.log(e);
+                res.json({ e });
+            }
+            res.json(ventas);
+        });
+    }
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield db_1.default.query('INSERT INTO ventas set ?', [req.body]);
+            res.json({ message: 'ok' });
+        });
+    }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

@@ -73,15 +73,15 @@ class Empresa_pedidoController {
         return __awaiter(this, void 0, void 0, function* () {
             let { ids } = req.params;
             let id = ids.split(",");
-            var tamanos;
+            var empresa_pedido;
             try {
-                tamanos = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE id IN (?)', [id]);
+                empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE id IN (?)', [id]);
             }
             catch (e) {
                 console.log(e);
                 res.json({ e });
             }
-            res.json(tamanos);
+            res.json(empresa_pedido);
         });
     }
     create(req, res) {
