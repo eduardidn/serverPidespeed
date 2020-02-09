@@ -52,7 +52,7 @@ class Empresa_pedidoController {
         return __awaiter(this, void 0, void 0, function* () {
             const { eid } = req.params;
             const { pid } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND empresa_id = ?', [eid, pid]);
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND pedido_id = ?', [eid, pid]);
             return res.json(empresa_pedido);
         });
     }
