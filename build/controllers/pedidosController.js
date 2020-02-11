@@ -101,7 +101,7 @@ class PedidosController {
             try {
                 var response = {};
                 response.type = req.body.filetype;
-                response.data = new Buffer(req.body.value, 'base64');
+                response.data = Buffer.from(req.body.value, 'base64');
                 var imageBuffer = response;
                 var userUploadedFeedMessagesLocation = 'build/img/pedidos/';
                 var ruta = 'pedidos/' + req.body.filename;
