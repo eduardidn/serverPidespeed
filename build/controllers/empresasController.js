@@ -115,7 +115,7 @@ class EmpresasController {
             let password = req.body.password;
             req.body.password = yield functions_1.default.encryptPassword(password);
             const result = yield db_1.default.query('INSERT INTO empresas set ?', [req.body]);
-            res.json({ message: 'ok' });
+            res.json({ message: 'ok', id: result.insertId });
         });
     }
     update(req, res) {
