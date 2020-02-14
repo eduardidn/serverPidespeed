@@ -180,6 +180,20 @@ class ProductosController {
             }
         });
     }
+    updatePasswordEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { id } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE empresas set ? WHERE id = ?', [req.body, id]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
     updatePasswordAdmin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
