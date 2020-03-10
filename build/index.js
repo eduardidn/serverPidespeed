@@ -41,6 +41,7 @@ class Server {
     }
     config() {
         this.app.use(express_1.default.static('build/img'));
+        this.app.use('/img', express_1.default.static('build/img'));
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(body_parser_1.default.json({ limit: '50mb' }));
         this.app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
