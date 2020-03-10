@@ -49,6 +49,7 @@ class Server {
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
+    //AAAAAAAHHHH
     routes() {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/sesiones', sesionesRoutes_1.default);
