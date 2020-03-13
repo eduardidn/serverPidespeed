@@ -33,6 +33,7 @@ const pagosRoutes_1 = __importDefault(require("./routes/pagosRoutes"));
 const mailRoutes_1 = __importDefault(require("./routes/mailRoutes"));
 const configRoutes_1 = __importDefault(require("./routes/configRoutes"));
 const cuentasRoutes_1 = __importDefault(require("./routes/cuentasRoutes"));
+const SaboresRoutes_1 = __importDefault(require("./routes/SaboresRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -76,6 +77,7 @@ class Server {
         this.app.use('/api/pagos', pagosRoutes_1.default);
         this.app.use('/api/config', configRoutes_1.default);
         this.app.use('/api/cuentas', cuentasRoutes_1.default);
+        this.app.use('/api/sabores', SaboresRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
