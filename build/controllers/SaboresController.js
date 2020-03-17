@@ -42,7 +42,7 @@ class SaboresController {
             let { ids } = req.params;
             let id = ids.split(",");
             try {
-                const sabores = yield db_1.default.query('UPDATE sabores set ? WHERE id IN (?)', [id]);
+                const sabores = yield db_1.default.query('UPDATE sabores set ? WHERE id IN (?)', [req.body, id]);
                 res.json({ message: "ok" });
             }
             catch (err) {
