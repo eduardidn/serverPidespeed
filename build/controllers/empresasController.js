@@ -119,6 +119,7 @@ class EmpresasController {
                 res.json({ message: 'ok', id: result.insertId });
             }
             catch (error) {
+                console.log(err);
                 res.json({ message: 'error' });
             }
         });

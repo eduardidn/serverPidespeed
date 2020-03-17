@@ -46,6 +46,7 @@ class SaboresController {
                 res.json({ message: "ok" });
             }
             catch (err) {
+                console.log(err);
                 res.json({ message: "error" });
             }
         });
