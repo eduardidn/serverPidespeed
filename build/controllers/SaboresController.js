@@ -41,11 +41,13 @@ class SaboresController {
         return __awaiter(this, void 0, void 0, function* () {
             let { ids } = req.params;
             let id = ids.split(",");
-            const sabores = yield db_1.default.query('UPDATE sabores set ? WHERE id IN (?)', [id]);
-            if (sabores.length > 0) {
-                return res.json(sabores[0]);
+            try {
+                const sabores = yield db_1.default.query('UPDATE sabores set ? WHERE id IN (?)', [id]);
+                res.json({ message: "ok" });
             }
-            res.json({ message: "error" });
+            catch (err) {
+                res.json({ message: "error" });
+            }
         });
     }
     create(req, res) {
