@@ -48,9 +48,16 @@ class ProductosController {
     listCatEsp(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
+            const { tipo } = req.params;
             try {
-                const productos = yield db_1.default.query('SELECT productos.categoria_product_id, categorias_product.nombre FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 GROUP BY productos.categoria_product_id', [ruta]);
-                res.json(productos);
+                if (tipo != 1) {
+                    const productos = yield db_1.default.query('SELECT productos.categoria_product_id, categorias_product.nombre FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? GROUP BY productos.categoria_product_id', [ruta]);
+                    res.json(productos);
+                }
+                else {
+                    const productos = yield db_1.default.query('SELECT productos.categoria_product_id, categorias_product.nombre FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 GROUP BY productos.categoria_product_id', [ruta]);
+                    res.json(productos);
+                }
             }
             catch (err) {
                 console.log(err);
