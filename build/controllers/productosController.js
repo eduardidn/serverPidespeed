@@ -50,7 +50,7 @@ class ProductosController {
             const { ruta } = req.params;
             const { tipo } = req.params;
             try {
-                if (tipo != 1 && tipo) {
+                if (tipo == 2) {
                     const productos = yield db_1.default.query('SELECT productos.categoria_product_id, categorias_product.nombre FROM productos INNER JOIN categorias_product On categorias_product.id = productos.categoria_product_id INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? GROUP BY productos.categoria_product_id', [ruta]);
                     res.json(productos);
                 }
