@@ -27,6 +27,26 @@ class SaboresController {
             res.json(sabores);
         });
     }
+    listByIds(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            const { tipo } = req.params;
+            let id = ids.split(",");
+            var sabores;
+            if (tipo == 2) {
+                try {
+                    sabores = yield db_1.default.query('SELECT sabores.* FROM sabores WHERE sabores.id IN (?)', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
+                sabores = yield db_1.default.query('SELECT sabores.* FROM sabores WHERE sabores.publish = 1 AND sabores.id IN (?)', [id]);
+            }
+            res.json(sabores);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

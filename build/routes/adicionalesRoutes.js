@@ -12,6 +12,7 @@ class AdicionalesRoutes {
     }
     config() {
         this.router.get('/:id/:tipo', adicionalesController_1.default.list);
+        this.router.get('/byIds/:ids/:tipo?', adicionalesController_1.default.listByIds);
         this.router.get('/get/one/:id', adicionalesController_1.default.getOne);
         this.router.put('/:id', adicionalesController_1.default.update);
         this.router.post('/', adicionalesController_1.default.create);

@@ -27,6 +27,26 @@ class AdicionalesController {
             res.json(adicionales);
         });
     }
+    listByIds(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            const { tipo } = req.params;
+            let id = ids.split(",");
+            var adicionales;
+            if (tipo == 2) {
+                try {
+                    adicionales = yield db_1.default.query('SELECT adicionales.* FROM adicionales WHERE adicionales.id IN (?)', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
+                adicionales = yield db_1.default.query('SELECT adicionales.* FROM adicionales WHERE adicionales.publish = 1 AND adicionales.id IN (?)', [id]);
+            }
+            res.json(adicionales);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
