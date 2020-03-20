@@ -16,7 +16,7 @@ class FavoritosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const favoritos = yield db_1.default.query('SELECT empresas.nombre, empresas.horarios, empresas.id, empresas.descripcion,empresas.img,empresas.ruta, empresas.img, empresas.logo, categorias.ruta as rutaCategoria from favoritos INNER JOIN empresas on empresas.id = favoritos.empresa_id INNER JOIN categorias ON empresas.categoria_id = categorias.id  WHERE favoritos.usuario_id = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0', [id]);
+            const favoritos = yield db_1.default.query('SELECT empresas.nombre, empresas.horarios,empresas.abierto, empresas.id, empresas.descripcion,empresas.img,empresas.ruta, empresas.img, empresas.logo, categorias.ruta as rutaCategoria from favoritos INNER JOIN empresas on empresas.id = favoritos.empresa_id INNER JOIN categorias ON empresas.categoria_id = categorias.id  WHERE favoritos.usuario_id = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0', [id]);
             res.json(favoritos);
         });
     }
@@ -32,7 +32,7 @@ class FavoritosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const { ruta } = req.params;
-            const favoritos = yield db_1.default.query('SELECT empresas.nombre, empresas.horarios, empresas.id, empresas.descripcion,empresas.img, empresas.ruta, empresas.img, empresas.logo,categorias.ruta as rutaCategoria from favoritos INNER JOIN empresas on empresas.id = favoritos.empresa_id INNER JOIN categorias ON empresas.categoria_id = categorias.id  WHERE favoritos.usuario_id = ? AND categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0', [id, ruta]);
+            const favoritos = yield db_1.default.query('SELECT empresas.nombre, empresas.horarios,empresas.abierto, empresas.id, empresas.descripcion,empresas.img, empresas.ruta, empresas.img, empresas.logo,categorias.ruta as rutaCategoria from favoritos INNER JOIN empresas on empresas.id = favoritos.empresa_id INNER JOIN categorias ON empresas.categoria_id = categorias.id  WHERE favoritos.usuario_id = ? AND categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0', [id, ruta]);
             res.json(favoritos);
         });
     }
