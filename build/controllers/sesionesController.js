@@ -37,6 +37,12 @@ class ProductosController {
             res.json(usuario);
         });
     }
+    buscarUserTelefono(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where telefono1 = ?', [req.body.telefono]);
+            res.json(usuario);
+        });
+    }
     createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
