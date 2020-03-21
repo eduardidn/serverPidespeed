@@ -43,6 +43,12 @@ class ProductosController {
             res.json(usuario);
         });
     }
+    buscarUserCedula(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where cedula = ?', [req.body.cedula]);
+            res.json(usuario);
+        });
+    }
     createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
@@ -240,7 +246,38 @@ class ProductosController {
                 to: nombre + '<' + email + '>',
                 subject: 'Bienvenido a Pidespeed',
                 //text: 'Hello to myself!',
-                html: `<div class="container">
+                html: `<head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Bienvenido a Pidespeed</title>
+                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+            
+                <style>
+                    body {
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin:  0 auto;
+                    }
+                    .bg-grey-light {
+                        background: rgb(246, 246, 246);
+                    }
+                    @media screen and (min-width: 768px) {
+                        .h-150p {
+                        height: 150px;
+                    }
+                    }
+                    .bg-redes {
+                        background: url(/img/meeting.jpg);
+                    }
+                </style>
+            </head>
+            <body>
+            
+                <div class="container">
                     <div class="text-center mt-4">
                         <img src="https://ssl.pidespeed.com/correos/logo.png" alt="Pidespeed Logo" class="img-fluid w-50">
                     </div>
@@ -311,7 +348,9 @@ class ProductosController {
                             <a href="" class="fab fa-facebook text-white h1 px-5"></a>
                         </div>
                     </div>
-                </div>`,
+                </div>
+                
+            </body>`,
             };
             try {
                 let info = yield transporter.sendMail(message);
