@@ -221,6 +221,140 @@ class ProductosController {
             res.json({ message: "ok" });
         });
     }
+    mailBienvenido1(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let nombre = req.body.nombre;
+            let email = req.body.email;
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: '465',
+                auth: {
+                    user: 'Pidespeed@gmail.com',
+                    pass: 'qphtkmofxbcvxkbl'
+                },
+                logger: true,
+                debug: false
+            });
+            let message = {
+                from: 'PideSpeed <Pidespeed@gmail.com>',
+                to: nombre + '<' + email + '>',
+                subject: 'Bienvenido a Pidespeed',
+                //text: 'Hello to myself!',
+                html: `<head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Bienvenido a Pidespeed</title>
+                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+            
+                <style>
+                    body {
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin:  0 auto;
+                    }
+                    .bg-grey-light {
+                        background: rgb(246, 246, 246);
+                    }
+                    @media screen and (min-width: 768px) {
+                        .h-150p {
+                        height: 150px;
+                    }
+                    }
+                    .bg-redes {
+                        background: url(/img/meeting.jpg);
+                    }
+                </style>
+            </head>
+            <body>
+            
+                <div class="container">
+                    <div class="text-center mt-4">
+                        <img src="https://ssl.pidespeed.com/correos/logo.png" alt="Pidespeed Logo" class="img-fluid w-50">
+                    </div>
+            
+                    <div class="text-center pt-5">
+                        <h1>Gracias por unirte a Pidespeed</h1>
+                        <p class="px-4">Te damos la bienvenida a nuestra plataforma, con Pidespeed.com puede recibir sus productos favoritos en su puerta en cuestión de minutos, o puede recoger su pedido usted mismo para la máxima comodidad, sin colas ni tarifas! le avisaremos cuando este listo.</p>
+                    </div>
+            
+                    <div class="text-center row justify-content-center pt-5">
+                        <div class="col-8 col-md mt-3">
+                            <img src="https://ssl.pidespeed.com/correos/compra.svg" alt="" class="img-fluid mb-3">
+                            <h3 class="h5 font-weight-light">
+                                Tus locales favoritos
+                            </h3>
+                        </div>
+                        <div class="col-8 col-md mt-3">
+                            <img src="https://ssl.pidespeed.com/correos/delivery.svg" alt="" class="img-fluid w-75 mb-2">
+                            <h3 class="h5 font-weight-light">
+                                Solo pasas a recogerlo.
+                            </h3>
+                        </div>
+                        <div class="col-8 col-md mt-3">
+                            <img src="https://ssl.pidespeed.com/correos/promotion.svg" alt="" class="img-fluid mb-3">
+                            <h3 class="h5 font-weight-light">
+                                Gasta menos tiempo y dinero con nuestras promociones
+                            </h3>
+                        </div>
+                    </div>
+            
+                    <div class="text-center row justify-content-center mt-5 bg-grey-light py-4">
+                        <div class="col-8 col-md">
+                            <img src="https://ssl.pidespeed.com/correos/MovilRojo.png" alt="" class="img-fluid mb-3">
+                        </div>
+                        <div class="col-12 col-md-8 mt-3">
+                            <h2 class="h5">Todo al alcance de tus manos!</h2>
+                            <p>Ya sea que se trate de bebidas, comidas, cocinas específicas o minoristas, puedes explorar la ciudad directamente desde el nuestra plataforma. con el fin de que puedar realizar pedidos a tus restaurantes y tiendas favoritas desde la comodidad de tu casa, oficina o donde te encuentres!</p>
+                        </div>
+                    </div>
+            
+                    <div class="text-center pt-5">
+                        <h2 class="h3">¿Listo para ordenar?</h2>
+                            <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Ordenar</a>
+                    </div>
+            
+                    <div class="text-center row no-gutters bg-grey-light py-4 mt-5">
+                        <div class="col-12 col-md mt-4">
+                            <h3 class="h5 font-weight-light text-danger font-weight-bolder">
+                                Aprovecha nuestras ofertas!
+                            </h3>
+                            <img src="https://ssl.pidespeed.com/correos/articulos.jpg" alt="" class="img-fluid h-150p w-100">
+                            <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Aprende como</a>
+            
+                        </div>
+                        <div class="col-12 col-md mt-4">
+                            <h3 class="h5 font-weight-light text-danger font-weight-bolder">
+                                Sáltate la cola y las tarifas
+                            </h3>
+                            <img src="https://ssl.pidespeed.com/correos/pidespeedweb.jpg" alt="" class="img-fluid h-150p w-100">
+                            <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Aprende como</a>
+                        </div>
+                    </div>
+            
+                    <div class="text-center py-5 bg-redes text-white">
+                        <h1 class="h3">Síguenos en nuestras redes sociales</h1>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="" class="fab fa-instagram text-white h1 px-5"></a>
+                            <a href="" class="fab fa-facebook text-white h1 px-5"></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </body>`,
+            };
+            try {
+                let info = yield transporter.sendMail(message);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.status(400).json(err);
+            }
+        });
+    }
     mailRecuperarPass(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let nombre = req.body.nombre;

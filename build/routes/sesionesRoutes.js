@@ -19,6 +19,7 @@ class SesionesRoutes {
         this.router.put('/recuperarPasswordAdmin/:email', sesionesController_1.default.updatePasswordAdmin);
         this.router.put('/setPasswordEmpresa/:id', sesionesController_1.default.updatePasswordEmpresa);
         this.router.post('/bienvenido', sesionesController_1.default.mailBienvenido);
+        this.router.post('/bienvenido1', sesionesController_1.default.mailBienvenido1);
         this.router.post('/verificar', sesionesController_1.default.mailVerificacion);
         this.router.post('/recuperarPass', sesionesController_1.default.mailRecuperarPass);
         this.router.post('/buscarUserUsername', sesionesController_1.default.buscarUserUsername);
