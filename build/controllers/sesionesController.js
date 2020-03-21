@@ -240,38 +240,7 @@ class ProductosController {
                 to: nombre + '<' + email + '>',
                 subject: 'Bienvenido a Pidespeed',
                 //text: 'Hello to myself!',
-                html: `<head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Bienvenido a Pidespeed</title>
-                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-            
-                <style>
-                    body {
-                        font-family: 'Roboto', sans-serif;
-                    }
-                    .container {
-                        max-width: 600px;
-                        margin:  0 auto;
-                    }
-                    .bg-grey-light {
-                        background: rgb(246, 246, 246);
-                    }
-                    @media screen and (min-width: 768px) {
-                        .h-150p {
-                        height: 150px;
-                    }
-                    }
-                    .bg-redes {
-                        background: url(/img/meeting.jpg);
-                    }
-                </style>
-            </head>
-            <body>
-            
-                <div class="container">
+                html: `<div class="container">
                     <div class="text-center mt-4">
                         <img src="https://ssl.pidespeed.com/correos/logo.png" alt="Pidespeed Logo" class="img-fluid w-50">
                     </div>
@@ -283,19 +252,19 @@ class ProductosController {
             
                     <div class="text-center row justify-content-center pt-5">
                         <div class="col-8 col-md mt-3">
-                            <img src="https://ssl.pidespeed.com/correos/compra.svg" alt="" class="img-fluid mb-3">
+                            <img src="https://ssl.pidespeed.com/correos/compra.png" alt="" class="img-fluid mb-3">
                             <h3 class="h5 font-weight-light">
                                 Tus locales favoritos
                             </h3>
                         </div>
                         <div class="col-8 col-md mt-3">
-                            <img src="https://ssl.pidespeed.com/correos/delivery.svg" alt="" class="img-fluid w-75 mb-2">
+                            <img src="https://ssl.pidespeed.com/correos/delivery.png" alt="" class="img-fluid w-75 mb-2">
                             <h3 class="h5 font-weight-light">
                                 Solo pasas a recogerlo.
                             </h3>
                         </div>
                         <div class="col-8 col-md mt-3">
-                            <img src="https://ssl.pidespeed.com/correos/promotion.svg" alt="" class="img-fluid mb-3">
+                            <img src="https://ssl.pidespeed.com/correos/promotion.png" alt="" class="img-fluid mb-3">
                             <h3 class="h5 font-weight-light">
                                 Gasta menos tiempo y dinero con nuestras promociones
                             </h3>
@@ -342,9 +311,7 @@ class ProductosController {
                             <a href="" class="fab fa-facebook text-white h1 px-5"></a>
                         </div>
                     </div>
-                </div>
-                
-            </body>`,
+                </div>`,
             };
             try {
                 let info = yield transporter.sendMail(message);
