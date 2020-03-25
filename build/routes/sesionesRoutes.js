@@ -11,6 +11,7 @@ class SesionesRoutes {
         this.config();
     }
     config() {
+        this.router.get('/enviarMessage', sesionesController_1.default.enviarMessage);
         this.router.post('/createUser', sesionesController_1.default.createUser);
         this.router.post('/buscarUserEmail', sesionesController_1.default.buscarUserEmail);
         this.router.post('/buscarEmpresaEmail/:email', sesionesController_1.default.buscarEmpresaEmail);

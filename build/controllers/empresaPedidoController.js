@@ -44,7 +44,7 @@ class Empresa_pedidoController {
     getByEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ?', [id]);
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? ORDER BY id DESC', [id]);
             return res.json(empresa_pedido);
         });
     }
@@ -59,21 +59,21 @@ class Empresa_pedidoController {
     getPendientes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 0 AND entregado = 0', [id]);
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 0 AND entregado = 0 ORDER BY id DESC', [id]);
             return res.json(empresa_pedido);
         });
     }
     getTerminados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0', [id]);
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0 ORDER BY id DESC', [id]);
             return res.json(empresa_pedido);
         });
     }
     getEntregados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 1', [id]);
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 1 ORDER BY id ASC', [id]);
             return res.json(empresa_pedido);
         });
     }

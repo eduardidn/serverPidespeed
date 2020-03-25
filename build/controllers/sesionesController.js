@@ -14,7 +14,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const functions_1 = __importDefault(require("../functions"));
 const db_1 = __importDefault(require("../db"));
 var nodemailer = require('nodemailer');
+var twilio = require('twilio');
 class ProductosController {
+    enviarMessage(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const accountSid = 'ACb4dbe085f125405157f6b5978a6801b7';
+            const authToken = 'cd2bb35c0d4c8b9dd1e9fd913f8b3aa6';
+            const client = twilio(accountSid, authToken);
+            client.messages.create({
+                body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+                from: '+12058094521',
+                to: '+584124282595'
+            }).then((message) => res.json(message.sid), (err) => res.json(err));
+        });
+    }
     buscarUserEmail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where email = ?', [req.body.user]);
