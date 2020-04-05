@@ -263,43 +263,212 @@ class ProductosController {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Bienvenido a Pidespeed</title>
-                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-            
                 <style>
                     body {
                         font-family: 'Roboto', sans-serif;
+                    }
+                    p {
+                        margin-top: 0;
+                        margin-bottom: 1rem;
+                    }
+                    img {
+                        vertical-align: middle;
+                        border-style: none;
+                    }
+                    a {
+                        text-decoration: none!important;
+                    }
+                    .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+                        position: relative;
+                        width: 100%;
+                        padding-right: 15px;
+                        padding-left: 15px;
+                    }
+                    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+                        margin-bottom: .5rem;
+                        font-weight: 500;
+                        line-height: 1.2;
+                    }
+                    .h5, h5 {
+                        font-size: 1.25rem;
+                    }
+                    
+                    .h3, h3 {
+                        font-size: 1.75rem;
+                    }
+                    .font-weight-light {
+                        font-weight: 300!important;
+                    }
+                    .text-uppercase {
+                        text-transform: uppercase!important;
                     }
                     .container {
                         max-width: 600px;
                         margin:  0 auto;
                     }
+                    .w-75 {
+                        width: 75%!important;
+                    }
+                    .w-100 {
+                        width: 100%!important;
+                    }
+                    
                     .bg-grey-light {
                         background: rgb(246, 246, 246);
                     }
+                    .text-white {
+                        color: #fff!important;
+                    }
+                    .img-fluid {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                    .w-50 {
+                        width: 50%!important;
+                    }
+                    .w-25 { 
+                        width: 25%important;
+                    }
+                    .text-center {
+                        text-align: center!important;
+                    }
+                    .mb-2, .my-2 {
+                        margin-bottom: .5rem!important;
+                    }
+                    .mt-4, .my-4 {
+                        margin-top: 1.5rem!important;
+                    }
+                    .mt-3, .my-3 {
+                        margin-top: 1rem!important;
+                    }
+                    .mb-3, .my-3 {
+                        margin-bottom: 1rem!important;
+                    }
+                    .mt-5, .my-5 {
+                        margin-top: 3rem!important;
+                    }
+                    .pt-5, .py-5 {
+                        padding-top: 3rem!important;
+                    }
+                    .pl-5, .px-5 {
+                        padding-left: 3rem!important;
+                    }
+                    .pr-5, .px-5 {
+                        padding-right: 3rem!important;
+                    }
+                    .pr-2, .px-2 {
+                        padding-right: .5rem!important;
+                    }
+                    .pl-2, .px-2 {
+                        padding-left: .5rem!important;
+                    }
+                    .pb-4, .py-4 {
+                        padding-bottom: 1.5rem!important;
+                    }
+                    .pb-5, .py-5 {
+                        padding-bottom: 3rem!important;
+                    }
+                    .pt-5, .py-5 {
+                        padding-top: 3rem!important;
+                    }
+                    .row {
+                        display: -ms-flexbox;
+                        display: flex;
+                        -ms-flex-wrap: wrap;
+                        flex-wrap: wrap;
+                        margin-right: -15px;
+                        margin-left: -15px;
+                    }
+                    .no-gutters {
+                        margin-right: 0;
+                        margin-left: 0;
+                    }
+                    .d-flex {
+                        display: flex;
+                    }
+                    
+                    .justify-content-center {
+                        -ms-flex-pack: center!important;
+                        justify-content: center!important;
+                    }
+                    .rounded-pill {
+                        border-radius: 50rem!important;
+                    }
+                    .btn {
+                        display: inline-block;
+                        font-weight: 400;
+                        color: #212529;
+                        text-align: center;
+                        vertical-align: middle;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                        background-color: transparent;
+                        border: 1px solid transparent;
+                        padding: .375rem .75rem;
+                        font-size: 1rem;
+                        line-height: 1.5;
+                        border-radius: .25rem;
+                        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                    }
+                    .btn-outline-danger {
+                        color: #dc3545;
+                        border-color: #dc3545;
+                    }     
+                    .text-danger {
+                        color: #dc3545!important;
+                    }   
+                    .col-8 {
+                        -ms-flex: 0 0 66.666667%;
+                        flex: 0 0 66.666667%;
+                        max-width: 66.666667%;
+                    }
+                    .col-12 {
+                        -ms-flex: 0 0 100%;
+                        flex: 0 0 100%;
+                        max-width: 100%;
+                    }
                     @media screen and (min-width: 768px) {
                         .h-150p {
-                        height: 150px;
+                            height: 150px;
+                        }
+                        .col-md {
+                            -ms-flex-preferred-size: 0;
+                            flex-basis: 0;
+                            -ms-flex-positive: 1;
+                            flex-grow: 1;
+                            max-width: 100%;
+                        }
+                        .col-md-8 {
+                            -ms-flex: 0 0 66.666667%;
+                            flex: 0 0 66.666667%;
+                            max-width: 66.666667%;
+                        }
                     }
+                    @media (min-width: 992px) {
+                        .pl-lg-4, .px-lg-4 {
+                            padding-left: 1.5rem!important;
+                        }
+                        .pr-lg-4, .px-lg-4 {
+                            padding-right: 1.5rem!important;
+                        }
                     }
                     .bg-redes {
-                        background: url(/img/meeting.jpg);
+                        background: url(https://ssl.pidespeed.com/correos/meeting.jpg);
                     }
                 </style>
             </head>
             <body>
-            
                 <div class="container">
                     <div class="text-center mt-4">
                         <img src="https://ssl.pidespeed.com/correos/logo.png" alt="Pidespeed Logo" class="img-fluid w-50">
                     </div>
-            
                     <div class="text-center pt-5">
                         <h1>Gracias por unirte a Pidespeed</h1>
-                        <p class="px-4">Te damos la bienvenida a nuestra plataforma, con Pidespeed.com puede recibir sus productos favoritos en su puerta en cuestión de minutos, o puede recoger su pedido usted mismo para la máxima comodidad, sin colas ni tarifas! le avisaremos cuando este listo.</p>
+                        <p class="px-2 px-lg-4">Te damos la bienvenida a nuestra plataforma, con Pidespeed.com puede recibir sus productos favoritos en su puerta en cuestión de minutos, o puede recoger su pedido usted mismo para la máxima comodidad, sin colas ni tarifas! le avisaremos cuando este listo.</p>
                     </div>
-            
                     <div class="text-center row justify-content-center pt-5">
                         <div class="col-8 col-md mt-3">
                             <img src="https://ssl.pidespeed.com/correos/compra.png" alt="" class="img-fluid mb-3">
@@ -310,7 +479,7 @@ class ProductosController {
                         <div class="col-8 col-md mt-3">
                             <img src="https://ssl.pidespeed.com/correos/delivery.png" alt="" class="img-fluid w-75 mb-2">
                             <h3 class="h5 font-weight-light">
-                                Solo pasas a recogerlo.
+                                Entrega a domicilio o pasas a recogerlo.
                             </h3>
                         </div>
                         <div class="col-8 col-md mt-3">
@@ -320,8 +489,11 @@ class ProductosController {
                             </h3>
                         </div>
                     </div>
-            
-                    <div class="text-center row justify-content-center mt-5 bg-grey-light py-4">
+                    <div class="text-center py-5 mt-3 bg-grey-light">
+                        <h2 class="h3">¿Listo para ordenar?</h2>
+                        <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Ordenar</a>
+                    </div>
+                    <div class="text-center row justify-content-center mt-5 py-4">
                         <div class="col-8 col-md">
                             <img src="https://ssl.pidespeed.com/correos/MovilRojo.png" alt="" class="img-fluid mb-3">
                         </div>
@@ -330,39 +502,34 @@ class ProductosController {
                             <p>Ya sea que se trate de bebidas, comidas, cocinas específicas o minoristas, puedes explorar la ciudad directamente desde el nuestra plataforma. con el fin de que puedar realizar pedidos a tus restaurantes y tiendas favoritas desde la comodidad de tu casa, oficina o donde te encuentres!</p>
                         </div>
                     </div>
-            
-                    <div class="text-center pt-5">
-                        <h2 class="h3">¿Listo para ordenar?</h2>
-                            <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Ordenar</a>
-                    </div>
-            
-                    <div class="text-center row no-gutters bg-grey-light py-4 mt-5">
+                    <div class="text-center row no-gutters bg-grey-light pb-4 mt-5">
                         <div class="col-12 col-md mt-4">
-                            <h3 class="h5 font-weight-light text-danger font-weight-bolder">
+                            <h3 class="h5 text-danger font-weight-bolder">
                                 Aprovecha nuestras ofertas!
                             </h3>
                             <img src="https://ssl.pidespeed.com/correos/articulos.jpg" alt="" class="img-fluid h-150p w-100">
                             <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Aprende como</a>
-            
                         </div>
                         <div class="col-12 col-md mt-4">
-                            <h3 class="h5 font-weight-light text-danger font-weight-bolder">
+                            <h3 class="h5 text-danger font-weight-bolder">
                                 Sáltate la cola y las tarifas
                             </h3>
                             <img src="https://ssl.pidespeed.com/correos/pidespeedweb.jpg" alt="" class="img-fluid h-150p w-100">
                             <a href="https://pidespeed.com/" class="btn btn-outline-danger rounded-pill text-uppercase px-5 mt-3">Aprende como</a>
                         </div>
                     </div>
-            
                     <div class="text-center py-5 bg-redes text-white">
-                        <h1 class="h3">Síguenos en nuestras redes sociales</h1>
+                        <h4 class="h3">Síguenos en nuestras redes sociales</h1>
                         <div class="d-flex justify-content-center mt-3">
-                            <a href="" class="fab fa-instagram text-white h1 px-5"></a>
-                            <a href="" class="fab fa-facebook text-white h1 px-5"></a>
+                            <a href="https://www.instagram.com/pidespeed/" class="px-5">
+                                <img style="max-width: 125px;" src=".https://ssl.pidespeed.com/correos/white-instagram-icon-png.png" class="img-fluid" alt="Instagram icon">
+                            </a>
+                            <a href="https://www.facebook.com/pidespeed/" class="px-5">
+                                <img style="max-width: 80px;" src=".https://ssl.pidespeed.com/correos/png-facebook-icon-3.png" class="img-fluid" alt="Facebook icon">
+                            </a>
                         </div>
                     </div>
                 </div>
-                
             </body>`,
             };
             try {
