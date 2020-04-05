@@ -522,10 +522,10 @@ class ProductosController {
                         <h4 class="h3">Síguenos en nuestras redes sociales</h1>
                         <div class="d-flex justify-content-center mt-3">
                             <a href="https://www.instagram.com/pidespeed/" class="px-5">
-                                <img style="max-width: 125px;" src=".https://ssl.pidespeed.com/correos/white-instagram-icon-png.png" class="img-fluid" alt="Instagram icon">
+                                <img style="max-width: 125px;" src="https://ssl.pidespeed.com/correos/white-instagram-icon-png.png" class="img-fluid" alt="Instagram icon">
                             </a>
                             <a href="https://www.facebook.com/pidespeed/" class="px-5">
-                                <img style="max-width: 80px;" src=".https://ssl.pidespeed.com/correos/png-facebook-icon-3.png" class="img-fluid" alt="Facebook icon">
+                                <img style="max-width: 80px;" src="https://ssl.pidespeed.com/correos/png-facebook-icon-3.png" class="img-fluid" alt="Facebook icon">
                             </a>
                         </div>
                     </div>
