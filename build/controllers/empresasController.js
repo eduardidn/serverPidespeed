@@ -113,12 +113,14 @@ class EmpresasController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
+            console.log(password);
             req.body.password = yield functions_1.default.encryptPassword(password);
+            console.log(req.body.password);
             try {
                 const result = yield db_1.default.query('INSERT INTO empresas set ?', [req.body]);
                 res.json({ message: 'ok', id: result.insertId });
             }
-            catch (error) {
+            catch (err) {
                 console.log(err);
                 res.json({ message: 'error' });
             }

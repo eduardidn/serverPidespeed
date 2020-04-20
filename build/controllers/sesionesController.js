@@ -245,11 +245,11 @@ class ProductosController {
             let nombre = req.body.nombre;
             let email = req.body.email;
             let transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: '465',
+                host: 'smtp-relay.sendinblue.com',
+                port: '587',
                 auth: {
                     user: 'Pidespeed@gmail.com',
-                    pass: 'qphtkmofxbcvxkbl'
+                    pass: 'n90ChP4D5zkgbaNH'
                 },
                 logger: true,
                 debug: false
