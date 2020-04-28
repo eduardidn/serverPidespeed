@@ -34,6 +34,12 @@ class ProductosController {
             res.json(usuario);
         });
     }
+    buscarUserByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT * FROM usuarios Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
     buscarEmpresaEmail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email } = req.params;
