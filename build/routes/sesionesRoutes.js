@@ -14,7 +14,7 @@ class SesionesRoutes {
         this.router.post('/createUser', sesionesController_1.default.createUser);
         this.router.post('/buscarUserEmail', sesionesController_1.default.buscarUserEmail);
         this.router.post('/buscarUserEmail/completo', sesionesController_1.default.buscarUserByEmail);
-        this.router.post('/buscarEmpresaEmail/:email', sesionesController_1.default.buscarEmpresaEmail);
+        this.router.get('/buscarEmpresaEmail/:email', sesionesController_1.default.buscarEmpresaEmail);
         this.router.get('/email/:email', sesionesController_1.default.getOneByEmail);
         this.router.put('/recuperarPassword/:email', sesionesController_1.default.updatePassword);
         this.router.put('/recuperarPasswordAdmin/:email', sesionesController_1.default.updatePasswordAdmin);
