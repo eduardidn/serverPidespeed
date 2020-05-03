@@ -21,10 +21,10 @@ class ProductosController {
             try {
                 var productos;
                 if (tipo == 1) {
-                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1 and productos.cantidad != 0', [ruta]);
+                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1', [ruta]);
                 }
                 else {
-                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? and productos.cantidad != 0', [ruta]);
+                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ?', [ruta]);
                 }
                 res.json(productos);
             }
