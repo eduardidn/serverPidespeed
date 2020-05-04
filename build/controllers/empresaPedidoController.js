@@ -56,6 +56,12 @@ class Empresa_pedidoController {
             return res.json(empresa_pedido);
         });
     }
+    getAllPendientes(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE terminado = 0 AND entregado = 0 ORDER BY id DESC', [id]);
+            return res.json(empresa_pedido);
+        });
+    }
     getPendientes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

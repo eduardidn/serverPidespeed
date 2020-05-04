@@ -26,15 +26,9 @@ class PedidosController {
             res.json(pedidos);
         });
     }
-    listVerificar(req, res) {
+    listTerminados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 1 and verificado = 0 ORDER BY id DESC');
-            res.json(pedidos);
-        });
-    }
-    listVerificados(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 1 and verificado = 1 ORDER BY id DESC');
+            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 1 AND terminado = 1 ORDER BY id DESC');
             res.json(pedidos);
         });
     }
