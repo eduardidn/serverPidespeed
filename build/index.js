@@ -37,6 +37,7 @@ const cuentasRoutes_1 = __importDefault(require("./routes/cuentasRoutes"));
 const SaboresRoutes_1 = __importDefault(require("./routes/SaboresRoutes"));
 const CiudadesRoutes_1 = __importDefault(require("./routes/ciudadesRoutes"));
 const EstadosRoutes_1 = __importDefault(require("./routes/estadosRoutes"));
+
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -82,8 +83,8 @@ class Server {
         this.app.use('/api/config', configRoutes_1.default);
         this.app.use('/api/cuentas', cuentasRoutes_1.default);
         this.app.use('/api/sabores', SaboresRoutes_1.default);
-        this.app.use('/api/ciudades', CiudadesRoutes_1.default);
-        this.app.use('/api/estados', EstadosRoutes_1.default);
+        this.app.use('/api/ciudades', ciudadesRoutes_1.default);
+        this.app.use('/api/estados', estadosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
