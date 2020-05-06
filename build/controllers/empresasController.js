@@ -18,14 +18,14 @@ class EmpresasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1  AND empresas.es_sucursal = 0', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1  AND empresas.es_sucursal = 0', [ruta]);
             res.json(empresas);
         });
     }
     listAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE id = ?', [id]);
+            const empresas = yield db_1.default.query('SELECT empresas.*, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.id = ?', [id]);
             res.json(empresas);
         });
     }
@@ -33,11 +33,11 @@ class EmpresasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { type } = req.params;
             if (type == 2) {
-                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id ORDER BY empresas.visitas DESC');
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado ORDER BY empresas.visitas DESC');
                 res.json(empresas);
             }
             else {
-                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
                 res.json(empresas);
             }
         });
@@ -45,28 +45,28 @@ class EmpresasController {
     listPop(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas', [ruta]);
             res.json(empresas);
         });
     }
     listVen(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.ventas', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.ventas', [ruta]);
             res.json(empresas);
         });
     }
     getSucursales(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre, empresas.principal FROM empresas WHERE empresa_id = ?', [id]);
+            const empresas = yield db_1.default.query('SELECT empresas.id, empresas.nombre, empresas.principal FROM empresas WHERE empresas.empresa_id = ?', [id]);
             return res.json(empresas);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE ruta = ? AND empresas.es_sucursal = 0', [ruta]);
+            const empresas = yield db_1.default.query('SELECT empresas.*, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.ruta = ? AND empresas.es_sucursal = 0', [ruta]);
             if (empresas.length > 0) {
                 return res.json(empresas[0]);
             }
@@ -76,7 +76,7 @@ class EmpresasController {
     getOneById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE id = ?', [id]);
+            const empresas = yield db_1.default.query('SELECT empresas.*, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.id = ?', [id]);
             console.log(empresas.length);
             if (empresas.length > 0) {
                 return res.json(empresas[0]);
