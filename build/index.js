@@ -35,9 +35,8 @@ const mailRoutes_1 = __importDefault(require("./routes/mailRoutes"));
 const configRoutes_1 = __importDefault(require("./routes/configRoutes"));
 const cuentasRoutes_1 = __importDefault(require("./routes/cuentasRoutes"));
 const SaboresRoutes_1 = __importDefault(require("./routes/SaboresRoutes"));
-const CiudadesRoutes_1 = __importDefault(require("./routes/ciudadesRoutes"));
-const EstadosRoutes_1 = __importDefault(require("./routes/estadosRoutes"));
-
+const estadosRoutes_1 = __importDefault(require("./routes/estadosRoutes"));
+const ciudadesRoutes_1 = __importDefault(require("./routes/ciudadesRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
