@@ -13,7 +13,7 @@ class CategoriasRoutes {
     config() {
         this.router.get('/:tipo?', categoriasController_1.default.list);
         this.router.get('/product/:tipo?', categoriasController_1.default.listProduct);
-        this.router.get('/:id', categoriasController_1.default.getOne);
+        this.router.get('/one/:id', categoriasController_1.default.getOne);
         this.router.post('/', categoriasController_1.default.create);
         this.router.put('/:id', categoriasController_1.default.update);
         this.router.delete('/:id', categoriasController_1.default.delete);
