@@ -154,63 +154,101 @@ class MailController {
                 logger: true,
                 debug: false
             });
-            let message = {
-                from: 'PideSpeed <Pidespeed@gmail.com>',
-                to: nombre + '<' + email + '>',
-                subject: 'Pedido Terminado',
-                //text: 'Hello to myself!',
-                html: `<body style="font-family: 'Roboto', sans-serif;  margin:  0 auto;">
-                <div style="max-width: 600px;
-                margin:  0 auto;">
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <img src="./img/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
-                </div>
-                <div style="text-align: center; padding: 3rem 0; margin-top: 1rem;">
-                    <img src="./img/confirmed.svg" width="200px height:100%">
-                    <div>
-                        <p style="font-size: 1.5rem; font-weight: 400;"> Tu pedido <span class="gridMovilText"
-                            style="border-bottom:
-                            2px solid #ff3e4c;
-                            font-size: 1.75rem;
-                            color:
-                            #333;">${codigo}</span> está listo en: </p>
-                            <p style=" font-size: 2rem; font-weight: 700;
-                            color: #ff414d;">${nombreEmpresa}</p>
-                            <small>Para ver la dirección en Google Maps haz click en el siguiente botón</small>
-                            <a href="https://maps.google.com/?q=${coordenadas}" style="
-                            padding: .5rem 3rem; 
-                            margin-top: 1rem;             
-                            display: inline-block;
-                            font-weight: 400;
-                            color: #212529;
-                            text-align: center;
-                            vertical-align: middle;
-                            cursor: pointer;
-                            -webkit-user-select: none;
-                            -moz-user-select: none;
-                            -ms-user-select: none;
-                            user-select: none;
-                            background-color: transparent;
-                            border: 1px solid transparent;
-                            font-size: 1rem;
-                            line-height: 1.5;
-                            border-radius: .25rem;
-                            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-                            color: #dc3545;
-                            border-color: #dc3545;
-                            border-radius: 50rem!important; 
-                            text-decoration: none;">Ver en Google Maps</a>
-                        </div>
+            let message;
+            if (coordenadas != 'no') {
+                message = {
+                    from: 'PideSpeed <Pidespeed@gmail.com>',
+                    to: nombre + '<' + email + '>',
+                    subject: 'Pedido Terminado',
+                    //text: 'Hello to myself!',
+                    html: `<body style="font-family: 'Roboto', sans-serif;  margin:  0 auto;">
+                    <div style="max-width: 600px;
+                    margin:  0 auto;">
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <img src="./img/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
                     </div>
-                    <div style="background-color: rgb(247, 247, 247); padding: 1.5rem .5rem; ">
-                        <h4 style="color: #333;">Equipo de Pidespeed</h4>
-                        <hr>
-                        <p>Si tienes alguna duda contáctanos a través de <a style="font-weight: 700;
-                            color: #ff414d; text-decoration: none;" href="https://pidespeed.com/help">Ayuda en línea</a></p>
+                    <div style="text-align: center; padding: 3rem 0; margin-top: 1rem;">
+                        <img src="./img/confirmed.svg" width="200px height:100%">
+                        <div>
+                            <p style="font-size: 1.5rem; font-weight: 400;"> Tu pedido <span class="gridMovilText"
+                                style="border-bottom:
+                                2px solid #ff3e4c;
+                                font-size: 1.75rem;
+                                color:
+                                #333;">${codigo}</span> está listo en: </p>
+                                <p style=" font-size: 2rem; font-weight: 700;
+                                color: #ff414d;">${nombreEmpresa}</p>
+                                <small>Para ver la dirección en Google Maps haz click en el siguiente botón</small>
+                                <a href="https://maps.google.com/?q=${coordenadas}" style="
+                                padding: .5rem 3rem; 
+                                margin-top: 1rem;             
+                                display: inline-block;
+                                font-weight: 400;
+                                color: #212529;
+                                text-align: center;
+                                vertical-align: middle;
+                                cursor: pointer;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                background-color: transparent;
+                                border: 1px solid transparent;
+                                font-size: 1rem;
+                                line-height: 1.5;
+                                border-radius: .25rem;
+                                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                                color: #dc3545;
+                                border-color: #dc3545;
+                                border-radius: 50rem!important; 
+                                text-decoration: none;">Ver en Google Maps</a>
+                            </div>
                         </div>
+                        <div style="background-color: rgb(247, 247, 247); padding: 1.5rem .5rem; ">
+                            <h4 style="color: #333;">Equipo de Pidespeed</h4>
+                            <hr>
+                            <p>Si tienes alguna duda contáctanos a través de <a style="font-weight: 700;
+                                color: #ff414d; text-decoration: none;" href="https://pidespeed.com/help">Ayuda en línea</a></p>
+                            </div>
+                        </div>
+                    </body>`,
+                };
+            }
+            else {
+                message = {
+                    from: 'PideSpeed <Pidespeed@gmail.com>',
+                    to: nombre + '<' + email + '>',
+                    subject: 'Pedido Terminado',
+                    //text: 'Hello to myself!',
+                    html: `<body style="font-family: 'Roboto', sans-serif;  margin:  0 auto;">
+                    <div style="max-width: 600px;
+                    margin:  0 auto;">
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <img src="./img/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
                     </div>
-                </body>`,
-            };
+                    <div style="text-align: center; padding: 3rem 0; margin-top: 1rem;">
+                        <img src="./img/confirmed.svg" width="200px height:100%">
+                        <div>
+                            <p style="font-size: 1.5rem; font-weight: 400;"> Tu pedido <span class="gridMovilText"
+                                style="border-bottom:
+                                2px solid #ff3e4c;
+                                font-size: 1.75rem;
+                                color:
+                                #333;">${codigo}</span> está listo en: </p>
+                                <p style=" font-size: 2rem; font-weight: 700;
+                                color: #ff414d;">${nombreEmpresa}</p>
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(247, 247, 247); padding: 1.5rem .5rem; ">
+                            <h4 style="color: #333;">Equipo de Pidespeed</h4>
+                            <hr>
+                            <p>Si tienes alguna duda contáctanos a través de <a style="font-weight: 700;
+                                color: #ff414d; text-decoration: none;" href="https://pidespeed.com/help">Ayuda en línea</a></p>
+                            </div>
+                        </div>
+                    </body>`,
+                };
+            }
             try {
                 let info = yield transporter.sendMail(message);
                 res.json({ message: "ok" });
