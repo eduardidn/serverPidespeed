@@ -165,10 +165,10 @@ class MailController {
                     <div style="max-width: 600px;
                     margin:  0 auto;">
                     <div style="text-align: center; margin-top: 1.5rem;">
-                        <img src="./img/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
+                        <img src="https://ssl.pidespeed.com/correos/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
                     </div>
                     <div style="text-align: center; padding: 3rem 0; margin-top: 1rem;">
-                        <img src="./img/confirmed.svg" width="200px height:100%">
+                        <img src="https://ssl.pidespeed.com/correos/confirmed.png" width="200px height:100%">
                         <div>
                             <p style="font-size: 1.5rem; font-weight: 400;"> Tu pedido <span class="gridMovilText"
                                 style="border-bottom:
@@ -224,10 +224,10 @@ class MailController {
                     <div style="max-width: 600px;
                     margin:  0 auto;">
                     <div style="text-align: center; margin-top: 1.5rem;">
-                        <img src="./img/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
+                        <img src="https://ssl.pidespeed.com/correos/logo.png" alt="Pidespeed Logo" style="height: 100%; width: 50%;">
                     </div>
                     <div style="text-align: center; padding: 3rem 0; margin-top: 1rem;">
-                        <img src="./img/confirmed.svg" width="200px height:100%">
+                        <img src="https://ssl.pidespeed.com/correos/confirmed.png" width="200px height:100%">
                         <div>
                             <p style="font-size: 1.5rem; font-weight: 400;"> Tu pedido <span class="gridMovilText"
                                 style="border-bottom:
