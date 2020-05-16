@@ -178,7 +178,7 @@ class MailController {
                                 #333;">${codigo}</span> está listo en: </p>
                                 <p style=" font-size: 2rem; font-weight: 700;
                                 color: #ff414d;">${nombreEmpresa}</p>
-                                <small>Para ver la dirección en Google Maps haz click en el siguiente botón</small>
+                                <small style="display: block;">Para ver la dirección en Google Maps haz click en el siguiente botón</small>
                                 <a href="https://maps.google.com/?q=${coordenadas}" style="
                                 padding: .5rem 3rem; 
                                 margin-top: 1rem;             
