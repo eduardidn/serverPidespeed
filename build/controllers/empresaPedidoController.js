@@ -78,7 +78,7 @@ class Empresa_pedidoController {
     getTerminados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0 ORDER BY fecha DESC', [id]);
+            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE empresa_id = ? AND terminado = 1 AND entregado = 0 ORDER BY fecha ASC', [id]);
             return res.json(empresa_pedido);
         });
     }

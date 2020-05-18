@@ -44,6 +44,7 @@ class Server {
         this.routes();
     }
     config() {
+        this.app.use(process.env.TZ = 'America/Caracas');
         this.app.use(express_1.default.static('build/img'));
         this.app.use('/img', express_1.default.static('build/img'));
         this.app.set('port', process.env.PORT || 3000);
