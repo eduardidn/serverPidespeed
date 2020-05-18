@@ -18,6 +18,7 @@ class Empresa_pedidoRoutes {
         this.router.get('/byPedido/:id', empresaPedidoController_1.default.getByPedido);
         this.router.get('/pendientes/:id', empresaPedidoController_1.default.getPendientes);
         this.router.get('/todos/pendientes', empresaPedidoController_1.default.getAllPendientes);
+        this.router.get('/todos/terminados', empresaPedidoController_1.default.getAllTerminados);
         this.router.get('/terminados/:id', empresaPedidoController_1.default.getTerminados);
         this.router.get('/entregados/:id', empresaPedidoController_1.default.getEntregados);
         this.router.get('/get/byPago/:ids', empresaPedidoController_1.default.getByPago);
