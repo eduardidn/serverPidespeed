@@ -39,12 +39,12 @@ const estadosRoutes_1 = __importDefault(require("./routes/estadosRoutes"));
 const ciudadesRoutes_1 = __importDefault(require("./routes/ciudadesRoutes"));
 class Server {
     constructor() {
+        process.env.TZ = 'America/Caracas';
         this.app = express_1.default();
         this.config();
         this.routes();
     }
     config() {
-        this.app.use(process.env.TZ = 'America/Caracas');
         this.app.use(express_1.default.static('build/img'));
         this.app.use('/img', express_1.default.static('build/img'));
         this.app.set('port', process.env.PORT || 3000);
