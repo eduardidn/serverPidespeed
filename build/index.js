@@ -89,6 +89,7 @@ class Server {
         this.app.use('/api/categoriasProduct', categoriasProductRoutes_1.default);
         this.app.use('/api/subcategorias', subcategoriasRoutes_1.default);
     }
+    //help
     start() {
         this.app.listen(this.app.get('port'), () => {
             console.log('Server on port', this.app.get('port'));
