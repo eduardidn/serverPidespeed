@@ -34,7 +34,7 @@ const pagosRoutes_1 = __importDefault(require("./routes/pagosRoutes"));
 const mailRoutes_1 = __importDefault(require("./routes/mailRoutes"));
 const configRoutes_1 = __importDefault(require("./routes/configRoutes"));
 const cuentasRoutes_1 = __importDefault(require("./routes/cuentasRoutes"));
-const saboresRoutes_1 = __importDefault(require("./routes/saboresRoutes"));
+const SaboresRoutes_1 = __importDefault(require("./routes/SaboresRoutes"));
 const estadosRoutes_1 = __importDefault(require("./routes/estadosRoutes"));
 const ciudadesRoutes_1 = __importDefault(require("./routes/ciudadesRoutes"));
 const categoriasProductRoutes_1 = __importDefault(require("./routes/categoriasProductRoutes"));
@@ -83,7 +83,7 @@ class Server {
         this.app.use('/api/pagos', pagosRoutes_1.default);
         this.app.use('/api/config', configRoutes_1.default);
         this.app.use('/api/cuentas', cuentasRoutes_1.default);
-        this.app.use('/api/sabores', saboresRoutes_1.default);
+        this.app.use('/api/sabores', SaboresRoutes_1.default);
         this.app.use('/api/ciudades', ciudadesRoutes_1.default);
         this.app.use('/api/estados', estadosRoutes_1.default);
         this.app.use('/api/categoriasProduct', categoriasProductRoutes_1.default);
