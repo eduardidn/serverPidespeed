@@ -33,15 +33,17 @@ class ProductosController {
             const { email } = req.params;
             const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE email = ?', [email]);
             if (empresas.length > 0) {
-                return res.json(empresas[0]);
+                res.json(empresas[0]);
             }
-            res.json({ message: "error" });
+            else {
+                res.json({ message: "error" });
+            }
         });
     }
     buscarEmpresaUsername(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE username = ?', [req.body.username]);
-            return res.json(empresas);
+            res.json(empresas);
         });
     }
     buscarUserUsername(req, res) {

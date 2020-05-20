@@ -15,7 +15,7 @@ class ProductosRoutes {
         this.router.get('/get/one/:id', productosController_1.default.getOne);
         this.router.get('/get/byDatos/:nombre/:descripcion', productosController_1.default.getOneByDatos);
         this.router.get('/restarCantidad/:id/:cantidad', productosController_1.default.restarCantidad);
-        this.router.get('/get/categorias/:ruta', productosController_1.default.listCat);
+        this.router.get('/get/categorias/:ruta/:tipo?', productosController_1.default.listCat);
         this.router.get('/get/categoriasEsp/:ruta/:tipo?', productosController_1.default.listCatEsp);
         this.router.get('/get/onecategoriaEsp/:id', productosController_1.default.listOneCatEsp);
         this.router.post('/image64/:id', productosController_1.default.image64);
