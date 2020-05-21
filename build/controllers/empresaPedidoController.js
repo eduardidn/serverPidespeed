@@ -58,13 +58,13 @@ class Empresa_pedidoController {
     }
     getAllPendientes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE terminado = 0 AND entregado = 0 ORDER BY fecha DESC');
+            const empresa_pedido = yield db_1.default.query('SELECT empresa_pedido.*, empresas.nombre as nombreEmpresa, empresas.email as emailEmpresa, empresas.telefono as telefonoEmpresa FROM empresa_pedido INNER JOIN empresas ON empresas.id = empresa_pedido.empresa_id WHERE empresa_pedido.terminado = 0 AND empresa_pedido.entregado = 0 ORDER BY empresa_pedido.fecha ASC');
             return res.json(empresa_pedido);
         });
     }
     getAllTerminados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const empresa_pedido = yield db_1.default.query('SELECT * FROM empresa_pedido WHERE terminado = 1 AND entregado = 0 ORDER BY fecha DESC');
+            const empresa_pedido = yield db_1.default.query('SELECT empresa_pedido.*, empresas.nombre as nombreEmpresa, empresas.email as emailEmpresa, empresas.telefono as telefonoEmpresa, empresas.logo FROM empresa_pedido INNER JOIN empresas ON empresas.id = empresa_pedido.empresa_id WHERE empresa_pedido.terminado = 1 AND empresa_pedido.entregado = 0 ORDER BY empresa_pedido.fecha ASC');
             return res.json(empresa_pedido);
         });
     }
