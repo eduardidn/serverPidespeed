@@ -13,7 +13,7 @@ class SubcategoriasRoutes {
     config() {
         this.router.get('/', subcategoriasController_1.default.list);
         this.router.get('/listEsp/:ruta/:tipo?', subcategoriasController_1.default.listEsp);
-        this.router.get('/listByEmpresa/:ruta/', subcategoriasController_1.default.listByEmpresa);
+        this.router.get('/listByEmpresa/:ruta', subcategoriasController_1.default.listByEmpresa);
         this.router.get('/get/one/:id', subcategoriasController_1.default.getOne);
         this.router.put('/:id', subcategoriasController_1.default.update);
         this.router.post('/', subcategoriasController_1.default.create);
