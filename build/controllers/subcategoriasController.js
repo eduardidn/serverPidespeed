@@ -43,11 +43,23 @@ class SubcategoriasController {
             }
         });
     }
+    listByEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { ruta } = req.params;
+            const { tipo } = req.params;
+            try {
+                const productos = yield db_1.default.query('SELECT subcategorias.* FROM subcategorias INNER JOIN empresas ON empresas.subcategoria_id = subcategorias.id WHERE empresas.ruta = ?', [ruta]);
+                res.json(productos);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const subcategorias = yield db_1.default.query('SELECT * FROM subcategorias WHERE id = ?', [id]);
-            console.log(subcategorias.length);
             if (subcategorias.length > 0) {
                 return res.json(subcategorias[0]);
             }
