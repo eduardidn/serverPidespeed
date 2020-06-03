@@ -30,7 +30,7 @@ class SubcategoriasController {
             const { tipo } = req.params;
             try {
                 if (tipo == 2) {
-                    const productos = yield db_1.default.query('SELECT subcategorias.* FROM subcategorias INNER JOIN categorias On categorias.id = subcategorias.categoria_id INNER JOIN empresas ON empresas.subcategoria_id = subcategorias.id WHERE categorias.ruta = ?', [ruta]);
+                    const productos = yield db_1.default.query('SELECT subcategorias.* FROM subcategorias INNER JOIN categorias On categorias.id = subcategorias.categoria_id LEFT JOIN empresas ON empresas.subcategoria_id = subcategorias.id WHERE categorias.ruta = ?', [ruta]);
                     res.json(productos);
                 }
                 else {
