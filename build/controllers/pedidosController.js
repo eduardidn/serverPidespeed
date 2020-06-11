@@ -16,32 +16,32 @@ var fs = require('fs');
 class PedidosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos ORDER BY id DESC');
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id ORDER BY pedidos.id DESC');
             res.json(pedidos);
         });
     }
     listAprobar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 0 AND cancelado = 0 ORDER BY id DESC');
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.aprobado = 0 AND pedidos.cancelado = 0 ORDER BY pedidos.id DESC');
             res.json(pedidos);
         });
     }
     listTerminados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE aprobado = 1 AND terminado = 1 ORDER BY id DESC');
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.aprobado = 1 AND pedidos.terminado = 1 ORDER BY pedidos.id DESC');
             res.json(pedidos);
         });
     }
     listCancelados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE cancelado = 1 ORDER BY id DESC');
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.cancelado = 1 ORDER BY pedidos.id DESC');
             res.json(pedidos);
         });
     }
     listUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE usuario_id = ? ORDER BY id DESC', [id]);
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.usuario_id = ? ORDER BY pedidos.id DESC', [id]);
             res.json(pedidos);
         });
     }
@@ -51,7 +51,7 @@ class PedidosController {
             let id = ids.split(",");
             var tamanos;
             try {
-                tamanos = yield db_1.default.query('SELECT * FROM pedidos WHERE id IN (?)', [id]);
+                tamanos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.id IN (?)', [id]);
             }
             catch (e) {
                 console.log(e);
@@ -63,7 +63,7 @@ class PedidosController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE id = ?', [id]);
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.id = ?', [id]);
             console.log(pedidos.length);
             if (pedidos.length > 0) {
                 return res.json(pedidos[0]);
@@ -75,7 +75,7 @@ class PedidosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { codigo } = req.params;
             const { precio } = req.params;
-            const pedidos = yield db_1.default.query('SELECT * FROM pedidos WHERE codigo = ? AND precio = ?,', [codigo, precio]);
+            const pedidos = yield db_1.default.query('SELECT pedidos.*, files.url as img FROM pedidos INNER JOIN files ON files.id = pedidos.files_id WHERE pedidos.codigo = ? AND pedidos.precio = ?,', [codigo, precio]);
             console.log(pedidos.length);
             if (pedidos.length > 0) {
                 return res.json(pedidos[0]);
