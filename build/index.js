@@ -39,6 +39,7 @@ const estadosRoutes_1 = __importDefault(require("./routes/estadosRoutes"));
 const ciudadesRoutes_1 = __importDefault(require("./routes/ciudadesRoutes"));
 const categoriasProductRoutes_1 = __importDefault(require("./routes/categoriasProductRoutes"));
 const subcategoriasRoutes_1 = __importDefault(require("./routes/subcategoriasRoutes"));
+const filesRoutes_1 = __importDefault(require("./routes/filesRoutes"));
 class Server {
     constructor() {
         process.env.TZ = 'America/Caracas';
@@ -88,6 +89,7 @@ class Server {
         this.app.use('/api/estados', estadosRoutes_1.default);
         this.app.use('/api/categoriasProduct', categoriasProductRoutes_1.default);
         this.app.use('/api/subcategorias', subcategoriasRoutes_1.default);
+        this.app.use('/api/files', filesRoutes_1.default);
     }
     //help
     start() {

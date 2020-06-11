@@ -89,47 +89,6 @@ class PedidosController {
             res.json({ message: 'ok', id: result.insertId });
         });
     }
-    image64(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            try {
-                var response = {};
-                response.type = req.body.filetype;
-                response.data = Buffer.from(req.body.value, 'base64');
-                var imageBuffer = response;
-                var userUploadedFeedMessagesLocation = 'build/img/pedidos/';
-                var ruta = 'pedidos/' + req.body.filename;
-                if (!fs.existsSync('build/img/pedidos/')) {
-                    fs.mkdirSync("build/img/pedidos", 0o766, function (err) {
-                        if (err) {
-                            console.log(err);
-                            // echo the result back
-                            response.send("ERROR! Can't make the directory! \n");
-                        }
-                        else {
-                            console.log("se creo");
-                        }
-                    });
-                }
-                var userUploadedImagePath = userUploadedFeedMessagesLocation + req.body.filename;
-                // Save decoded binary image to disk
-                try {
-                    fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
-                        return __awaiter(this, void 0, void 0, function* () {
-                            yield db_1.default.query('UPDATE pedidos set img = ? WHERE id = ?', [ruta, id]);
-                            res.json({ message: 'ok' });
-                        });
-                    });
-                }
-                catch (error) {
-                    res.json({ message: 'error' });
-                }
-            }
-            catch (error) {
-                res.json({ message: 'error' });
-            }
-        });
-    }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
