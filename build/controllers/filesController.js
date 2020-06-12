@@ -16,9 +16,14 @@ var fs = require('fs');
 class FilesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
+            const { type } = req.params;
             var files;
-            files = yield db_1.default.query('SELECT * FROM files WHERE empresa_id = ?', [id]);
+            if (type) {
+                files = yield db_1.default.query('SELECT * FROM files WHERE type = ?', [type]);
+            }
+            else {
+                files = yield db_1.default.query('SELECT * FROM files');
+            }
             res.json(files);
         });
     }

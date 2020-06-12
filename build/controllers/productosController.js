@@ -21,10 +21,10 @@ class ProductosController {
             try {
                 var productos;
                 if (tipo == 1) {
-                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ? AND productos.publish = 1', [ruta]);
+                    productos = yield db_1.default.query('SELECT productos.*, files.url as img FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id INNER JOIN files ON files.id = productos.files_id WHERE empresas.ruta = ? AND productos.publish = 1', [ruta]);
                 }
                 else {
-                    productos = yield db_1.default.query('SELECT productos.*FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id WHERE empresas.ruta = ?', [ruta]);
+                    productos = yield db_1.default.query('SELECT productos.*, files.url as img FROM productos INNER JOIN empresas ON empresas.id = productos.empresa_id INNER JOIN files ON files.id = productos.files_id WHERE empresas.ruta = ?', [ruta]);
                 }
                 res.json(productos);
             }
@@ -86,7 +86,7 @@ class ProductosController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const productos = yield db_1.default.query('SELECT * FROM productos WHERE id = ?', [id]);
+            const productos = yield db_1.default.query('SELECT productos.*, files.url as img FROM productos INNER JOIN files ON files.id = productos.files_id WHERE productos.id = ?', [id]);
             console.log(productos.length);
             if (productos.length > 0) {
                 return res.json(productos[0]);
@@ -98,7 +98,7 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { nombre } = req.params;
             const { descripcion } = req.params;
-            const pedidos = yield db_1.default.query('SELECT * FROM productos WHERE nombre = ? AND descripcion = ?,', [nombre, descripcion]);
+            const pedidos = yield db_1.default.query('SELECT productos.*, files.url as img FROM productos INNER JOIN files ON files.id = productos.files_id WHERE productos.nombre = ? AND productos.descripcion = ?,', [nombre, descripcion]);
             console.log(pedidos.length);
             if (pedidos.length > 0) {
                 return res.json(pedidos[0]);

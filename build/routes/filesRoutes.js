@@ -11,7 +11,8 @@ class FilesRoutes {
         this.config();
     }
     config() {
-        this.router.get('/:id/:tipo', filesController_1.default.list);
+        this.router.get('/:type?', filesController_1.default.list);
+        this.router.get('/prueba/so', filesController_1.default.prueba);
         this.router.get('/get/one/:id', filesController_1.default.getOne);
         this.router.put('/:id', filesController_1.default.update);
         this.router.post('/:type/:id?', filesController_1.default.create);
