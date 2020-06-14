@@ -144,7 +144,7 @@ class ProductosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             try {
-                let files = yield db_1.default.query('SELECT flies_id FROM productos WHERE id = ?', [id]);
+                let files = yield db_1.default.query('SELECT files_id FROM productos WHERE id = ?', [id]);
                 files = files[0];
                 let rutaimg = yield db_1.default.query('SELECT url FROM files WHERE id = ?', [files.files_id]);
                 rutaimg = rutaimg[0];
