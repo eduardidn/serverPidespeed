@@ -143,18 +143,31 @@ class ProductosController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            let files = yield db_1.default.query('SELECT flies_id FROM productos WHERE id = ?', [id]);
+            files = files[0];
+            let rutaimg = yield db_1.default.query('SELECT url FROM files WHERE id = ?', [files.files_id]);
+            rutaimg = rutaimg[0];
+            fs.unlink("./build/img/" + rutaimg.url, (err) => {
+                if (err) {
+                    console.log("failed to delete local image:" + err);
+                }
+                else {
+                    console.log('successfully deleted local image');
+                }
+            });
             yield db_1.default.query('DELETE FROM productos WHERE id = ?', [id]);
+            yield db_1.default.query('DELETE FROM files WHERE id = ?', [files.files_id]);
             res.json({ message: "ok" });
         });
     }
     image64(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            let rutaimg = yield db_1.default.query('SELECT img FROM productos WHERE id = ?', [id]);
+            let rutaimg = yield db_1.default.query('SELECT url FROM files WHERE id = ?', [id]);
             if (rutaimg.length > 0) {
                 rutaimg = rutaimg[0];
             }
-            fs.unlink("./build/img/" + rutaimg.img, (err) => {
+            fs.unlink("./build/img/" + rutaimg.url, (err) => {
                 if (err) {
                     console.log("failed to delete local image:" + err);
                 }
@@ -183,7 +196,7 @@ class ProductosController {
                 try {
                     fs.writeFile(userUploadedImagePath, imageBuffer.data, function () {
                         return __awaiter(this, void 0, void 0, function* () {
-                            yield db_1.default.query('UPDATE productos set img = ? WHERE id = ?', [ruta, id]);
+                            yield db_1.default.query('UPDATE files set url = ? WHERE id = ?', [ruta, id]);
                             res.json({ message: 'ok' });
                         });
                     });
