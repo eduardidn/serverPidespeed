@@ -27,6 +27,26 @@ class SiropesController {
             res.json(siropes);
         });
     }
+    listByIds(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            const { tipo } = req.params;
+            let id = ids.split(",");
+            var siropes;
+            if (tipo == 2) {
+                try {
+                    siropes = yield db_1.default.query('SELECT siropes.* FROM siropes WHERE siropes.id IN (?)', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
+                siropes = yield db_1.default.query('SELECT siropes.* FROM siropes WHERE siropes.publish = 1 AND siropes.id IN (?)', [id]);
+            }
+            res.json(siropes);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

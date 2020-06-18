@@ -27,6 +27,26 @@ class BebidasController {
             res.json(bebidas);
         });
     }
+    listByIds(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            const { tipo } = req.params;
+            let id = ids.split(",");
+            var bebidas;
+            if (tipo == 2) {
+                try {
+                    bebidas = yield db_1.default.query('SELECT bebidas.* FROM bebidas WHERE bebidas.id IN (?)', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
+                bebidas = yield db_1.default.query('SELECT bebidas.* FROM bebidas WHERE bebidas.publish = 1 AND bebidas.id IN (?)', [id]);
+            }
+            res.json(bebidas);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

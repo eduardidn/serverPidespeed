@@ -17,7 +17,7 @@ class ZonasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { ciudad } = req.params;
             var zonas;
-            zonas = yield db_1.default.query('SELECT * FROM zonas WHERE ciudad_id = ?', [ciudad]);
+            zonas = yield db_1.default.query('SELECT * FROM zonas WHERE ciudad_id = ? ORDER BY nombre ASC', [ciudad]);
             res.json(zonas);
         });
     }

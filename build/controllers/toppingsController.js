@@ -27,6 +27,26 @@ class ToppingsController {
             res.json(toppings);
         });
     }
+    listByIds(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { ids } = req.params;
+            const { tipo } = req.params;
+            let id = ids.split(",");
+            var toppings;
+            if (tipo == 2) {
+                try {
+                    toppings = yield db_1.default.query('SELECT toppings.* FROM toppings WHERE toppings.id IN (?)', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
+                toppings = yield db_1.default.query('SELECT toppings.* FROM toppings WHERE toppings.publish = 1 AND toppings.id IN (?)', [id]);
+            }
+            res.json(toppings);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

@@ -12,6 +12,7 @@ class SiropesRoutes {
     }
     config() {
         this.router.get('/:id/:tipo', siropesController_1.default.list);
+        this.router.get('/byIds/:ids/:tipo?', siropesController_1.default.listByIds);
         this.router.get('/get/one/:id', siropesController_1.default.getOne);
         this.router.put('/:id', siropesController_1.default.update);
         this.router.post('/', siropesController_1.default.create);
