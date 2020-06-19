@@ -15,7 +15,7 @@ const db_1 = __importDefault(require("../db"));
 class CategoriasProductController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var categorias_product = yield db_1.default.query('SELECT categorias_product.*, categorias.icono FROM categorias_product INNER JOIN categorias ON categorias.id = categorias_product.categoria_id');
+            var categorias_product = yield db_1.default.query('SELECT categorias_product.*, categorias.icono FROM categorias_product INNER JOIN categorias ON categorias.id = categorias_product.categoria_id ORDER BY nombre ASC');
             res.json(categorias_product);
         });
     }
