@@ -51,14 +51,7 @@ class Server {
     }
     config() {
         this.app.use(express_1.default.static('build/img'));
-        this.app.use(helmet_1.default({
-            contentSecurityPolicy: {
-                directives: {
-                    defaultSrc: ["'self'"],
-                    scriptSrc: ["'self'"]
-                }
-            }
-        }));
+        this.app.use(helmet_1.default());
         this.app.use('/img', express_1.default.static('build/img'));
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(body_parser_1.default.json({ limit: '50mb' }));
