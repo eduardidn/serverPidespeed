@@ -21,8 +21,8 @@ class EmpresasRoutes {
         this.router.post('/image64/:id', empresasController_1.default.image64);
         this.router.post('/logo64/:id', empresasController_1.default.logo64);
         this.router.get('/sucursales/:id', empresasController_1.default.getSucursales);
-        this.router.get('/one/:ruta', empresasController_1.default.getOne);
-        this.router.get('/one/byId/:id', empresasController_1.default.getOneById);
+        this.router.get('/get/one/:ruta', empresasController_1.default.getOne);
+        this.router.get('/get/one/byId/:id', empresasController_1.default.getOneById);
         this.router.post('/', empresasController_1.default.create);
         this.router.put('/:id', empresasController_1.default.update);
         this.router.delete('/:id', empresasController_1.default.delete);
