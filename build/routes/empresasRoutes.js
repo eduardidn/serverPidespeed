@@ -11,13 +11,13 @@ class EmpresasRoutes {
         this.config();
     }
     config() {
-        this.router.get('/:type?', empresasController_1.default.listHome);
-        this.router.get('/categoria/:ruta', empresasController_1.default.list);
-        this.router.get('/get/all/:id', empresasController_1.default.listAll);
+        this.router.get('/:type?/:ciudad?', empresasController_1.default.listHome);
+        this.router.get('/categoria/:ruta/:ciudad?', empresasController_1.default.list);
+        this.router.get('/get/all/:id/:ciudad?', empresasController_1.default.listAll);
         this.router.get('/addvisita/:ruta', empresasController_1.default.addVisita);
         this.router.get('/addventa/:ruta', empresasController_1.default.addVenta);
-        this.router.get('/ventas/:ruta', empresasController_1.default.listVen);
-        this.router.get('/populares/:ruta', empresasController_1.default.listPop);
+        this.router.get('/ventas/:ruta/:ciudad?', empresasController_1.default.listVen);
+        this.router.get('/populares/:ruta/:ciudad?', empresasController_1.default.listPop);
         this.router.post('/image64/:id', empresasController_1.default.image64);
         this.router.post('/logo64/:id', empresasController_1.default.logo64);
         this.router.get('/sucursales/:id', empresasController_1.default.getSucursales);

@@ -99,7 +99,6 @@ class Empresa_pedidoController {
             }
             catch (e) {
                 console.log(e);
-                res.json({ e });
             }
             res.json(empresa_pedido);
         });

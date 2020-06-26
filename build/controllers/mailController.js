@@ -74,7 +74,8 @@ class MailController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }
@@ -133,7 +134,8 @@ class MailController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }
@@ -254,7 +256,8 @@ class MailController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }
@@ -313,7 +316,8 @@ class MailController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }

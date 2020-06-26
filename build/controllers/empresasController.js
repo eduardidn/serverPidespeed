@@ -18,42 +18,83 @@ class EmpresasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1  AND empresas.es_sucursal = 0', [ruta]);
-            res.json(empresas);
+            const { ciudad } = req.params;
+            if (ciudad) {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1  AND empresas.es_sucursal = 0 AND ciudad = ?', [ruta, ciudad]);
+                res.json(empresas);
+            }
+            else {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1  AND empresas.es_sucursal = 0', [ruta]);
+                res.json(empresas);
+            }
         });
     }
     listAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.id = ?', [id]);
-            res.json(empresas);
+            const { ciudad } = req.params;
+            if (ciudad) {
+                const empresas = yield db_1.default.query('SELECT empresas.*, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.id = ? AND ciudad = ?', [id, ciudad]);
+                res.json(empresas);
+            }
+            else {
+                const empresas = yield db_1.default.query('SELECT empresas.*, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.id = ?', [id]);
+                res.json(empresas);
+            }
         });
     }
     listHome(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { type } = req.params;
-            if (type == 2) {
-                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado ORDER BY empresas.visitas DESC');
-                res.json(empresas);
+            const { ciudad } = req.params;
+            if (ciudad) {
+                if (type == 2) {
+                    const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE ciudad = ? ORDER BY empresas.visitas DESC', [ciudad]);
+                    res.json(empresas);
+                }
+                else {
+                    const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 AND ciudad = ? ORDER BY empresas.visitas DESC', [ciudad]);
+                    res.json(empresas);
+                }
             }
             else {
-                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
-                res.json(empresas);
+                if (type == 2) {
+                    const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado ORDER BY empresas.visitas DESC');
+                    res.json(empresas);
+                }
+                else {
+                    const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
+                    res.json(empresas);
+                }
             }
         });
     }
     listPop(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas', [ruta]);
-            res.json(empresas);
+            const { ciudad } = req.params;
+            if (ciudad) {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 AND ciudad = ? ORDER BY empresas.visitas', [ruta, ciudad]);
+                res.json(empresas);
+            }
+            else {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas', [ruta]);
+                res.json(empresas);
+            }
         });
     }
     listVen(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { ruta } = req.params;
-            const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.ventas', [ruta]);
-            res.json(empresas);
+            const { ciudad } = req.params;
+            if (ciudad) {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 AND ciudad = ? ORDER BY empresas.ventas', [ruta, ciudad]);
+                res.json(empresas);
+            }
+            else {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE categorias.ruta = ? AND empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.ventas', [ruta]);
+                res.json(empresas);
+            }
         });
     }
     getSucursales(req, res) {

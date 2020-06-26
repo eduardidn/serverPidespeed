@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const helmet_1 = __importDefault(require("helmet"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const body_parser_1 = __importDefault(require("body-parser"));
 //import morgan from 'morgan';
@@ -50,6 +51,14 @@ class Server {
     }
     config() {
         this.app.use(express_1.default.static('build/img'));
+        this.app.use(helmet_1.default({
+            contentSecurityPolicy: {
+                directives: {
+                    defaultSrc: ["'self'"],
+                    scriptSrc: ["'self'"]
+                }
+            }
+        }));
         this.app.use('/img', express_1.default.static('build/img'));
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(body_parser_1.default.json({ limit: '50mb' }));
