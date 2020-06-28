@@ -60,7 +60,11 @@ class EmpresasController {
                 const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado ORDER BY empresas.visitas DESC');
                 res.json(empresas);
             }
-            else {
+            else if (type == 3) {
+                const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.prueba = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
+                res.json(empresas);
+            }
+            {
                 const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
                 res.json(empresas);
             }
