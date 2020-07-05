@@ -11,7 +11,7 @@ class UsuariosRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', usuariosController_1.default.list);
+        this.router.get('/list/all', usuariosController_1.default.list);
         this.router.get('/:id', usuariosController_1.default.getOne);
         this.router.post('/image64/:id', usuariosController_1.default.image64);
         this.router.put('/:id', usuariosController_1.default.update);
