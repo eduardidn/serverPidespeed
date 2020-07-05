@@ -509,7 +509,7 @@ class ProductosController {
                 <div style="max-width: 600px; margin: 0 auto;">
                   <div style="text-align: left;">
                     <div style="margin-bottom: 1rem;">
-                      <img src="https://pidespeed.com/web/promocion-cuadrada.jpeg" style="width: 100%; height: auto;">
+                      <img src="https://ssl.pidespeed.com/web/promocion-cuadrada.jpeg" style="width: 100%; height: auto;">
                     </div>
                     <div style="margin-top: 1rem; padding: 0 2rem;">
                       <p style="color: #ff414d; letter-spacing: -0.08px; font-size: 20px; line-height: 28px; margin-bottom: 2rem; font-weight: bold;">¡Hola ${nombre}!</p>        
