@@ -513,9 +513,12 @@ class ProductosController {
                     </div>
                     <div style="margin-top: 1rem; padding: 0 2rem;">
                       <p style="color: #ff414d; letter-spacing: -0.08px; font-size: 20px; line-height: 28px; margin-bottom: 2rem; font-weight: bold;">¡Hola ${nombre}!</p>        
-                      <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Estamos muy emocionados de contarte sobre la oferta de bienvenida que tenemos para ti! Porque sabemos que amas la comida tanto como nosotros, queremos que no tengas excusas para comer lo que quieras!</p>
-                      <p style="color: #ff414d; letter-spacing: -0.08px; font-size: 20px; line-height: 28px; margin-bottom: 2rem; font-weight: bold;">¡Te damos un 20% de Descuento en tu primera compra!</p>        
-                      <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;"> Elige lo que quieras de nuestras tiendas afiliadas y disfruta de ordenar la mejor comida de la ciudad con un 20% de descuento.</p>
+                      <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Queremos asegurarnos de que ya conozcas la imperdible oferta de Bienvenida que hicimos para ti.</p>
+                    <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Si lo que quieres es darte un gusto con una deliciosa comida, esta es la oportunidad perfecta!
+                        Las mejores opciones en desayunos, almuerzos, cenas e incluso postres!
+                        Toda la variedad que buscas en la ciudad, puedes ordenarla YA a través de PideSpeed.</p>
+                    <p style="color: #ff414d; letter-spacing: -0.08px; font-size: 20px; line-height: 28px; margin-bottom: 2rem; font-weight: bold;">Y lo mejor de todo es que tendrás un ¡20% de Descuento en tu primera compra!</p>      
+                    <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Ordena hasta la puerta de tu casa o sólo retira tu pedido cuando esté listo.</p>
                       <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">¡Pide ya y no te pierdas de ésta promoción que hicimos especialmente para ti!</p>
                     </div>
                     <div style="padding: 0 2rem; margin-bottom: 2rem;">
