@@ -55,7 +55,6 @@ class PedidosController {
             }
             catch (e) {
                 console.log(e);
-                res.json({ e });
             }
             res.json(tamanos);
         });

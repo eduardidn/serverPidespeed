@@ -99,22 +99,31 @@ class Empresa_pedidoController {
             }
             catch (e) {
                 console.log(e);
-                res.json({ e });
             }
             res.json(empresa_pedido);
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.default.query('INSERT INTO empresa_pedido set ?', [req.body]);
-            res.json({ message: 'ok' });
+            try {
+                const result = yield db_1.default.query('INSERT INTO empresa_pedido set ?', [req.body]);
+                res.json({ message: 'ok' });
+            }
+            catch (e) {
+                console.log(e);
+            }
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield db_1.default.query('UPDATE empresa_pedido set ? WHERE id = ?', [req.body, id]);
-            res.json({ message: "ok" });
+            try {
+                const { id } = req.params;
+                yield db_1.default.query('UPDATE empresa_pedido set ? WHERE id = ?', [req.body, id]);
+                res.json({ message: "ok" });
+            }
+            catch (e) {
+                console.log(e);
+            }
         });
     }
     delete(req, res) {

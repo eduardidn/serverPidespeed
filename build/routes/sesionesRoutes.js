@@ -22,6 +22,7 @@ class SesionesRoutes {
         this.router.post('/bienvenido', sesionesController_1.default.mailBienvenido);
         this.router.post('/verificar', sesionesController_1.default.mailVerificacion);
         this.router.post('/recuperarPass', sesionesController_1.default.mailRecuperarPass);
+        this.router.post('/promocion', sesionesController_1.default.mailPromocion);
         this.router.post('/buscarUserUsername', sesionesController_1.default.buscarUserUsername);
         this.router.post('/buscarEmpresaUsername', sesionesController_1.default.buscarEmpresaUsername);
         this.router.post('/buscarUserTelefono', sesionesController_1.default.buscarUserTelefono);

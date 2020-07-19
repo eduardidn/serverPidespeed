@@ -347,7 +347,8 @@ class ProductosController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }
@@ -402,7 +403,8 @@ class ProductosController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }
@@ -479,7 +481,90 @@ class ProductosController {
                 res.json({ message: "ok" });
             }
             catch (err) {
-                res.status(400).json(err);
+                //res.status(400).json(err);
+                console.log(err);
+            }
+        });
+    }
+    mailPromocion(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let nombre = req.body.nombre;
+            let email = req.body.email;
+            let transporter = nodemailer.createTransport({
+                host: 'smtp-relay.sendinblue.com',
+                port: '587',
+                auth: {
+                    user: 'pidespeed@gmail.com',
+                    pass: 'n90ChP4D5zkgbaNH'
+                },
+                logger: true,
+                debug: false
+            });
+            let message = {
+                from: 'PideSpeed <Pidespeed@gmail.com>',
+                to: nombre + '<' + email + '>',
+                subject: '20% de DESCUENTO Para Ti',
+                //text: 'Hello to myself!',
+                html: `<body style="font-family: 'Roboto', sans-serif;  margin:  0 auto;">
+                <div style="max-width: 600px; margin: 0 auto;">
+                  <div style="text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                      <img src="https://ssl.pidespeed.com/web/promocion-cuadrada.jpeg" style="width: 100%; height: auto;">
+                    </div>
+                    <div style="margin-top: 1rem; padding: 0 2rem;">
+                      <p style="color: #ff414d; letter-spacing: -0.08px; font-size: 20px; line-height: 28px; margin-bottom: 2rem; font-weight: bold;">¡Hola ${nombre}!</p>        
+                      <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Queremos asegurarnos de que ya conozcas la imperdible oferta de Bienvenida que hicimos para ti.</p>
+                    <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Si lo que quieres es darte un gusto con una deliciosa comida, esta es la oportunidad perfecta!
+                        Las mejores opciones en desayunos, almuerzos, cenas e incluso postres!
+                        Toda la variedad que buscas en la ciudad, puedes ordenarla YA a través de PideSpeed.</p>
+                    <p style="color: #ff414d; letter-spacing: -0.08px; font-size: 20px; line-height: 28px; margin-bottom: 2rem; font-weight: bold;">Y lo mejor de todo es que tendrás un ¡20% de Descuento en tu primera compra!</p>      
+                    <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">Ordena hasta la puerta de tu casa o sólo retira tu pedido cuando esté listo.</p>
+                      <p style="letter-spacing: -0.08px; font-size: 18px; line-height: 28px; margin-bottom: 2rem;">¡Pide ya y no te pierdas de ésta promoción que hicimos especialmente para ti!</p>
+                    </div>
+                    <div style="padding: 0 2rem; margin-bottom: 2rem;">
+                      <a href="https://pidespeed.com/login" style="
+                      padding: .5rem 3rem; 
+                      margin-top: 1rem;             
+                      display: inline-block;
+                      font-weight: 400;
+                      color: #212529;
+                      text-align: center;
+                      vertical-align: middle;
+                      cursor: pointer;
+                      -webkit-user-select: none;
+                      -moz-user-select: none;
+                      -ms-user-select: none;
+                      user-select: none;
+                      background-color: transparent;
+                      border: 1px solid transparent;
+                      font-size: 1rem;
+                      line-height: 1.5;
+                      border-radius: .25rem;
+                      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                      color: #ffffff;
+                      background-color: #ff414d;
+                      border-radius: 50rem!important; 
+                      text-decoration: none; 
+                      display: block;">Compra ya!</a>
+                    </div>
+                  </div>
+                  <div style="padding: 0 .8rem;">
+                    <div style="background-color: rgb(247, 247, 247); padding: 1.5rem .8rem; ">
+                      <h4 style="color: #333;">Equipo de Pidespeed</h4>
+                      <hr>
+                      <p>Si tienes alguna duda contáctanos a través de <a style="font-weight: 700; color: #ff414d; text-decoration: none;" href="https://pidespeed.com/help">Ayuda en línea</a></p>
+                    </div>
+                  </div>
+                </div>
+            </body>`,
+            };
+            try {
+                let info = yield transporter.sendMail(message);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                //res.status(400).json(err);
+                console.log(err);
             }
         });
     }
