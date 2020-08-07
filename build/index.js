@@ -49,7 +49,6 @@ class Server {
         this.config();
         this.routes();
     }
-    //ss
     config() {
         this.app.use(express_1.default.static('build/img'));
         this.app.use(helmet_1.default());
