@@ -10,7 +10,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 //import morgan from 'morgan';
 const cors_1 = __importDefault(require("cors"));
 const functions_1 = __importDefault(require("./functions"));
-//ROUTES PROBANDO
+//ROUTES PROBANDO1
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const testRoutes_1 = __importDefault(require("./routes/testRoutes"));
 const testAdminRoutes_1 = __importDefault(require("./routes/testAdminRoutes"));
