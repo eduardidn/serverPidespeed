@@ -167,8 +167,8 @@ class ProductosController {
                 let match = yield functions_1.default.matchPassword(password, savedPassword);
                 if (match) {
                     let token = yield functions_1.default.getToken(req.body);
-                    let tokenEmpresa = yield functions_1.default.getTokenAdmin(req.body);
-                    res.json({ message: "ok", token: token, tokenEmpresa: tokenEmpresa, user: empresa[0] });
+                    let tokenEmpresa = yield functions_1.default.getTokenEmpresa(req.body);
+                    res.json({ message: "ok", token: token, tokenAdmin: tokenEmpresa, user: empresa[0] });
                 }
                 else {
                     res.json({ message: "error" });
