@@ -19,4 +19,16 @@ class AdicionalesRoutes {
         this.router.delete('/:id', adicionalesController_1.default.delete);
     }
 }
-exports.default = new AdicionalesRoutes().router;
+class PublicAdicionalesRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:id/:tipo', adicionalesController_1.default.list);
+        this.router.get('/byIds/:ids/:tipo?', adicionalesController_1.default.listByIds);
+        this.router.get('/get/one/:id', adicionalesController_1.default.getOne);
+    }
+}
+exports.adicionalesRoutes = new AdicionalesRoutes().router;
+exports.publicAdicionalesRoutes = new PublicAdicionalesRoutes().router;

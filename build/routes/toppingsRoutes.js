@@ -19,4 +19,16 @@ class ToppingsRoutes {
         this.router.delete('/:id', toppingsController_1.default.delete);
     }
 }
-exports.default = new ToppingsRoutes().router;
+class PublicToppingsRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:id/:tipo', toppingsController_1.default.list);
+        this.router.get('/byIds/:ids/:tipo?', toppingsController_1.default.listByIds);
+        this.router.get('/get/one/:id', toppingsController_1.default.getOne);
+    }
+}
+exports.toppingsRoutes = new ToppingsRoutes().router;
+exports.publicToppingsRoutes = new PublicToppingsRoutes().router;

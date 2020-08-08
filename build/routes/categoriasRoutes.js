@@ -23,4 +23,17 @@ class CategoriasRoutes {
         this.router.delete('/product/:id', categoriasController_1.default.deleteProduct);
     }
 }
-exports.default = new CategoriasRoutes().router;
+class PublicCategoriasRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:tipo?', categoriasController_1.default.list);
+        this.router.get('/product/:tipo?', categoriasController_1.default.listProduct);
+        this.router.get('/one/:id', categoriasController_1.default.getOne);
+        this.router.get('/product/:id', categoriasController_1.default.getOneProduct);
+    }
+}
+exports.categoriasRoutes = new CategoriasRoutes().router;
+exports.publicCategoriasRoutes = new PublicCategoriasRoutes().router;

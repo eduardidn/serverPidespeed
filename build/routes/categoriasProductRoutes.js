@@ -18,4 +18,15 @@ class CategoriasProductRoutes {
         this.router.delete('/:id', categoriasProductController_1.default.delete);
     }
 }
-exports.default = new CategoriasProductRoutes().router;
+class PublicCategoriasProductRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', categoriasProductController_1.default.list);
+        this.router.get('/get/one/:id', categoriasProductController_1.default.getOne);
+    }
+}
+exports.categoriasProductRoutes = new CategoriasProductRoutes().router;
+exports.publicCategoriasProductRoutes = new PublicCategoriasProductRoutes().router;

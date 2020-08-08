@@ -19,4 +19,13 @@ class UsuariosRoutes {
         this.router.delete('/:id', usuariosController_1.default.delete);
     }
 }
-exports.default = new UsuariosRoutes().router;
+class PublicUsuariosRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+    }
+}
+exports.usuariosRoutes = new UsuariosRoutes().router;
+exports.publicUsuariosRoutes = new PublicUsuariosRoutes().router;

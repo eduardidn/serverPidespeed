@@ -18,4 +18,15 @@ class EstadosRoutes {
         this.router.delete('/:id', estadosController_1.default.delete);
     }
 }
-exports.default = new EstadosRoutes().router;
+class PublicEstadosRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', estadosController_1.default.list);
+        this.router.get('/get/one/:id', estadosController_1.default.getOne);
+    }
+}
+exports.estadosRoutes = new EstadosRoutes().router;
+exports.publicEstadosRoutes = new PublicEstadosRoutes().router;

@@ -20,4 +20,17 @@ class SubcategoriasRoutes {
         this.router.delete('/:id', subcategoriasController_1.default.delete);
     }
 }
-exports.default = new SubcategoriasRoutes().router;
+class PublicSubcategoriasRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', subcategoriasController_1.default.list);
+        this.router.get('/listEsp/:ruta/:tipo?', subcategoriasController_1.default.listEsp);
+        this.router.get('/listByEmpresa/:ruta', subcategoriasController_1.default.listByEmpresa);
+        this.router.get('/get/one/:id', subcategoriasController_1.default.getOne);
+    }
+}
+exports.subcategoriasRoutes = new SubcategoriasRoutes().router;
+exports.publicSubcategoriasRoutes = new PublicSubcategoriasRoutes().router;
