@@ -65,7 +65,7 @@ class Server {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/sesiones', loginRoutes_1.default);
         //RUTAS DE VERIFICACIÓN
-        //this.app.use('/public', func.verifyCodigo , testRoutes);
+        ///this.app.use('/public', func.verifyCodigo , testRoutes);
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/admin', functions_1.default.verifyTokenAdmin, testRoutes_1.default);
         this.app.use('/empresas', functions_1.default.verifyTokenEmpresa, testRoutes_1.default);
