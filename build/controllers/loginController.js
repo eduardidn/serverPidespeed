@@ -15,73 +15,7 @@ const functions_1 = __importDefault(require("../functions"));
 const db_1 = __importDefault(require("../db"));
 var nodemailer = require('nodemailer');
 //var twilio = require('twilio');
-class ProductosController {
-    buscarUserEmail(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where email = ?', [req.body.user]);
-            res.json(usuario);
-        });
-    }
-    buscarUserByEmail(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield db_1.default.query('SELECT * FROM usuarios Where email = ?', [req.body.user]);
-            res.json(usuario);
-        });
-    }
-    buscarEmpresaEmail(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { email } = req.params;
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE email = ?', [email]);
-            if (empresas.length > 0) {
-                res.json(empresas[0]);
-            }
-            else {
-                res.json({ message: "error" });
-            }
-        });
-    }
-    buscarEmpresaUsername(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE username = ?', [req.body.username]);
-            res.json(empresas);
-        });
-    }
-    buscarUserUsername(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where username = ?', [req.body.user]);
-            res.json(usuario);
-        });
-    }
-    buscarUserTelefono(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where telefono1 = ?', [req.body.telefono]);
-            res.json(usuario);
-        });
-    }
-    buscarUserCedula(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where cedula = ?', [req.body.cedula]);
-            res.json(usuario);
-        });
-    }
-    createUser(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let password = req.body.password;
-            req.body.password = yield functions_1.default.encryptPassword(password);
-            try {
-                const usuario = yield db_1.default.query('INSERT INTO usuarios SET ?', [req.body]);
-                if (usuario.affectedRows == 1) {
-                    res.json({ message: "ok" });
-                }
-                else {
-                    res.json({ message: "error" });
-                }
-            }
-            catch (err) {
-                res.json({ message: "errorBD" });
-            }
-        });
-    }
+class LoginController {
     loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
@@ -128,36 +62,6 @@ class ProductosController {
             }
         });
     }
-    getOneByEmail(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { email } = req.params;
-            const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE email = ?', [email]);
-            if (usuarios.length > 0) {
-                return res.json(usuarios[0]);
-            }
-            res.json({ message: "error" });
-        });
-    }
-    createEmpresa(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            /*let password = req.body.password;
-            const salt = await bcrypt.genSalt(10);
-            const passHash = await bcrypt.hash(password, salt);
-            req.body.password = passHash;
-            const productos = await db.query('INSERT INTO empresas SET ?', [req.body]);
-            res.json(productos);*/
-        });
-    }
-    createAdmin(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            /*let password = req.body.password;
-            const salt = await bcrypt.genSalt(10);
-            const passHash = await bcrypt.hash(password, salt);
-            req.body.password = passHash;
-            const productos = await db.query('INSERT INTO admins SET ?', [req.body]);
-            res.json(productos);*/
-        });
-    }
     loginEmpresa(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
@@ -179,20 +83,7 @@ class ProductosController {
             }
         });
     }
-    updatePassword(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let password = req.body.password;
-            const { email } = req.params;
-            req.body.password = yield functions_1.default.encryptPassword(password);
-            try {
-                yield db_1.default.query('UPDATE usuarios set ? WHERE email = ?', [req.body, email]);
-                res.json({ message: "ok" });
-            }
-            catch (err) {
-                res.json({ message: "errorBD" });
-            }
-        });
-    }
+    //ADMIN 
     updatePasswordNosotros(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
@@ -205,6 +96,25 @@ class ProductosController {
             catch (err) {
                 res.json({ message: "errorBD" });
             }
+        });
+    }
+    //CONSULTS DE EMPRESA
+    buscarEmpresaEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE email = ?', [email]);
+            if (empresas.length > 0) {
+                res.json(empresas[0]);
+            }
+            else {
+                res.json({ message: "error" });
+            }
+        });
+    }
+    buscarEmpresaUsername(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE username = ?', [req.body.username]);
+            res.json(empresas);
         });
     }
     updatePasswordEmpresa(req, res) {
@@ -221,7 +131,7 @@ class ProductosController {
             }
         });
     }
-    updatePasswordAdmin(req, res) {
+    updatePasswordEmpresaByEmail(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;
             const { email } = req.params;
@@ -235,6 +145,88 @@ class ProductosController {
             }
         });
     }
+    //usuariosControllert
+    //
+    buscarUserEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    //
+    buscarUserByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT * FROM usuarios Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    //
+    buscarUserUsername(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where username = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    //
+    buscarUserTelefono(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where telefono1 = ?', [req.body.telefono]);
+            res.json(usuario);
+        });
+    }
+    //
+    buscarUserCedula(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where cedula = ?', [req.body.cedula]);
+            res.json(usuario);
+        });
+    }
+    //
+    getOneByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
+    //
+    createUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                const usuario = yield db_1.default.query('INSERT INTO usuarios SET ?', [req.body]);
+                if (usuario.affectedRows == 1) {
+                    res.json({ message: "ok" });
+                }
+                else {
+                    res.json({ message: "error" });
+                }
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    //
+    updatePassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { email } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE usuarios set ? WHERE email = ?', [req.body, email]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    //
     updateUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
@@ -242,6 +234,7 @@ class ProductosController {
             res.json({ message: "ok" });
         });
     }
+    //MAILS
     mailBienvenido(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let nombre = req.body.nombre;
@@ -569,5 +562,5 @@ class ProductosController {
         });
     }
 }
-const productosController = new ProductosController;
-exports.default = productosController;
+const loginController = new LoginController;
+exports.default = loginController;

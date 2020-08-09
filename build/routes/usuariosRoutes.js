@@ -19,4 +19,22 @@ class UsuariosRoutes {
         this.router.delete('/:id', usuariosController_1.default.delete);
     }
 }
-exports.default = new UsuariosRoutes().router;
+class PublicUsuariosRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.post('/createUser', usuariosController_1.default.createUser);
+        this.router.post('/buscarUserEmail', usuariosController_1.default.buscarUserEmail);
+        this.router.post('/buscarUserEmail/completo', usuariosController_1.default.buscarUserByEmail);
+        this.router.get('/email/:email', usuariosController_1.default.getOneByEmail);
+        this.router.put('/recuperarPassword/:email', usuariosController_1.default.updatePasswordByEmail);
+        this.router.post('/buscarUserUsername', usuariosController_1.default.buscarUserUsername);
+        this.router.post('/buscarUserTelefono', usuariosController_1.default.buscarUserTelefono);
+        this.router.post('/buscarUserCedula', usuariosController_1.default.buscarUserCedula);
+        this.router.put('/usuario/:id', usuariosController_1.default.update);
+    }
+}
+exports.usuariosRoutes = new UsuariosRoutes().router;
+exports.publicUsuariosRoutes = new PublicUsuariosRoutes().router;

@@ -18,4 +18,15 @@ class AcompsRoutes {
         this.router.delete('/:id', acompsController_1.default.delete);
     }
 }
-exports.default = new AcompsRoutes().router;
+class PublicAcompsRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', acompsController_1.default.list);
+        this.router.get('/:id', acompsController_1.default.getOne);
+    }
+}
+exports.acompsRoutes = new AcompsRoutes().router;
+exports.publicAcompsRoutes = new PublicAcompsRoutes().router;

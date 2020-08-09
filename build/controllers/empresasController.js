@@ -153,6 +153,56 @@ class EmpresasController {
             res.json({ message: "error" });
         });
     }
+    /**
+     * consultas para login
+     */
+    buscarEmpresaEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE email = ?', [email]);
+            if (empresas.length > 0) {
+                res.json(empresas[0]);
+            }
+            else {
+                res.json({ message: "error" });
+            }
+        });
+    }
+    buscarEmpresaUsername(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const empresas = yield db_1.default.query('SELECT * FROM empresas WHERE username = ?', [req.body.username]);
+            res.json(empresas);
+        });
+    }
+    updatePasswordEmpresa(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { id } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE empresas set ? WHERE id = ?', [req.body, id]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    updatePasswordEmpresaByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { email } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE empresas set ? WHERE email = ?', [req.body, email]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    // fin de consultas para login
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let password = req.body.password;

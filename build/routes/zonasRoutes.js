@@ -18,4 +18,15 @@ class ZonasRoutes {
         this.router.delete('/:id', zonasController_1.default.delete);
     }
 }
-exports.default = new ZonasRoutes().router;
+class PublicZonasRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:ciudad', zonasController_1.default.list);
+        this.router.get('/get/one/:id', zonasController_1.default.getOne);
+    }
+}
+exports.zonasRoutes = new ZonasRoutes().router;
+exports.publicZonasRoutes = new PublicZonasRoutes().router;

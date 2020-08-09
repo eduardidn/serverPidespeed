@@ -20,4 +20,17 @@ class TamanosRoutes {
         this.router.delete('/:id', tamanosController_1.default.delete);
     }
 }
-exports.default = new TamanosRoutes().router;
+class PublicTamanosRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:ids/:tipo', tamanosController_1.default.list);
+        this.router.get('/get/all', tamanosController_1.default.listAll);
+        this.router.get('/get/byEmpresa/:id', tamanosController_1.default.listByEmpresa);
+        this.router.get('/get/one/:id', tamanosController_1.default.getOne);
+    }
+}
+exports.tamanosRoutes = new TamanosRoutes().router;
+exports.publicTamanosRoutes = new PublicTamanosRoutes().router;

@@ -20,4 +20,16 @@ class SaboresRoutes {
         this.router.delete('/:id', SaboresController_1.default.delete);
     }
 }
-exports.default = new SaboresRoutes().router;
+class PublicSaboresRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:id/:tipo', SaboresController_1.default.list);
+        this.router.get('/byIds/:ids/:tipo?', SaboresController_1.default.listByIds);
+        this.router.get('/get/one/:id', SaboresController_1.default.getOne);
+    }
+}
+exports.saboresRoutes = new SaboresRoutes().router;
+exports.publicSaboresRoutes = new PublicSaboresRoutes().router;

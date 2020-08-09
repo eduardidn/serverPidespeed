@@ -18,4 +18,15 @@ class CuentasRoutes {
         this.router.delete('/:id', CuentasController_1.default.delete);
     }
 }
-exports.default = new CuentasRoutes().router;
+class PublicCuentasRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', CuentasController_1.default.list);
+        this.router.get('/get/one/:id', CuentasController_1.default.getOne);
+    }
+}
+exports.cuentasRoutes = new CuentasRoutes().router;
+exports.publicCuentasRoutes = new PublicCuentasRoutes().router;

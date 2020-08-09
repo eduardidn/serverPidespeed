@@ -19,4 +19,16 @@ class SiropesRoutes {
         this.router.delete('/:id', siropesController_1.default.delete);
     }
 }
-exports.default = new SiropesRoutes().router;
+class PublicSiropesRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/:id/:tipo', siropesController_1.default.list);
+        this.router.get('/byIds/:ids/:tipo?', siropesController_1.default.listByIds);
+        this.router.get('/get/one/:id', siropesController_1.default.getOne);
+    }
+}
+exports.siropesRoutes = new SiropesRoutes().router;
+exports.publicSiropesRoutes = new PublicSiropesRoutes().router;

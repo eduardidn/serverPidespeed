@@ -18,4 +18,15 @@ class TipoBebidasRoutes {
         this.router.delete('/:id', tipoBebidasController_1.default.delete);
     }
 }
-exports.default = new TipoBebidasRoutes().router;
+class PublicTipoBebidasRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', tipoBebidasController_1.default.list);
+        this.router.get('/:id', tipoBebidasController_1.default.getOne);
+    }
+}
+exports.tipoBebidasRoutes = new TipoBebidasRoutes().router;
+exports.publicTipoBebidasRoutes = new PublicTipoBebidasRoutes().router;

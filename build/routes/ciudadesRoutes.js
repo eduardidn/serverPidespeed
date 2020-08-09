@@ -18,4 +18,15 @@ class CiudadesRoutes {
         this.router.delete('/:id', ciudadesController_1.default.delete);
     }
 }
-exports.default = new CiudadesRoutes().router;
+class PublicCiudadesRoutes {
+    constructor() {
+        this.router = express_1.Router();
+        this.config();
+    }
+    config() {
+        this.router.get('/', ciudadesController_1.default.list);
+        this.router.get('/get/one/:id', ciudadesController_1.default.getOne);
+    }
+}
+exports.ciudadesRoutes = new CiudadesRoutes().router;
+exports.publicCiudadesRoutes = new PublicCiudadesRoutes().router;
