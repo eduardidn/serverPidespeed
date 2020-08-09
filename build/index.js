@@ -15,7 +15,7 @@ const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const testRoutes_1 = __importDefault(require("./routes/testRoutes"));
 const empresasRoutes_1 = require("./routes/empresasRoutes");
 const productosRoutes_1 = require("./routes/productosRoutes");
-const sesionesRoutes_1 = __importDefault(require("./routes/sesionesRoutes"));
+const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const usuariosRoutes_1 = require("./routes/usuariosRoutes");
 const favoritosRoutes_1 = __importDefault(require("./routes/favoritosRoutes"));
 const categoriasRoutes_1 = require("./routes/categoriasRoutes");
@@ -63,8 +63,9 @@ class Server {
     }
     routes() {
         this.app.use('/', indexRoutes_1.default);
-        this.app.use('/sesiones', sesionesRoutes_1.default);
+        this.app.use('/sesiones', loginRoutes_1.default);
         //RUTAS DE VERIFICACIÓN
+        //this.app.use('/public', func.verifyCodigo , testRoutes);
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/admin', functions_1.default.verifyTokenAdmin, testRoutes_1.default);
         this.app.use('/empresas', functions_1.default.verifyTokenEmpresa, testRoutes_1.default);
@@ -117,6 +118,7 @@ class Server {
         this.app.use('/public/categoriasProduct', categoriasProductRoutes_1.publicCategoriasProductRoutes);
         this.app.use('/public/subcategorias', subcategoriasRoutes_1.publicSubcategoriasRoutes);
         this.app.use('/public/zonas', zonasRoutes_1.publicZonasRoutes);
+        this.app.use('/public/login', loginRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

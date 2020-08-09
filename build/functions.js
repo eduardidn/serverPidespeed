@@ -99,4 +99,18 @@ func.verifyTokenEmpresa = (req, res, next) => __awaiter(this, void 0, void 0, fu
         res.json({ message: "undefined" });
     }
 });
+func.verifyCodigo = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    const codigo = req.headers['verificacion'];
+    if (typeof codigo !== 'undefined') {
+        if (codigo != "%Pidespeed2020$PidespeedSecurityCode%") {
+            res.json({ message: "error" });
+        }
+        else {
+            next();
+        }
+    }
+    else {
+        res.json({ message: "undefined" });
+    }
+});
 exports.default = func;

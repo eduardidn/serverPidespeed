@@ -31,6 +31,84 @@ class UsuariosController {
             res.json({ message: "error" });
         });
     }
+    /**
+    * consultas para hacer el login
+    */
+    buscarUserEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    buscarUserByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT * FROM usuarios Where email = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    buscarUserUsername(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where username = ?', [req.body.user]);
+            res.json(usuario);
+        });
+    }
+    buscarUserTelefono(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where telefono1 = ?', [req.body.telefono]);
+            res.json(usuario);
+        });
+    }
+    buscarUserCedula(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuario = yield db_1.default.query('SELECT id, nombre, username, email, password FROM usuarios Where cedula = ?', [req.body.cedula]);
+            res.json(usuario);
+        });
+    }
+    getOneByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.params;
+            const usuarios = yield db_1.default.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
+            }
+            res.json({ message: "error" });
+        });
+    }
+    createUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                const usuario = yield db_1.default.query('INSERT INTO usuarios SET ?', [req.body]);
+                if (usuario.affectedRows == 1) {
+                    res.json({ message: "ok" });
+                }
+                else {
+                    res.json({ message: "error" });
+                }
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    updatePasswordByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let password = req.body.password;
+            const { email } = req.params;
+            req.body.password = yield functions_1.default.encryptPassword(password);
+            try {
+                yield db_1.default.query('UPDATE usuarios set ? WHERE email = ?', [req.body, email]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                res.json({ message: "errorBD" });
+            }
+        });
+    }
+    /**
+    * actualizar y eliminar usuarios
+    */
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
