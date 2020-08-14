@@ -26,6 +26,7 @@ class PublicZonasRoutes {
     config() {
         this.router.get('/:ciudad', zonasController_1.default.list);
         this.router.get('/get/one/:id', zonasController_1.default.getOne);
+        this.router.get('/get/ByIds/:ids', zonasController_1.default.getByIds);
     }
 }
 exports.zonasRoutes = new ZonasRoutes().router;
