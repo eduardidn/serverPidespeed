@@ -41,6 +41,7 @@ const categoriasProductRoutes_1 = require("./routes/categoriasProductRoutes");
 const subcategoriasRoutes_1 = require("./routes/subcategoriasRoutes");
 const filesRoutes_1 = __importDefault(require("./routes/filesRoutes"));
 const zonasRoutes_1 = require("./routes/zonasRoutes");
+const socketIO = require('socket.io');
 class Server {
     constructor() {
         process.env.TZ = 'America/Caracas';
@@ -121,8 +122,24 @@ class Server {
         this.app.use('/public/login', loginRoutes_1.default);
     }
     start() {
-        this.app.listen(this.app.get('port'), () => {
+        const server = this.app.listen(this.app.get('port'), () => {
             console.log('Server on port', this.app.get('port'));
+        });
+        this.io = socketIO(server);
+        this.socket();
+    }
+    socket() {
+        this.io.on('connection', (socket) => {
+            console.log('new connection', socket.id);
+            socket.on('pedido:actualizado', (data) => {
+                this.io.sockets.emit('pedido:actualizado', data);
+            });
+            socket.on('pedido:nuevoEmpresa', (data) => {
+                this.io.sockets.emit('pedido:nuevoEmpresa', data);
+            });
+            socket.on('pedido:nuevo', (data) => {
+                this.io.sockets.emit('pedido:nuevo', data);
+            });
         });
     }
 }
