@@ -34,22 +34,21 @@ class ZonasController {
     }
     getByIds(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let { ids } = req.params;
-            const { tipo } = req.params;
-            let id = ids.split(",");
-            var zonas;
-            if (tipo == 2) {
+            try {
+                let { ids } = req.params;
+                let id = ids.split(",");
+                var zonas;
                 try {
                     zonas = yield db_1.default.query('SELECT zonas.* FROM zonas WHERE zonas.id IN (?)', [id]);
                 }
                 catch (e) {
                     console.log(e);
                 }
+                res.json(zonas);
             }
-            else {
-                zonas = yield db_1.default.query('SELECT zonas.* FROM zonas WHERE zonas.publish = 1 AND zonas.id IN (?)', [id]);
+            catch (err) {
+                console.log(err);
             }
-            res.json(zonas);
         });
     }
     create(req, res) {
