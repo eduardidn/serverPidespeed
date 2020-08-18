@@ -145,7 +145,7 @@ class Server {
             });
             socket.on('actualizar:pedidosEmpresa', (data) => {
                 socket.broadcast.emit('actualizar:pedidosEmpresa', data);
-            });
+            }); //
         });
     }
 }
