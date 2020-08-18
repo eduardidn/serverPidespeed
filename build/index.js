@@ -133,12 +133,15 @@ class Server {
             console.log('new connection', socket.id);
             socket.on('pedido:actualizado', (data) => {
                 this.io.sockets.emit('pedido:actualizado', data);
+                console.log('pedido actualizado');
             });
             socket.on('pedido:nuevoEmpresa', (data) => {
                 this.io.sockets.emit('pedido:nuevoEmpresa', data);
+                console.log('pedido nuevo empresa');
             });
             socket.on('pedido:nuevo', (data) => {
                 this.io.sockets.emit('pedido:nuevo', data);
+                console.log('pedido nuevo');
             });
         });
     }
