@@ -32,6 +32,25 @@ class ZonasController {
             res.json({ message: "error" });
         });
     }
+    getByIds(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { ids } = req.params;
+                let id = ids.split(",");
+                var zonas;
+                try {
+                    zonas = yield db_1.default.query('SELECT zonas.* FROM zonas WHERE zonas.id IN (?)', [id]);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+                res.json(zonas);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield db_1.default.query('INSERT INTO zonas set ?', [req.body]);
