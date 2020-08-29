@@ -8,9 +8,9 @@ exports.default = {
         database: 'pidexpress'
     } */
     database: {
-        host: "31.220.56.153",
-        user: 'eduardidn',
-        password: 'Eduar.07',
+        host: "34.232.202.24",
+        user: 'root',
+        password: 'Pidespeed2020$',
         database: 'b4bdttx6r1sgazwbqffd'
     }
 };
