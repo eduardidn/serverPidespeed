@@ -41,9 +41,12 @@ const categoriasProductRoutes_1 = require("./routes/categoriasProductRoutes");
 const subcategoriasRoutes_1 = require("./routes/subcategoriasRoutes");
 const filesRoutes_1 = __importDefault(require("./routes/filesRoutes"));
 const zonasRoutes_1 = require("./routes/zonasRoutes");
+const faqRoutes_1 = require("./routes/faqRoutes");
 const socketIO = require('socket.io');
 class Server {
     constructor() {
+        this.notificationsUser = [];
+        this.notificationsEmpresas = [];
         process.env.TZ = 'America/Caracas';
         this.app = express_1.default();
         this.config();
@@ -98,6 +101,7 @@ class Server {
         this.app.use('/api/subcategorias', subcategoriasRoutes_1.subcategoriasRoutes);
         this.app.use('/api/files', filesRoutes_1.default);
         this.app.use('/api/zonas', zonasRoutes_1.zonasRoutes);
+        this.app.use('/api/faq', faqRoutes_1.faqRoutes);
         //RUTAS PÚBLICAS
         this.app.use('/public/mail', mailRoutes_1.publicMailRoutes);
         this.app.use('/public/empresas', empresasRoutes_1.publicEmpresasRoutes);
@@ -119,6 +123,7 @@ class Server {
         this.app.use('/public/categoriasProduct', categoriasProductRoutes_1.publicCategoriasProductRoutes);
         this.app.use('/public/subcategorias', subcategoriasRoutes_1.publicSubcategoriasRoutes);
         this.app.use('/public/zonas', zonasRoutes_1.publicZonasRoutes);
+        this.app.use('/public/faq', faqRoutes_1.publicFaqRoutes);
         this.app.use('/public/login', loginRoutes_1.default);
     }
     start() {
@@ -131,11 +136,29 @@ class Server {
     socket() {
         this.io.on('connection', (socket) => {
             console.log('new connection', socket.id);
+            this.notificationsUser.map((item) => {
+                if (item.event) {
+                    this.io.sockets.emit(item.event, item.data);
+                }
+            });
+            this.notificationsEmpresas.map((item) => {
+                if (item.event) {
+                    this.io.sockets.emit(item.event, item.data);
+                }
+            });
             socket.on('pedido:actualizado', (data) => {
                 this.io.sockets.emit('pedido:actualizado', data);
+                this.notificationsUser[data.userId] = {
+                    event: 'pedido:actualizado',
+                    data: data
+                };
             });
             socket.on('pedido:nuevoEmpresa', (data) => {
                 this.io.sockets.emit('pedido:nuevoEmpresa', data);
+                this.notificationsEmpresas[data.empresasId] = {
+                    event: 'pedido:actualizado',
+                    data: data
+                };
             });
             socket.on('pedido:nuevo', (data) => {
                 this.io.sockets.emit('pedido:nuevo', data);
@@ -145,7 +168,18 @@ class Server {
             });
             socket.on('actualizar:pedidosEmpresa', (data) => {
                 socket.broadcast.emit('actualizar:pedidosEmpresa', data);
-            }); //
+            });
+            //BORRAR NOTIFICACIONES CUANDO YA HAN SIDO VISTAS
+            socket.on('notificacion:usuario', (data) => {
+                this.notificationsUser[data.userId] = {
+                    event: ""
+                };
+            });
+            socket.on('notificacion:empresa', (data) => {
+                this.notificationsEmpresas[data.empresasId] = {
+                    event: ""
+                };
+            });
         });
     }
 }
