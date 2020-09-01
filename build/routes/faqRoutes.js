@@ -11,8 +11,6 @@ class FaqRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', faqController_1.default.list);
-        this.router.get('/get/one/:id', faqController_1.default.getOne);
         this.router.put('/:id', faqController_1.default.update);
         this.router.post('/', faqController_1.default.create);
         this.router.delete('/:id', faqController_1.default.delete);
