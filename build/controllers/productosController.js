@@ -135,9 +135,14 @@ class ProductosController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield db_1.default.query('UPDATE productos set ? WHERE id = ?', [req.body, id]);
-            res.json({ message: "ok" });
+            try {
+                const { id } = req.params;
+                yield db_1.default.query('UPDATE productos set ? WHERE id = ?', [req.body, id]);
+                res.json({ message: "ok" });
+            }
+            catch (err) {
+                console.log(err);
+            }
         });
     }
     delete(req, res) {

@@ -16,8 +16,13 @@ class ConfigController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var config;
-            config = yield db_1.default.query('SELECT * FROM config');
-            res.json(config);
+            try {
+                config = yield db_1.default.query('SELECT * FROM config');
+                res.json(config);
+            }
+            catch (err) {
+                console.log(err);
+            }
         });
     }
     getOne(req, res) {

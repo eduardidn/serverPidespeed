@@ -28,6 +28,7 @@
     "jscs": "^3.0.7",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.17.1",
+    "node-cron": "^2.0.3",
     "nodemailer": "^6.3.0",
     "promise-mysql": "^4.0.4",
     "socket.io": "^2.3.0",

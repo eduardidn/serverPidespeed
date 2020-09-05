@@ -10,6 +10,8 @@ const body_parser_1 = __importDefault(require("body-parser"));
 //import morgan from 'morgan';
 const cors_1 = __importDefault(require("cors"));
 const functions_1 = __importDefault(require("./functions"));
+//funciones
+const tasaFunc_1 = __importDefault(require("./tasaFunc"));
 //ROUTES
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const testRoutes_1 = __importDefault(require("./routes/testRoutes"));
@@ -51,6 +53,7 @@ class Server {
         this.app = express_1.default();
         this.config();
         this.routes();
+        tasaFunc_1.default;
     }
     config() {
         this.app.use(express_1.default.static('build/img'));

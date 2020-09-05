@@ -46,16 +46,6 @@ class EmpresasController {
     listHome(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { type } = req.params;
-            /* const { ciudad } = req.params;
-            if(ciudad){
-                if(type == 2){
-                    const empresas = await db.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE ciudad = ? ORDER BY empresas.visitas DESC',[ciudad]);
-                res.json(empresas);
-                }else{
-                    const empresas = await db.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 AND ciudad = ? ORDER BY empresas.visitas DESC',[ciudad]);
-                res.json(empresas);
-                }
-            }else{ */
             if (type == 2) {
                 const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado ORDER BY empresas.visitas DESC');
                 res.json(empresas);
@@ -68,7 +58,6 @@ class EmpresasController {
                 const empresas = yield db_1.default.query('SELECT empresas.*, categorias.ruta as rutaCategoria, estados.nombre as nombreEstado, ciudades.nombre as nombreCiudad FROM empresas INNER JOIN categorias on categorias.id = empresas.categoria_id INNER JOIN ciudades ON ciudades.id = empresas.ciudad INNER JOIN estados ON estados.id = empresas.estado WHERE empresas.publish = 1 AND empresas.es_sucursal = 0 ORDER BY empresas.visitas DESC');
                 res.json(empresas);
             }
-            /* } */
         });
     }
     listPop(req, res) {
@@ -125,6 +114,13 @@ class EmpresasController {
                 return res.json(empresas[0]);
             }
             res.json({ message: "error" });
+        });
+    }
+    getByTasas(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { tasa } = req.params;
+            const empresas = yield db_1.default.query(`SELECT empresas.id, empresas.ruta, empresas.tasa, empresas.porcent_mas, empresas.redondear_precio, empresas.tasa_dt, empresas.tasa_bcv from empresas WHERE ${tasa} = 1`);
+            res.json(empresas);
         });
     }
     addVisita(req, res) {

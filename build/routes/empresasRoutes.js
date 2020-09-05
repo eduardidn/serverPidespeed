@@ -44,6 +44,7 @@ class PublicEmpresasRoutes {
         this.router.get('/sucursales/:id', empresasController_1.default.getSucursales);
         this.router.get('/one/:ruta', empresasController_1.default.getOne);
         this.router.get('/one/byId/:id', empresasController_1.default.getOneById);
+        this.router.get('/get/byTasa/:tasa', empresasController_1.default.getByTasas);
         this.router.get('/buscarEmpresaEmail/:email', empresasController_1.default.buscarEmpresaEmail);
         this.router.put('/recuperarPasswordAdmin/:email', empresasController_1.default.updatePasswordEmpresaByEmail);
         this.router.put('/setPasswordEmpresa/:id', empresasController_1.default.updatePasswordEmpresa);
