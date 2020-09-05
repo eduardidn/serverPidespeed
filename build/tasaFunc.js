@@ -31,7 +31,7 @@ class TasaFunc {
                 tasa_dt: tasaDT,
                 tasa_bcv: tasaBCV
             };
-            axios.get(`https://ssl.pidespeed.com/api/config/1`, data, { headers: { Authorization: `Bearer ${this.token}` } }).catch((error) => {
+            axios.put(`https://ssl.pidespeed.com/api/config/1`, data, { headers: { Authorization: `Bearer ${this.token}` } }).catch((error) => {
                 console.log(error);
             });
             this.cambiarTasaBCV(tasaBCV);
@@ -42,7 +42,7 @@ class TasaFunc {
         });
     }
     cambiarTasaDT(tasaDT) {
-        axios.get('http://localhost:3000/public/empresas/get/byTasa/tasa_dt').then((empresas) => {
+        axios.get('https://ssl.pidespeed.com/public/empresas/get/byTasa/tasa_dt').then((empresas) => {
             empresas.data.map((empresa) => {
                 if (empresa.tasa != tasaDT) {
                     axios.get(`https://ssl.pidespeed.com/public/adicionales/${empresa.id}/2`).then((adicionales) => {
@@ -178,7 +178,7 @@ class TasaFunc {
         //busqueda de empresas
     }
     cambiarTasaBCV(tasaBCV) {
-        axios.get('http://localhost:3000/public/empresas/get/byTasa/tasa_bcv').then((empresas) => {
+        axios.get('https://ssl.pidespeed.com/public/empresas/get/byTasa/tasa_bcv').then((empresas) => {
             empresas.data.map((empresa) => {
                 if (empresa.tasa != tasaBCV) {
                     axios.get(`https://ssl.pidespeed.com/public/adicionales/${empresa.id}/2`).then((adicionales) => {
