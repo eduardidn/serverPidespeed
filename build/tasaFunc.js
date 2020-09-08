@@ -23,29 +23,35 @@ class TasaFunc {
         this.revisarTasa();
     }
     revisarTasa() {
+        //verificar tasa dollar today
         axios.get('https://s3.amazonaws.com/dolartoday/data.json').then((response) => __awaiter(this, void 0, void 0, function* () {
             let tasaBCV = response.data.USD.promedio_real.toFixed();
             let tasaDT = response.data.USD.promedio.toFixed();
+            //token para las consultas restringidas
             this.token = yield functions_1.default.getToken({ token: 123215 });
             let data = {
                 tasa_dt: tasaDT,
                 tasa_bcv: tasaBCV
             };
+            //actualizar tasa config
             axios.put(`https://ssl.pidespeed.com/api/config/1`, data, { headers: { Authorization: `Bearer ${this.token}` } }).catch((error) => {
                 console.log(error);
             });
             this.cambiarTasaBCV(tasaBCV);
             this.cambiarTasaDT(tasaDT);
-            //actualizar tasa config
         })).catch((error) => {
             console.log(error);
         });
     }
     cambiarTasaDT(tasaDT) {
+        //buscar empresas con tasa de dolar today
         axios.get('https://ssl.pidespeed.com/public/empresas/get/byTasa/tasa_dt').then((empresas) => {
+            //recorrer empresas
             empresas.data.map((empresa) => {
                 if (empresa.tasa != tasaDT) {
+                    //buscar adicionales
                     axios.get(`https://ssl.pidespeed.com/public/adicionales/${empresa.id}/2`).then((adicionales) => {
+                        //recorrer adicionales
                         adicionales.data.forEach((adicional, index) => {
                             let precioFinal1 = 0;
                             if (adicional.precio$ != 0) {
@@ -79,6 +85,7 @@ class TasaFunc {
                                 precio: precioFinal1
                             };
                             if (precioFinal1 != 0) {
+                                //actualizar precio de adicional
                                 axios.put(`https://ssl.pidespeed.com/api/adicionales/${adicional.id}`, precio, { headers: { Authorization: `Bearer ${this.token}` } }).catch((error) => {
                                     console.log(error);
                                 });
@@ -90,6 +97,7 @@ class TasaFunc {
                     });
                     //busqueda de productos
                     axios.get(`https://ssl.pidespeed.com/public/productos/${empresa.ruta}/2`).then((productos) => {
+                        //recorrer productos
                         productos.data.forEach((producto, index) => {
                             let precioFinal1 = 0;
                             let precioFinalToGo = 1;
@@ -151,6 +159,7 @@ class TasaFunc {
                                 precio1: precioFinal1,
                                 to_go: precioFinalToGo
                             };
+                            //modificar precio de productos
                             axios.put(`https://ssl.pidespeed.com/api/productos/${producto.id}`, precio, { headers: { Authorization: `Bearer ${this.token}` } }).then((producto) => {
                                 if (index == (productos.data.length - 1)) {
                                     let data = {
@@ -178,10 +187,14 @@ class TasaFunc {
         //busqueda de empresas
     }
     cambiarTasaBCV(tasaBCV) {
+        //buscar empresas con tasa de dolar BCV
         axios.get('https://ssl.pidespeed.com/public/empresas/get/byTasa/tasa_bcv').then((empresas) => {
+            //recorrer empresas
             empresas.data.map((empresa) => {
                 if (empresa.tasa != tasaBCV) {
+                    //buscar adicionales
                     axios.get(`https://ssl.pidespeed.com/public/adicionales/${empresa.id}/2`).then((adicionales) => {
+                        //recorrer adicionales
                         adicionales.data.forEach((adicional, index) => {
                             let precioFinal1 = 0;
                             if (adicional.precio$ != 0) {
@@ -215,6 +228,7 @@ class TasaFunc {
                                 precio: precioFinal1
                             };
                             if (precioFinal1 != 0) {
+                                //modificar precio de adicionales
                                 axios.put(`https://ssl.pidespeed.com/api/adicionales/${adicional.id}`, precio, { headers: { Authorization: `Bearer ${this.token}` } }).catch((error) => {
                                     console.log(error);
                                 });
@@ -226,6 +240,7 @@ class TasaFunc {
                     });
                     //busqueda de productos
                     axios.get(`https://ssl.pidespeed.com/public/productos/${empresa.ruta}/2`).then((productos) => {
+                        //recorrer productos
                         productos.data.forEach((producto, index) => {
                             let precioFinal1 = 0;
                             let precioFinalToGo = 1;
@@ -287,6 +302,7 @@ class TasaFunc {
                                 precio1: precioFinal1,
                                 to_go: precioFinalToGo
                             };
+                            //modificar precio de productos
                             axios.put(`https://ssl.pidespeed.com/api/productos/${producto.id}`, precio, { headers: { Authorization: `Bearer ${this.token}` } }).then((producto) => {
                                 if (index == (productos.data.length - 1)) {
                                     let data = {

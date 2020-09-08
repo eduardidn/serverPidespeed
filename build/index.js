@@ -56,23 +56,26 @@ class Server {
         tasaFunc_1.default;
     }
     config() {
+        //ruta estatica
         this.app.use(express_1.default.static('build/img'));
-        this.app.use(helmet_1.default());
         this.app.use('/img', express_1.default.static('build/img'));
+        //seguridad
+        this.app.use(helmet_1.default());
+        //puerto
         this.app.set('port', process.env.PORT || 3000);
+        //configuracion de peticiones
         this.app.use(body_parser_1.default.json({ limit: '50mb' }));
         this.app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
-        //this.app.use(morgan('dev'));
         this.app.use(cors_1.default());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
         dotenv_1.default.config();
+        //this.app.use(morgan('dev'));
     }
     routes() {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/sesiones', loginRoutes_1.default);
         //RUTAS DE VERIFICACIÓN
-        ///this.app.use('/public', func.verifyCodigo , testRoutes);
         this.app.use('/api', functions_1.default.verifyToken, testRoutes_1.default);
         this.app.use('/admin', functions_1.default.verifyTokenAdmin, testRoutes_1.default);
         this.app.use('/empresas', functions_1.default.verifyTokenEmpresa, testRoutes_1.default);
@@ -139,16 +142,19 @@ class Server {
     socket() {
         this.io.on('connection', (socket) => {
             console.log('new connection', socket.id);
+            //verificar notificaciones de usuarios no entregadas
             this.notificationsUser.map((item) => {
                 if (item.event) {
                     this.io.sockets.emit(item.event, item.data);
                 }
             });
+            //verificar notificaciones de empresas no entregadas
             this.notificationsEmpresas.map((item) => {
                 if (item.event) {
                     this.io.sockets.emit(item.event, item.data);
                 }
             });
+            //socket de pedidos
             socket.on('pedido:actualizado', (data) => {
                 this.io.sockets.emit('pedido:actualizado', data);
                 this.notificationsUser[data.userId] = {
