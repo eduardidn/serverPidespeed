@@ -1,4 +1,7 @@
+./build
+build
 node_modules
 tsconfig.json
 *.sh
 .env
+.github
