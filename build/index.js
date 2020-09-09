@@ -49,7 +49,7 @@ class Server {
     constructor() {
         this.notificationsUser = [];
         this.notificationsEmpresas = [];
-        if (process.env.NODE_ENV != 'production') {
+        if (process.env.NODE_ENV == 'development') {
             dotenv_1.default.config();
         }
         console.log(process.env.USER_DB);

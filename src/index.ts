@@ -53,7 +53,7 @@ class Server {
     public io: any;
     
     constructor() {
-        if(process.env.NODE_ENV != 'production'){
+        if(process.env.NODE_ENV == 'development'){
             dotenv.config();
         }
         console.log(process.env.USER_DB)

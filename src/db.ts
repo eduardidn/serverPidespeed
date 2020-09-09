@@ -1,6 +1,6 @@
 import mysql, {Pool} from 'mysql';
 import dotenv from 'dotenv';
-  if(process.env.NODE_ENV != 'production'){
+  if(process.env.NODE_ENV == 'development'){
     dotenv.config();
   }
 import { promisify } from 'bluebird';

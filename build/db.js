@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
-if (process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV == 'development') {
     dotenv_1.default.config();
 }
 const bluebird_1 = require("bluebird");
