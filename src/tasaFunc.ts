@@ -12,7 +12,9 @@ class TasaFunc {
     cron.schedule('*/30 * * * *', () => {
       this.revisarTasa();
     });
-    this.revisarTasa();
+    setTimeout(() => {
+      this.revisarTasa()
+    }, 15000);
   }
 
   public revisarTasa() {
