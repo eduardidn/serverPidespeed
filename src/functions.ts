@@ -26,15 +26,15 @@ func.matchPassword = async (password:string, savedPassword:string) => {
 */
 
 func.getToken = async (data:object) => {
-  return await jwt.sign(data, 'estoessecreto', { expiresIn: '48h' });
+  return await jwt.sign(data, process.env.TOKEN_USER, { expiresIn: '48h' });
 };
 
 func.getTokenAdmin = async (data:object) => {
-  return await jwt.sign(data, 'tokenParaElAdmiiin', { expiresIn: '48h' });
+  return await jwt.sign(data, process.env.TOKEN_ADMIN, { expiresIn: '48h' });
 };
 
 func.getTokenEmpresa = async (data:object) => {
-  return await jwt.sign(data, 'tokenParaLasEmpresaaas', { expiresIn: '48h' });
+  return await jwt.sign(data, process.env.TOKEN_EMPRESAS, { expiresIn: '48h' });
 };
 
 /**
@@ -51,7 +51,7 @@ func.verifyToken = async (req:any, res:any, next:any) => {
     
     const bearerToken = bearer[1];
     
-    jwt.verify(bearerToken, 'estoessecreto', (err:any, authData:any) => {
+    jwt.verify(bearerToken, process.env.TOKEN_USER, (err:any, authData:any) => {
       if(err) {
         res.json({message: "error"});
       } else {
@@ -74,7 +74,7 @@ func.verifyTokenAdmin = async (req:any, res:any, next:any) => {
     
     const bearerToken = bearer[1];
     
-    jwt.verify(bearerToken, 'tokenParaElAdmiiin', (err:any, authData:any) => {
+    jwt.verify(bearerToken, process.env.TOKEN_ADMIN, (err:any, authData:any) => {
       if(err) {
         res.json({message: "error"});
       } else {
@@ -97,7 +97,7 @@ func.verifyTokenEmpresa = async (req:any, res:any, next:any) => {
     
     const bearerToken = bearer[1];
     
-    jwt.verify(bearerToken, 'tokenParaLasEmpresaaas', (err:any, authData:any) => {
+    jwt.verify(bearerToken, process.env.TOKEN_EMPRESAS, (err:any, authData:any) => {
       if(err) {
         res.json({message: "error"});
       } else {

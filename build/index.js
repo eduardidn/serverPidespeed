@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
-const dotenv_1 = __importDefault(require("dotenv"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const dotenv_1 = __importDefault(require("dotenv"));
 //import morgan from 'morgan';
 const cors_1 = __importDefault(require("cors"));
 const functions_1 = __importDefault(require("./functions"));
@@ -49,6 +49,10 @@ class Server {
     constructor() {
         this.notificationsUser = [];
         this.notificationsEmpresas = [];
+        if (process.env.NODE_ENV != 'production') {
+            dotenv_1.default.config();
+        }
+        console.log(process.env.USER_DB);
         process.env.TZ = 'America/Caracas';
         this.app = express_1.default();
         this.config();
@@ -70,7 +74,6 @@ class Server {
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
         dotenv_1.default.config();
-        //this.app.use(morgan('dev'));
     }
     routes() {
         this.app.use('/', indexRoutes_1.default);

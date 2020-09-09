@@ -31,13 +31,13 @@ func.matchPassword = (password, savedPassword) => __awaiter(this, void 0, void 0
 * GENERAR TOKENS
 */
 func.getToken = (data) => __awaiter(this, void 0, void 0, function* () {
-    return yield jwt.sign(data, 'estoessecreto', { expiresIn: '48h' });
+    return yield jwt.sign(data, process.env.TOKEN_USER, { expiresIn: '48h' });
 });
 func.getTokenAdmin = (data) => __awaiter(this, void 0, void 0, function* () {
-    return yield jwt.sign(data, 'tokenParaElAdmiiin', { expiresIn: '48h' });
+    return yield jwt.sign(data, process.env.TOKEN_ADMIN, { expiresIn: '48h' });
 });
 func.getTokenEmpresa = (data) => __awaiter(this, void 0, void 0, function* () {
-    return yield jwt.sign(data, 'tokenParaLasEmpresaaas', { expiresIn: '48h' });
+    return yield jwt.sign(data, process.env.TOKEN_EMPRESAS, { expiresIn: '48h' });
 });
 /**
  * VERIFICAR TOKENS
@@ -47,7 +47,7 @@ func.verifyToken = (req, res, next) => __awaiter(this, void 0, void 0, function*
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
-        jwt.verify(bearerToken, 'estoessecreto', (err, authData) => {
+        jwt.verify(bearerToken, process.env.TOKEN_USER, (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }
@@ -66,7 +66,7 @@ func.verifyTokenAdmin = (req, res, next) => __awaiter(this, void 0, void 0, func
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
-        jwt.verify(bearerToken, 'tokenParaElAdmiiin', (err, authData) => {
+        jwt.verify(bearerToken, process.env.TOKEN_ADMIN, (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }
@@ -85,7 +85,7 @@ func.verifyTokenEmpresa = (req, res, next) => __awaiter(this, void 0, void 0, fu
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
-        jwt.verify(bearerToken, 'tokenParaLasEmpresaaas', (err, authData) => {
+        jwt.verify(bearerToken, process.env.TOKEN_EMPRESAS, (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }

@@ -1,7 +1,7 @@
 import express, {Application} from 'express';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import dotenv from "dotenv";
 
 //import morgan from 'morgan';
 import cors from 'cors'
@@ -53,6 +53,10 @@ class Server {
     public io: any;
     
     constructor() {
+        if(process.env.NODE_ENV != 'production'){
+            dotenv.config();
+        }
+        console.log(process.env.USER_DB)
         process.env.TZ = 'America/Caracas'
         this.app = express();
         this.config();
@@ -78,7 +82,6 @@ class Server {
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
         dotenv.config();
-        //this.app.use(morgan('dev'));
     }
     
     routes(): void {

@@ -4,9 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mysql_1 = __importDefault(require("mysql"));
-const keys_1 = __importDefault(require("./keys"));
+const dotenv_1 = __importDefault(require("dotenv"));
+if (process.env.NODE_ENV != 'production') {
+    dotenv_1.default.config();
+}
 const bluebird_1 = require("bluebird");
-const db = mysql_1.default.createPool(keys_1.default.database);
+let database = {
+    host: process.env.HOST_DB,
+    user: process.env.USER_DB,
+    password: process.env.PASSWORD_DB,
+    database: process.env.DATABASE
+};
+const db = mysql_1.default.createPool(database);
 db.getConnection((err, connection) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {

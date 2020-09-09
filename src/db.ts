@@ -1,9 +1,18 @@
 import mysql, {Pool} from 'mysql';
-
-import keys from './keys';
+import dotenv from 'dotenv';
+  if(process.env.NODE_ENV != 'production'){
+    dotenv.config();
+  }
 import { promisify } from 'bluebird';
 
-const db: any = mysql.createPool(keys.database);
+let database = {
+  host: process.env.HOST_DB,
+  user: process.env.USER_DB,
+  password: process.env.PASSWORD_DB,
+  database: process.env.DATABASE
+}
+
+const db: any = mysql.createPool(database);
 
 db.getConnection((err: any, connection: any) => {
   if (err) {
