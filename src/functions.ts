@@ -24,7 +24,7 @@ func.matchPassword = async (password:string, savedPassword:string) => {
 /**
 * GENERAR TOKENS
 */
-
+console.log(process.env.TOKEN_USER)
 func.getToken = async (data:object) => {
   return await jwt.sign(data, process.env.TOKEN_USER, { expiresIn: '48h' });
 };

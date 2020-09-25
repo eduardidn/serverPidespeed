@@ -30,6 +30,7 @@ func.matchPassword = (password, savedPassword) => __awaiter(this, void 0, void 0
 /**
 * GENERAR TOKENS
 */
+console.log(process.env.TOKEN_USER);
 func.getToken = (data) => __awaiter(this, void 0, void 0, function* () {
     return yield jwt.sign(data, process.env.TOKEN_USER, { expiresIn: '48h' });
 });
