@@ -30,15 +30,14 @@ func.matchPassword = (password, savedPassword) => __awaiter(this, void 0, void 0
 /**
 * GENERAR TOKENS
 */
-console.log(process.env.TOKEN_USER);
 func.getToken = (data) => __awaiter(this, void 0, void 0, function* () {
-    return yield jwt.sign(data, process.env.TOKEN_USER, { expiresIn: '48h' });
+    return yield jwt.sign(data, "estoessecreto", { expiresIn: '48h' });
 });
 func.getTokenAdmin = (data) => __awaiter(this, void 0, void 0, function* () {
-    return yield jwt.sign(data, process.env.TOKEN_ADMIN, { expiresIn: '48h' });
+    return yield jwt.sign(data, "tokenParaElAdmiiin", { expiresIn: '48h' });
 });
 func.getTokenEmpresa = (data) => __awaiter(this, void 0, void 0, function* () {
-    return yield jwt.sign(data, process.env.TOKEN_EMPRESAS, { expiresIn: '48h' });
+    return yield jwt.sign(data, "tokenParaLasEmpresaaas", { expiresIn: '48h' });
 });
 /**
  * VERIFICAR TOKENS

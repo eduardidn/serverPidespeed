@@ -24,17 +24,16 @@ func.matchPassword = async (password:string, savedPassword:string) => {
 /**
 * GENERAR TOKENS
 */
-console.log(process.env.TOKEN_USER)
 func.getToken = async (data:object) => {
-  return await jwt.sign(data, process.env.TOKEN_USER, { expiresIn: '48h' });
+  return await jwt.sign(data, "estoessecreto", { expiresIn: '48h' });
 };
 
 func.getTokenAdmin = async (data:object) => {
-  return await jwt.sign(data, process.env.TOKEN_ADMIN, { expiresIn: '48h' });
+  return await jwt.sign(data, "tokenParaElAdmiiin", { expiresIn: '48h' });
 };
 
 func.getTokenEmpresa = async (data:object) => {
-  return await jwt.sign(data, process.env.TOKEN_EMPRESAS, { expiresIn: '48h' });
+  return await jwt.sign(data, "tokenParaLasEmpresaaas", { expiresIn: '48h' });
 };
 
 /**
