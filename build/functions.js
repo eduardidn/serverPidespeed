@@ -47,7 +47,7 @@ func.verifyToken = (req, res, next) => __awaiter(this, void 0, void 0, function*
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
-        jwt.verify(bearerToken, process.env.TOKEN_USER, (err, authData) => {
+        jwt.verify(bearerToken, "estoessecreto", (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }
@@ -66,7 +66,7 @@ func.verifyTokenAdmin = (req, res, next) => __awaiter(this, void 0, void 0, func
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
-        jwt.verify(bearerToken, process.env.TOKEN_ADMIN, (err, authData) => {
+        jwt.verify(bearerToken, "tokenParaElAdmiiin", (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }
@@ -85,7 +85,7 @@ func.verifyTokenEmpresa = (req, res, next) => __awaiter(this, void 0, void 0, fu
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
-        jwt.verify(bearerToken, process.env.TOKEN_EMPRESAS, (err, authData) => {
+        jwt.verify(bearerToken, "tokenParaLasEmpresaaas", (err, authData) => {
             if (err) {
                 res.json({ message: "error" });
             }

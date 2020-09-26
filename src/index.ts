@@ -56,7 +56,6 @@ class Server {
         if(process.env.NODE_ENV == 'development'){
             dotenv.config();
         }
-        console.log(process.env.USER_DB)
         process.env.TZ = 'America/Caracas'
         this.app = express();
         this.config();

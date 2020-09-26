@@ -10,10 +10,10 @@ if (process.env.NODE_ENV == 'development') {
 }
 const bluebird_1 = require("bluebird");
 let database = {
-    host: process.env.HOST_DB,
-    user: process.env.USER_DB,
-    password: process.env.PASSWORD_DB,
-    database: process.env.DATABASE
+    host: "34.232.202.24",
+    user: "root",
+    password: "Pidespeed2020$",
+    database: "b4bdttx6r1sgazwbqffd"
 };
 const db = mysql_1.default.createPool(database);
 db.getConnection((err, connection) => {

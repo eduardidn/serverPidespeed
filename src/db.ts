@@ -6,10 +6,10 @@ import dotenv from 'dotenv';
 import { promisify } from 'bluebird';
 
 let database = {
-  host: process.env.HOST_DB,
-  user: process.env.USER_DB,
-  password: process.env.PASSWORD_DB,
-  database: process.env.DATABASE
+  host: "34.232.202.24",
+  user: "root",
+  password: "Pidespeed2020$",
+  database: "b4bdttx6r1sgazwbqffd"
 }
 
 const db: any = mysql.createPool(database);
