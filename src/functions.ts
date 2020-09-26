@@ -52,7 +52,7 @@ func.verifyToken = async (req:any, res:any, next:any) => {
     
     jwt.verify(bearerToken, "estoessecreto", (err:any, authData:any) => {
       if(err) {
-        res.json({message: "error"});
+        res.json({message: "error token"});
       } else {
         req.data = authData
         next();
@@ -75,7 +75,7 @@ func.verifyTokenAdmin = async (req:any, res:any, next:any) => {
     
     jwt.verify(bearerToken, "tokenParaElAdmiiin", (err:any, authData:any) => {
       if(err) {
-        res.json({message: "error"});
+        res.json({message: "error token admin"});
       } else {
         req.data = authData
         next();
@@ -98,7 +98,7 @@ func.verifyTokenEmpresa = async (req:any, res:any, next:any) => {
     
     jwt.verify(bearerToken, "tokenParaLasEmpresaaas", (err:any, authData:any) => {
       if(err) {
-        res.json({message: "error"});
+        res.json({message: "error token empresas"});
       } else {
         req.data = authData
         next();

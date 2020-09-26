@@ -49,7 +49,7 @@ func.verifyToken = (req, res, next) => __awaiter(this, void 0, void 0, function*
         const bearerToken = bearer[1];
         jwt.verify(bearerToken, "estoessecreto", (err, authData) => {
             if (err) {
-                res.json({ message: "error" });
+                res.json({ message: "error token" });
             }
             else {
                 req.data = authData;
@@ -68,7 +68,7 @@ func.verifyTokenAdmin = (req, res, next) => __awaiter(this, void 0, void 0, func
         const bearerToken = bearer[1];
         jwt.verify(bearerToken, "tokenParaElAdmiiin", (err, authData) => {
             if (err) {
-                res.json({ message: "error" });
+                res.json({ message: "error token admin" });
             }
             else {
                 req.data = authData;
@@ -87,7 +87,7 @@ func.verifyTokenEmpresa = (req, res, next) => __awaiter(this, void 0, void 0, fu
         const bearerToken = bearer[1];
         jwt.verify(bearerToken, "tokenParaLasEmpresaaas", (err, authData) => {
             if (err) {
-                res.json({ message: "error" });
+                res.json({ message: "error token empresas" });
             }
             else {
                 req.data = authData;
